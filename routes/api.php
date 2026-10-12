@@ -10,3 +10,5 @@ Route::get('/user', function (Request $request) {
 
 // Route::post('/telegram/webhook', [TelegramBotController::class, 'webhook']);
 Route::post('/telegram/webhook/{secret}', [TelegramBotController::class, 'webhook']);
+
+require __DIR__ . '/quran.php';
