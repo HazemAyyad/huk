@@ -1,7 +1,21 @@
 <?php
 
+use App\Http\Controllers\Api\QuranContentController;
 use App\Http\Controllers\Api\QuranController;
+use App\Http\Controllers\Api\ReligiousAccountController;
+use App\Http\Middleware\ReligiousAccountOnly;
 use Illuminate\Support\Facades\Route;
+
+Route::prefix('v1/religious/account')->middleware('throttle:15,1')->group(function (): void {
+    Route::post('register', [ReligiousAccountController::class, 'register']);
+    Route::post('login', [ReligiousAccountController::class, 'login']);
+    Route::middleware(['auth:sanctum', ReligiousAccountOnly::class])->group(function (): void {
+        Route::get('profile', [ReligiousAccountController::class, 'profile']);
+        Route::post('logout', [ReligiousAccountController::class, 'logout']);
+    });
+});
+Route::post('v1/quran/sync', [ReligiousAccountController::class, 'sync'])
+    ->middleware(['auth:sanctum', ReligiousAccountOnly::class, 'throttle:60,1']);
 
 Route::prefix('v1/quran')->group(function (): void {
     Route::get('manifest', [QuranController::class, 'manifest']);
@@ -10,4 +24,11 @@ Route::prefix('v1/quran')->group(function (): void {
     Route::get('juzs', [QuranController::class, 'juzs']);
     Route::get('verses', [QuranController::class, 'verses']);
     Route::get('search', [QuranController::class, 'search']);
+    Route::prefix('content')->middleware('throttle:60,1')->group(function (): void {
+        Route::get('pages/{page}', [QuranContentController::class, 'page']);
+        Route::get('tafsirs/{source}/{surah}/{ayah}', [QuranContentController::class, 'tafsir']);
+        Route::get('meanings/{surah}/{ayah}', [QuranContentController::class, 'meanings']);
+        Route::get('words/{surah}/{ayah}', [QuranContentController::class, 'words']);
+        Route::get('recitations', [QuranContentController::class, 'recitations']);
+    });
 });

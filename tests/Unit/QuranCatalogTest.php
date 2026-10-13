@@ -43,6 +43,7 @@ final class QuranCatalogTest extends TestCase
         self::assertSame('tanzil-uthmani-1.1-metadata-1.0', $manifest['version']);
         self::assertSame('https://tanzil.net', $manifest['source_url']);
         self::assertSame(hash_file('sha256', dirname(__DIR__, 2) . '/resources/quran/quran.json'), $manifest['sha256']);
-        self::assertFalse($manifest['capabilities']['audio']);
+        self::assertTrue($manifest['capabilities']['audio']);
+        self::assertTrue($manifest['capabilities']['account_sync']);
     }
 }

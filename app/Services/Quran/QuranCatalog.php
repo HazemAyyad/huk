@@ -46,9 +46,9 @@ final class QuranCatalog
             'page_count' => 604,
             'capabilities' => [
                 'text' => true, 'search' => true, 'offline_text' => true,
-                'tafsir' => false, 'word_meanings' => false,
-                'audio' => false, 'account_sync' => false,
-                'fixed_page_layout' => false,
+                'tafsir' => true, 'word_meanings' => true,
+                'audio' => true, 'account_sync' => true,
+                'fixed_page_layout' => true,
             ],
         ];
     }
@@ -68,14 +68,14 @@ final class QuranCatalog
         if ($id < 1 || $id > 114) {
             throw new InvalidArgumentException('Invalid surah.');
         }
+
         return $this->surahs()[$id - 1];
     }
 
     public function verses(?int $surah = null, ?int $juz = null, ?int $page = null): array
     {
         return array_values(array_filter($this->dataset()['verses'],
-            static fn (array $verse): bool =>
-                ($surah === null || $verse['surah'] === $surah) &&
+            static fn (array $verse): bool => ($surah === null || $verse['surah'] === $surah) &&
                 ($juz === null || $verse['juz'] === $juz) &&
                 ($page === null || $verse['page'] === $page)));
     }
