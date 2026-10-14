@@ -415,6 +415,9 @@ Route::group(
             });
 
             Route::group(['prefix' => "humanitarian-cases"], function () {
+                Route::get('/assistance-request', [AdminController::class, 'index'])
+                    ->name('admin.humanitarian.cases.assistance-request.index');
+
                 Route::group(['prefix' => 'orphans'], function () {
                     Route::get('/', [OrphansController::class, 'index'])->name('admin.humanitarian.cases.orphans.index');
                     Route::get('/{id}/show', [OrphansController::class, 'index'])->name('admin.humanitarian.cases.orphans.show');
