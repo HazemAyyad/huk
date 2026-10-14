@@ -29,8 +29,29 @@ final class QuranRemoteContent
 
     public function page(int $page): array
     {
-        return $this->fetch("https://api.quran.com/api/v4/verses/by_page/{$page}?mushaf=1&words=true&word_fields=code_v2,text_qpc_hafs,page_number,line_number&per_page=50",
-            fn (array $data) => ! empty($data['verses']) && empty($data['pagination']['next_page']));
+        return $this->fetch("https://api.quran.com/api/v4/verses/by_page/{$page}?mushaf=19&words=true&word_fields=code_v2,text_qpc_hafs,page_number,line_number&per_page=50",
+            function (array $data) use ($page): bool {
+                if (empty($data['verses']) || ! empty($data['pagination']['next_page'])) {
+                    return false;
+                }
+                $words = 0;
+                foreach ($data['verses'] as $verse) {
+                    foreach ($verse['words'] ?? [] as $word) {
+                        // A verse can continue onto an adjacent physical page.
+                        if (($word['page_number'] ?? null) !== $page) {
+                            continue;
+                        }
+                        if (! is_int($word['line_number'] ?? null)
+                            || $word['line_number'] < 1 || $word['line_number'] > 15
+                            || ! is_string($word['code_v2'] ?? null) || $word['code_v2'] === '') {
+                            return false;
+                        }
+                        $words++;
+                    }
+                }
+
+                return $words > 0;
+            });
     }
 
     public function tafsir(int $source, string $key): array

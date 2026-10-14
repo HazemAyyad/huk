@@ -11,13 +11,13 @@ All below are relative to `/api/v1/quran`:
 | `GET /manifest`, `/dataset` | Version, notices, SHA256, capabilities and complete canonical dataset |
 | `GET /surahs`, `/juzs` | 114 chapters / 30 exact parts |
 | `GET /verses`, `/search?q=...` | Canonical text; optional surah/juz/page; cursor offset, limit 1..100 |
-| `GET /content/pages/{page}` | Original QCF V2 word and physical line metadata, page 1..604 |
+| `GET /content/pages/{page}` | Original QCF V4 Tajweed word and physical line metadata (mushaf=19, code_v2), page 1..604 |
 | `GET /content/tafsirs/{source}/{surah}/{ayah}` | Saadi 91, Tabari 15, Ibn Kathir 14, Qurtubi 90; original HTML and verse range |
 | `GET /content/meanings/{surah}/{ayah}` | QuranEnc Arabic Seraj original payload and footnotes |
 | `GET /content/words/{surah}/{ayah}` | Quran.com word/audio references, including verses spanning pages |
 | `GET /content/recitations` | Original MP3Quran Hafs catalog |
 
-Provider responses are cached for one day with the `file` store (`config/quran.php`), independent of the application's DB cache. Only validated responses are cached. Source failures return 502, invalid references return 422; request parameters cannot select arbitrary external hosts. The client caches viewed content and uses official provider fallback if these new server endpoints are not deployed. Canonical text is always bundled locally.
+Provider responses are cached for one day with the `file` store (`config/quran.php`), independent of the application's DB cache. Only validated responses are cached. Source failures return 502, invalid references return 422; request parameters cannot select arbitrary external hosts. The client caches ordinary JSON responses for at most seven days, loads original Tajweed fonts into session memory only, and uses official provider fallback if these new server endpoints are not deployed. Canonical text is always bundled locally.
 
 ## Religious accounts and sync
 
