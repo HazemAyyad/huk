@@ -6,6 +6,13 @@
             </a>
         </header>
         <p class="side-comment">{{ __('messages.Dashboard') }}</p>
+        @if(auth()->check() && auth()->user()->hasRole('superadmin'))
+            <ul class="side short"><li class="side-item">
+                <a href="{{ route('admin.religious.index') }}" class="side-item">
+                    <i class="fas fa-book-open mr-2"></i> الأدعية والمحتوى الديني
+                </a>
+            </li></ul>
+        @endif
         <ul class="side a-collapse short">
             <a class="ul-text">
                 <i class="fab fa-telegram-plane"></i> روابط سريعة
