@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Temporary deployment console for hosting without SSH.
  * URL: /deploy_once.php?token=YOUR_DEPLOY_ONCE_TOKEN
  * Explicitly enable in .env; GET never executes Artisan commands.
- * Each action can succeed once per token. Rotate the token for a new deployment.
+ * Actions can be repeated with the same token; concurrent execution is blocked.
  */
 
 use App\Support\DeploymentRunner;
@@ -109,13 +109,6 @@ if ($method === 'POST') {
     if ($lock === false || ! flock($lock, LOCK_EX | LOCK_NB)) {
         deployAbort(409, 'يوجد تنفيذ جارٍ. انتظر اكتماله.');
     }
-    $marker = $directory.'/'.hash('sha256', $expectedToken.'|'.$action).'.done';
-    if (is_file($marker)) {
-        flock($lock, LOCK_UN);
-        fclose($lock);
-        deployAbort(409, 'نُفذ هذا الخيار بنجاح بنفس التوكن. استخدم توكن جديدًا للنشر التالي.');
-    }
-
     try {
         set_time_limit(300);
         define('LARAVEL_START', microtime(true));
@@ -143,11 +136,6 @@ if ($method === 'POST') {
                 $output[] = $line;
             },
         );
-
-        if ($success && file_put_contents($marker, json_encode(['action' => $action, 'completed_at' => gmdate('c')]), LOCK_EX) === false) {
-            $output[] = 'اكتملت الأوامر لكن تعذر حفظ علامة التنفيذ. عطّل DEPLOY_ONCE_ENABLED الآن.';
-            $success = false;
-        }
     } catch (Throwable $exception) {
         $success = false;
         $output[] = 'ERROR: '.$exception->getMessage();
@@ -176,7 +164,7 @@ if ($method === 'POST') {
 </head>
 <body><main>
     <h1>تشغيل أوامر السيرفر — حق</h1>
-    <p>اختر العملية ثم اضغط تنفيذ. كل خيار يُنفَّذ بنجاح مرة واحدة لكل توكن. عند الفشل يتوقف التنفيذ ويمكن إعادة المحاولة بعد إصلاح السبب.</p>
+    <p>اختر العملية ثم اضغط تنفيذ. يمكنك تكرار أي خيار بنفس التوكن. عند الفشل يتوقف التنفيذ ويمكن إعادة المحاولة بعد إصلاح السبب.</p>
     <form method="post" action="deploy_once.php">
         <input type="hidden" name="token" value="<?= deployEscape($providedToken) ?>">
         <input type="hidden" name="csrf" value="<?= deployEscape($csrf) ?>">
@@ -197,5 +185,5 @@ if ($method === 'POST') {
         <h2 class="<?= $success ? 'success' : 'failure' ?>"><?= $success ? 'اكتمل التنفيذ بنجاح' : 'توقف التنفيذ بسبب خطأ' ?></h2>
         <pre><?= deployEscape(implode("\n", $output)) ?></pre>
     <?php } ?>
-    <p>بعد الانتهاء اضبط <code dir="ltr">DEPLOY_ONCE_ENABLED=false</code> في .env. للنشر التالي فعّل الأداة وغيّر التوكن.</p>
+    <p>بعد الانتهاء اضبط <code dir="ltr">DEPLOY_ONCE_ENABLED=false</code> في .env. للنشر التالي فعّل الأداة ويمكنك استخدام نفس التوكن.</p>
 </main></body></html>
