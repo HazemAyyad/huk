@@ -70,7 +70,7 @@ final class ReligiousModuleSync
 
     private function key(mixed $value): string
     {
-        $this->require(is_string($value) && preg_match('/^(group|dhikr|session|habit|khatma):(.+)$/D', $value, $parts) === 1);
+        $this->require(is_string($value) && preg_match('/^(group|dhikr|session|habit|khatma|tasbih):(.+)$/D', $value, $parts) === 1);
 
         return $parts[1].':'.$this->uuid($parts[2]);
     }
@@ -80,6 +80,14 @@ final class ReligiousModuleSync
         $this->require(is_array($value));
         [$kind, $id] = explode(':', $key);
         $this->require($this->uuid($value['id'] ?? null) === $id);
+        if ($kind === 'tasbih') {
+            $this->fields($value, ['id', 'text', 'benefit', 'goal', 'epoch', 'style', 'sort_order']);
+            $this->require(in_array($value['style'], ['buttons', 'fullscreen', 'circular', 'horizontal', 'classic', 'digital'], true));
+
+            return ['id' => $id, 'text' => $this->text($value['text'], 1000), 'benefit' => $this->text($value['benefit'], 2000, true),
+                'goal' => $this->number($value['goal'], 1), 'epoch' => $this->uuid($value['epoch']),
+                'style' => $value['style'], 'sort_order' => $this->number($value['sort_order'], 0)];
+        }
         if ($kind === 'group') {
             $this->fields($value, ['id', 'title', 'item_ids', 'sort_order']);
             $items = $value['item_ids'];

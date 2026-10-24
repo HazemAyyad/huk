@@ -58,13 +58,46 @@ final class ReligiousModuleTest extends TestCase
 
     public function test_capabilities_auth_and_disabled_service_are_honest(): void
     {
-        $this->getJson('/api/v1/religious/capabilities')->assertOk()->assertJsonPath('data.personal_sync', true);
+        $this->getJson('/api/v1/religious/capabilities')->assertOk()->assertJsonPath('data.personal_sync', true)
+            ->assertJsonPath('data.schema_version', 2)->assertJsonFragment(['tasbih']);
         $this->postJson('/api/v1/religious/personal/sync', ['operations' => []])->assertUnauthorized();
         Sanctum::actingAs($this->owner, ['quran:sync']);
         config(['religious_modules.sync_enabled' => false]);
         $this->getJson('/api/v1/religious/capabilities')->assertJsonPath('data.personal_sync', false);
         $this->postJson('/api/v1/religious/personal/sync', ['operations' => []])->assertStatus(503);
         $this->assertSame(0, DB::table('religious_personal_entities')->count());
+    }
+
+    public function test_tasbih_contract_roundtrips_all_six_styles_and_rejects_invalid_goals(): void
+    {
+        foreach (['buttons', 'fullscreen', 'circular', 'horizontal', 'classic', 'digital'] as $index => $style) {
+            $id = (string) Str::uuid();
+            $value = ['id' => $id, 'text' => 'سبحان الله', 'benefit' => 'ملاحظة شخصية', 'goal' => 33,
+                'epoch' => (string) Str::uuid(), 'style' => $style, 'sort_order' => 0];
+            $op = ['id' => (string) Str::uuid(), 'key' => 'tasbih:'.$id, 'base_revision' => 0, 'deleted' => false, 'value' => $value];
+            $response = $this->sync->personal($this->owner, [$op]);
+            $this->assertSame($value, $response['entities']->{$op['key']}['value']);
+            $this->assertSame($response['revision'], $this->sync->personal($this->owner, [$op])['revision']);
+            foreach ([['goal' => '33'], ['goal' => 0], ['goal' => 1000001], ['style' => 'invented']] as $invalid) {
+                try {
+                    $this->sync->entity($op['key'], [...$value, ...$invalid]);
+                    $this->fail('Expected validation failure');
+                } catch (ValidationException) {
+                    $this->assertSame($index + 1, DB::table('religious_personal_entities')->count());
+                }
+            }
+        }
+    }
+
+    public function test_tasbih_reset_and_replay_preserve_previous_count_history(): void
+    {
+        $tap = [...$this->event(), 'subject_id' => 'tasbih:test:33'];
+        $reset = [...$tap, 'id' => (string) Str::uuid(), 'kind' => 'reset', 'amount' => 0];
+        $next = [...$tap, 'id' => (string) Str::uuid()];
+        $result = $this->sync->activity($this->owner, [$tap, $reset, $next], 0);
+        $this->assertSame(['count', 'reset', 'count'], array_column(array_column($result['events'], 'event'), 'kind'));
+        $this->assertSame(3, $this->sync->activity($this->owner, [$tap, $reset, $next], 0)['revision']);
+        $this->assertSame(3, DB::table('religious_activity_events')->count());
     }
 
     public function test_tokens_need_the_religious_ability_and_missing_api_pages_are_json(): void

@@ -14,12 +14,12 @@ final class ReligiousModuleController extends Controller
         $enabled = config('religious_modules.sync_enabled', false);
 
         return response()->json(['data' => [
-            'schema_version' => 1,
+            'schema_version' => config('religious_modules.schema_version', 2),
             'personal_sync' => $enabled,
             'activity_sync' => $enabled,
             'max_batch' => 250,
             'activity_page_size' => 500,
-            'entity_kinds' => ['group', 'dhikr', 'session', 'habit', 'khatma'],
+            'entity_kinds' => ['group', 'dhikr', 'session', 'habit', 'khatma', 'tasbih'],
             'event_kinds' => ['count', 'undo', 'complete', 'reset', 'habit', 'quranPage', 'breathing'],
         ]]);
     }
