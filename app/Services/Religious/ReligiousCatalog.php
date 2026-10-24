@@ -25,7 +25,7 @@ final class ReligiousCatalog
     {
         $directory = dirname($this->path());
         if (! is_dir($directory)) {
-            return $this->read(resource_path('religious/catalog.json'));
+            return $this->extendLegacy($this->read(resource_path('religious/catalog.json')));
         }
         $lock = fopen($directory.'/catalog.lock', 'c');
         if (! $lock) {
@@ -34,7 +34,7 @@ final class ReligiousCatalog
         try {
             flock($lock, LOCK_SH);
 
-            return $this->read(is_file($this->path()) ? $this->path() : resource_path('religious/catalog.json'));
+            return $this->extendLegacy($this->read(is_file($this->path()) ? $this->path() : resource_path('religious/catalog.json')));
         } finally {
             flock($lock, LOCK_UN);
             fclose($lock);
@@ -57,6 +57,40 @@ final class ReligiousCatalog
         }
     }
 
+    private function extendLegacy(array $data): array
+    {
+        if (($data['schema_version'] ?? 1) >= 2) {
+            return $data;
+        }
+        $bundle = $this->read(resource_path('religious/catalog.json'));
+        $extensions = $bundle['bundled_extensions'] ?? null;
+        if (! $extensions) {
+            return $data;
+        }
+        $categories = array_column($data['categories'], null, 'id');
+        foreach ($bundle['categories'] as $category) {
+            if (in_array($category['id'], $extensions['category_ids'], true) && ! isset($categories[$category['id']])) {
+                $categories[$category['id']] = $category;
+            }
+        }
+        $fresh = array_column($bundle['items'], null, 'id');
+        $items = array_column($data['items'], null, 'id');
+        foreach ($items as $id => &$record) {
+            $added = array_intersect($fresh[$id]['categories'] ?? [], $extensions['category_ids']);
+            $record['categories'] = array_values(array_unique([...$record['categories'], ...$added]));
+        }
+        unset($record);
+        foreach ($extensions['item_ids'] as $id) {
+            $items[$id] ??= $fresh[$id];
+        }
+        $result = [...$data, 'schema_version' => 2, 'categories' => array_values($categories), 'items' => array_values($items),
+            'moods' => $bundle['moods'], 'ramadan_days' => $bundle['ramadan_days'], 'ramadan_days_note' => $bundle['ramadan_days_note'],
+            'bundled_extensions' => $extensions];
+        $result['version'] = 'bundle-'.hash('sha256', $bundle['version'].json_encode($data, JSON_THROW_ON_ERROR));
+
+        return $result;
+    }
+
     public function dataset(): array
     {
         $data = $this->all();
@@ -77,6 +111,16 @@ final class ReligiousCatalog
             return $item;
         }, $data['items']), fn ($i) => ($i['published'] ?? false) && count($i['categories']) > 0));
         $published = array_column($data['items'], 'id');
+        if (isset($data['moods'])) {
+            $data['moods'] = array_values(array_map(function (array $mood) use ($published): array {
+                $mood['item_ids'] = array_values(array_intersect($mood['item_ids'], $published));
+
+                return $mood;
+            }, array_filter($data['moods'], fn ($mood) => in_array('mood-'.$mood['id'], $ids, true))));
+        }
+        if (isset($data['ramadan_days'])) {
+            $data['ramadan_days'] = array_values(array_filter($data['ramadan_days'], fn ($day) => in_array($day['item_id'], $published, true)));
+        }
         foreach ($data['items'] as &$item) {
             $item['related'] = array_values(array_intersect($item['related'] ?? [], $published));
         }
@@ -206,7 +250,7 @@ final class ReligiousCatalog
         }
         try {
             flock($lock, LOCK_EX);
-            $data = $change($this->read(is_file($this->path()) ? $this->path() : resource_path('religious/catalog.json')));
+            $data = $change($this->extendLegacy($this->read(is_file($this->path()) ? $this->path() : resource_path('religious/catalog.json'))));
             $data['version'] = 'admin-'.hash('sha256', json_encode($data, JSON_THROW_ON_ERROR));
             // Write a complete sibling, then replace while readers hold the directory lock.
             $temporary = $dir.'/catalog-'.bin2hex(random_bytes(8)).'.tmp';

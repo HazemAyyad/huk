@@ -40,7 +40,7 @@ final class ReligiousContentTest extends TestCase
         $this->assertSame($manifest['data']['sha256'], hash('sha256', $dataset->getContent()));
         $this->assertSame(42, count(array_filter($dataset->json('items'), fn ($i) => in_array('nawawi', $i['categories']))));
         $this->assertSame(99, count(array_filter($dataset->json('items'), fn ($i) => in_array('names', $i['categories']))));
-        $this->assertSame(7, count(array_filter($dataset->json('categories'), fn ($c) => $c['parent'] === null)));
+        $this->assertSame(14, count(array_filter($dataset->json('categories'), fn ($c) => $c['parent'] === null)));
     }
 
     public function test_arabic_search_filters_and_unknown_content_are_handled(): void
@@ -53,6 +53,55 @@ final class ReligiousContentTest extends TestCase
         $this->getJson('/api/v1/religious/content/unknown')->assertNotFound();
         $this->getJson('/api/v1/religious/content?per_page=10000')->assertUnprocessable();
         $this->postJson('/api/v1/religious/sync', ['operations' => []])->assertUnauthorized();
+    }
+
+    public function test_curated_moods_ramadan_and_library_are_explicit_and_hide_unpublished_references(): void
+    {
+        $data = $this->catalog->dataset();
+        $this->assertCount(17, $data['moods']);
+        $this->assertCount(30, $data['ramadan_days']);
+        $this->assertStringContainsString('لا تثبت', $data['ramadan_days_note']);
+        $items = array_column($data['items'], null, 'id');
+        foreach ($data['moods'] as $mood) {
+            $this->assertNotEmpty($mood['item_ids']);
+            foreach ($mood['item_ids'] as $id) {
+                $this->assertContains('mood-'.$mood['id'], $items[$id]['categories']);
+            }
+        }
+        $this->assertCount(42, array_filter($items, fn ($item) => in_array('hadith-comprehensive', $item['categories'], true)));
+        $hidden = $items['hisn-034'];
+        $hidden['published'] = false;
+        $this->catalog->saveItem($hidden);
+        $published = $this->catalog->dataset();
+        foreach ($published['moods'] as $mood) {
+            $this->assertNotContains('hisn-034', $mood['item_ids']);
+        }
+    }
+
+    public function test_old_admin_catalog_gets_new_features_without_reverting_edits_or_resurrecting_removed_items(): void
+    {
+        $bundle = $this->catalog->all();
+        $added = $bundle['bundled_extensions'];
+        $legacy = ['version' => 'old-admin', 'sources' => $bundle['sources'],
+            'categories' => array_values(array_filter($bundle['categories'], fn ($category) => ! in_array($category['id'], $added['category_ids'], true))),
+            'items' => array_values(array_filter($bundle['items'], fn ($item) => ! in_array($item['id'], $added['item_ids'], true) && $item['id'] !== 'hisn-034'))];
+        foreach ($legacy['items'] as &$item) {
+            $item['categories'] = array_values(array_diff($item['categories'], $added['category_ids']));
+            if ($item['id'] === 'hisn-035') {
+                $item['title'] = 'تحرير الإدارة القديم';
+            }
+        }
+        unset($item);
+        file_put_contents($this->directory.'/catalog.json', json_encode($legacy, JSON_THROW_ON_ERROR));
+        $result = $this->catalog->dataset();
+        $items = array_column($result['items'], null, 'id');
+        $this->assertSame(2, $result['schema_version']);
+        $this->assertCount(17, $result['moods']);
+        $this->assertArrayNotHasKey('hisn-034', $items);
+        $this->assertSame('تحرير الإدارة القديم', $items['hisn-035']['title']);
+        $this->assertContains('mood-sad', $items['hisn-035']['categories']);
+        $this->assertArrayHasKey('ramadan-qadr-dua', $items);
+        $this->assertSame($result['version'], $this->catalog->dataset()['version']);
     }
 
     public function test_scripture_is_verbatim_and_raising_hands_has_its_correct_evidence(): void
