@@ -138,6 +138,21 @@ final class ReligiousModuleTest extends TestCase
         $this->assertSame(5, $this->sync->personal($this->owner, $ops)['revision']);
     }
 
+    public function test_preface_extension_preserves_an_existing_p02_receipt_hash(): void
+    {
+        $op = $this->operation();
+        DB::table('religious_module_heads')->insert(['religious_account_id' => $this->owner->id, 'stream' => 'personal', 'revision' => 1]);
+        DB::table('religious_personal_entities')->insert(['religious_account_id' => $this->owner->id, 'entity_key' => $op['key'],
+            'value' => json_encode($op['value'], JSON_THROW_ON_ERROR), 'deleted' => false, 'revision' => 1]);
+        DB::table('religious_personal_operations')->insert(['religious_account_id' => $this->owner->id, 'operation_id' => $op['id'],
+            'entity_key' => $op['key'], 'payload_hash' => hash('sha256', json_encode($op, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)), 'conflicted' => false]);
+        $this->assertSame(1, $this->sync->personal($this->owner, [$op])['revision']);
+        $next = [...$op, 'id' => (string) Str::uuid(), 'base_revision' => 1, 'value' => [...$op['value'], 'preface' => 'قبل الذكر']];
+        $response = $this->sync->personal($this->owner, [$next]);
+        $this->assertSame('قبل الذكر', $response['entities']->{$op['key']}['value']['preface']);
+        $this->assertSame(2, $this->sync->personal($this->owner, [$op])['revision']);
+    }
+
     public function test_events_replay_undo_once_and_cross_owner_undo_is_rejected(): void
     {
         $event = $this->event();

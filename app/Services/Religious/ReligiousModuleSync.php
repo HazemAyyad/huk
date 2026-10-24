@@ -90,9 +90,11 @@ final class ReligiousModuleSync
             return ['id' => $id, 'title' => $this->text($value['title'], 160), 'item_ids' => $items, 'sort_order' => $this->number($value['sort_order'], 0)];
         }
         if ($kind === 'dhikr') {
-            $this->fields($value, ['id', 'text', 'target', 'source']);
+            $hasPreface = array_key_exists('preface', $value);
+            $this->fields($value, $hasPreface ? ['id', 'text', 'target', 'source', 'preface'] : ['id', 'text', 'target', 'source']);
 
-            return ['id' => $id, 'text' => $this->text($value['text'], 10000), 'target' => $this->number($value['target'], 1), 'source' => $this->text($value['source'], 500, true)];
+            return ['id' => $id, 'text' => $this->text($value['text'], 10000), 'target' => $this->number($value['target'], 1),
+                'source' => $this->text($value['source'], 500, true), ...($hasPreface ? ['preface' => $this->text($value['preface'], 500, true)] : [])];
         }
         if ($kind === 'session') {
             $this->fields($value, ['id', 'group_id', 'day', 'epoch', 'targets', 'mode', 'catalog_version', 'auto_advance', 'cursor']);
