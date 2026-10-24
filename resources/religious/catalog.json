@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-17.1",
+  "version": "2026-10-24.1",
   "sources": [
     {
       "name": "القرآن الكريم",
@@ -261,7 +261,7 @@
       "verseKeys": [
         "2:201"
       ],
-      "image": "open_quran",
+      "image": "mosque",
       "number": 1
     },
     {
@@ -282,7 +282,7 @@
       "verseKeys": [
         "14:41"
       ],
-      "image": "mosque",
+      "image": "lantern",
       "number": 2
     },
     {
@@ -306,7 +306,7 @@
         "20:27",
         "20:28"
       ],
-      "image": "madina",
+      "image": "kaaba",
       "number": 3
     },
     {
@@ -327,7 +327,7 @@
       "verseKeys": [
         "2:127"
       ],
-      "image": "kaaba",
+      "image": "madina",
       "number": 4
     },
     {
@@ -348,7 +348,7 @@
       "verseKeys": [
         "3:38"
       ],
-      "image": "madina",
+      "image": "quran",
       "number": 5
     },
     {
@@ -369,7 +369,7 @@
       "verseKeys": [
         "20:114"
       ],
-      "image": "lantern",
+      "image": "open_quran",
       "number": 6
     },
     {
@@ -390,7 +390,7 @@
       "verseKeys": [
         "7:23"
       ],
-      "image": "open_quran",
+      "image": "mosque",
       "number": 7
     },
     {
@@ -411,7 +411,7 @@
       "verseKeys": [
         "3:8"
       ],
-      "image": "mosque",
+      "image": "lantern",
       "number": 8
     },
     {
@@ -432,7 +432,7 @@
       "verseKeys": [
         "28:24"
       ],
-      "image": "madina",
+      "image": "kaaba",
       "number": 9
     },
     {
@@ -453,7 +453,7 @@
       "verseKeys": [
         "21:87"
       ],
-      "image": "kaaba",
+      "image": "madina",
       "number": 10
     },
     {
@@ -474,7 +474,7 @@
       "verseKeys": [
         "2:250"
       ],
-      "image": "madina",
+      "image": "quran",
       "number": 11
     },
     {
@@ -495,7 +495,7 @@
       "verseKeys": [
         "25:74"
       ],
-      "image": "lantern",
+      "image": "open_quran",
       "number": 12
     },
     {
@@ -516,7 +516,7 @@
       "verseKeys": [
         "9:129"
       ],
-      "image": "open_quran",
+      "image": "mosque",
       "number": 13
     },
     {
@@ -537,7 +537,7 @@
       "verseKeys": [
         "27:19"
       ],
-      "image": "mosque",
+      "image": "lantern",
       "number": 14
     },
     {
@@ -558,7 +558,7 @@
       "verseKeys": [
         "14:40"
       ],
-      "image": "madina",
+      "image": "kaaba",
       "number": 15
     },
     {
@@ -580,7 +580,7 @@
         "23:97",
         "23:98"
       ],
-      "image": "kaaba",
+      "image": "madina",
       "number": 16
     },
     {

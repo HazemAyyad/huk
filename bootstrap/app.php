@@ -37,6 +37,9 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (NotFoundHttpException $e, $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json(['message' => 'Not found.', 'code' => 'not_found'], 404);
+            }
             if ($request->is(App::getLocale() . '/admin/*')) {
                 return response()->view('errors.admin.404', [], 404);
             } else {
