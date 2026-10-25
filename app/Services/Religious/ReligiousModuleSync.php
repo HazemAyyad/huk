@@ -120,7 +120,11 @@ final class ReligiousModuleSync
                 'cursor' => $this->number($value['cursor'], 0, count($targets) - 1)];
         }
         if ($kind === 'habit') {
-            $this->fields($value, ['id', 'title', 'weekdays', 'target', 'enabled']);
+            $extra = array_intersect(['icon', 'epoch'], array_keys($value));
+            $this->fields($value, ['id', 'title', 'weekdays', 'target', 'enabled', ...$extra]);
+            if (array_key_exists('epoch', $value)) {
+                $this->uuid($value['epoch']);
+            }
             $days = $value['weekdays'];
             $this->require(is_array($days) && array_is_list($days) && count($days) > 0 && count($days) <= 7);
             foreach ($days as $day) {
@@ -129,16 +133,32 @@ final class ReligiousModuleSync
             $this->require(count(array_unique($days)) === count($days));
 
             return ['id' => $id, 'title' => $this->text($value['title'], 160), 'weekdays' => $days,
-                'target' => $this->number($value['target'], 1), 'enabled' => $this->boolean($value['enabled'])];
+                'target' => $this->number($value['target'], 1), 'enabled' => $this->boolean($value['enabled']),
+                ...(isset($value['epoch']) ? ['epoch' => $this->uuid($value['epoch'])] : []),
+                ...(array_key_exists('icon', $value) ? ['icon' => $this->habitIcon($value['icon'])] : [])];
         }
-        $this->fields($value, ['id', 'title', 'start_date', 'end_date', 'first_page', 'last_page']);
+        $extra = array_intersect(['epoch', 'archived', 'reminder_minutes'], array_keys($value));
+        $this->fields($value, ['id', 'title', 'start_date', 'end_date', 'first_page', 'last_page', ...$extra]);
+        if (array_key_exists('epoch', $value)) {
+            $this->uuid($value['epoch']);
+        }
         $start = $this->date($value['start_date']);
         $end = $this->date($value['end_date']);
         $this->require($end >= $start);
         $first = $this->number($value['first_page'], 1, 604);
 
         return ['id' => $id, 'title' => $this->text($value['title'], 160), 'start_date' => $start, 'end_date' => $end,
-            'first_page' => $first, 'last_page' => $this->number($value['last_page'], $first, 604)];
+            'first_page' => $first, 'last_page' => $this->number($value['last_page'], $first, 604),
+            ...(isset($value['epoch']) ? ['epoch' => $this->uuid($value['epoch'])] : []),
+            ...(array_key_exists('archived', $value) ? ['archived' => $this->boolean($value['archived'])] : []),
+            ...(array_key_exists('reminder_minutes', $value) ? ['reminder_minutes' => $this->number($value['reminder_minutes'], 0, 1439)] : [])];
+    }
+
+    private function habitIcon(mixed $value): string
+    {
+        $this->require(is_string($value) && in_array($value, ['book', 'beads', 'moon', 'sun', 'heart', 'water', 'learn', 'give', 'prayer', 'activity', 'sleep', 'read'], true));
+
+        return $value;
     }
 
     private function json(array $value): string

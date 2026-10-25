@@ -59,7 +59,7 @@ final class ReligiousModuleTest extends TestCase
     public function test_capabilities_auth_and_disabled_service_are_honest(): void
     {
         $this->getJson('/api/v1/religious/capabilities')->assertOk()->assertJsonPath('data.personal_sync', true)
-            ->assertJsonPath('data.schema_version', 2)->assertJsonFragment(['tasbih']);
+            ->assertJsonPath('data.schema_version', 3)->assertJsonFragment(['tasbih']);
         $this->postJson('/api/v1/religious/personal/sync', ['operations' => []])->assertUnauthorized();
         Sanctum::actingAs($this->owner, ['quran:sync']);
         config(['religious_modules.sync_enabled' => false]);
@@ -87,6 +87,56 @@ final class ReligiousModuleTest extends TestCase
                 }
             }
         }
+    }
+
+    public function test_progress_extensions_keep_legacy_receipts_and_roundtrip_typed_fields(): void
+    {
+        foreach (['habit', 'khatma'] as $kind) {
+            $id = (string) Str::uuid();
+            $legacy = $kind === 'habit'
+                ? ['id' => $id, 'title' => 'عادة', 'weekdays' => [7, 1], 'target' => 3, 'enabled' => true]
+                : ['id' => $id, 'title' => 'ختمة', 'start_date' => '2026-10-25', 'end_date' => '2026-11-23', 'first_page' => 1, 'last_page' => 604];
+            $op = ['id' => (string) Str::uuid(), 'key' => $kind.':'.$id, 'base_revision' => 0, 'deleted' => false, 'value' => $legacy];
+            $first = $this->sync->personal($this->owner, [$op]);
+            $revision = $first['entities']->{$op['key']}['revision'];
+            $this->assertSame($legacy, $first['entities']->{$op['key']}['value']);
+            $extra = $kind === 'habit'
+                ? ['epoch' => (string) Str::uuid(), 'icon' => 'book']
+                : ['epoch' => (string) Str::uuid(), 'archived' => false, 'reminder_minutes' => 1245];
+            $updated = [...$op, 'id' => (string) Str::uuid(), 'base_revision' => $revision, 'value' => [...$legacy, ...$extra]];
+            $result = $this->sync->personal($this->owner, [$updated]);
+            $this->assertEquals($updated['value'], $result['entities']->{$op['key']}['value']);
+            $this->assertSame($result['revision'], $this->sync->personal($this->owner, [$op])['revision']);
+            $invalids = $kind === 'habit'
+                ? [['icon' => 'invented'], ['epoch' => null], ['weekdays' => []], ['weekdays' => [1, 1]]]
+                : [['reminder_minutes' => 1440], ['reminder_minutes' => '1245'], ['archived' => 'false'], ['epoch' => null]];
+            foreach ($invalids as $invalid) {
+                try {
+                    $this->sync->entity($op['key'], [...$updated['value'], ...$invalid]);
+                    $this->fail('Expected typed progress validation failure');
+                } catch (ValidationException) {
+                    $this->assertSame($result['revision'], $this->sync->personal($this->owner, [])['revision']);
+                }
+            }
+        }
+    }
+
+    public function test_progress_events_replay_two_devices_days_undo_and_owner_isolation(): void
+    {
+        $session = (string) Str::uuid();
+        $epoch = (string) Str::uuid();
+        $page = [...$this->event(), 'session_id' => $session, 'epoch' => $epoch, 'subject_id' => 'quran-page:1', 'kind' => 'quranPage'];
+        $secondDevice = [...$page, 'id' => (string) Str::uuid(), 'device_id' => (string) Str::uuid(), 'day' => '2026-10-25', 'occurred_at' => '2026-10-25T08:30:00.123Z'];
+        $habit = [...$page, 'id' => (string) Str::uuid(), 'subject_id' => 'habit:'.$session.':1', 'kind' => 'habit'];
+        $undo = [...$habit, 'id' => (string) Str::uuid(), 'kind' => 'undo', 'amount' => 0, 'reverses' => $habit['id']];
+        $result = $this->sync->activity($this->owner, [$page, $secondDevice, $habit, $undo], 0);
+        $this->assertSame(4, $result['revision']);
+        $this->assertSame(4, $this->sync->activity($this->owner, [$page, $secondDevice, $habit, $undo], 0)['revision']);
+        $this->assertSame(['2026-10-24', '2026-10-25', '2026-10-24', '2026-10-24'], array_column(array_column($result['events'], 'event'), 'day'));
+        $other = ReligiousAccount::create(['name' => 'Other', 'email' => 'progress-other@example.test', 'password' => 'test-password']);
+        $this->assertSame([], $this->sync->activity($other, [], 0)['events']);
+        $this->assertSame(7, (int) $this->owner->fresh()->quran_revision);
+        $this->assertSame(9, (int) $this->owner->fresh()->content_revision);
     }
 
     public function test_tasbih_reset_and_replay_preserve_previous_count_history(): void

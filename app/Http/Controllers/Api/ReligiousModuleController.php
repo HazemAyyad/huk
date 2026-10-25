@@ -14,7 +14,7 @@ final class ReligiousModuleController extends Controller
         $enabled = config('religious_modules.sync_enabled', false);
 
         return response()->json(['data' => [
-            'schema_version' => config('religious_modules.schema_version', 2),
+            'schema_version' => config('religious_modules.schema_version', 3),
             'personal_sync' => $enabled,
             'activity_sync' => $enabled,
             'max_batch' => 250,
