@@ -139,6 +139,24 @@ final class ReligiousModuleTest extends TestCase
         $this->assertSame(9, (int) $this->owner->fresh()->content_revision);
     }
 
+    public function test_breathing_duration_and_completion_are_distinct_and_replay_once(): void
+    {
+        $session = (string) Str::uuid();
+        $duration = [...$this->event(), 'session_id' => $session, 'epoch' => $session,
+            'kind' => 'breathing', 'subject_id' => 'breathing:peace', 'amount' => 60];
+        $complete = [...$duration, 'id' => (string) Str::uuid(), 'kind' => 'complete', 'amount' => 0];
+        $partialId = (string) Str::uuid();
+        $partial = [...$duration, 'id' => (string) Str::uuid(), 'session_id' => $partialId,
+            'epoch' => $partialId, 'subject_id' => 'breathing:gratitude', 'amount' => 5];
+        $result = $this->sync->activity($this->owner, [$duration, $complete, $partial], 0);
+        $this->assertSame(3, $result['revision']);
+        $this->assertSame(3, $this->sync->activity($this->owner, [$duration, $complete, $partial], 0)['revision']);
+        $this->assertSame(65, (int) DB::table('religious_activity_events')->where('kind', 'breathing')->sum('amount'));
+        $this->assertSame(1, DB::table('religious_activity_events')->where('kind', 'complete')->count());
+        $other = ReligiousAccount::create(['name' => 'Other', 'email' => 'breathing-other@example.test', 'password' => 'test-password']);
+        $this->assertSame([], $this->sync->activity($other, [], 0)['events']);
+    }
+
     public function test_tasbih_reset_and_replay_preserve_previous_count_history(): void
     {
         $tap = [...$this->event(), 'subject_id' => 'tasbih:test:33'];
