@@ -23,7 +23,7 @@ final class ReligiousAccountController extends Controller
     {
         $data = $request->validate(['email' => 'required|email|max:255', 'password' => 'required|string|max:128']);
         $user = ReligiousAccount::where('email', mb_strtolower(trim($data['email'])))->first();
-        if (! $user || ! Hash::check($data['password'], $user->password)) {
+        if (! $user || ($user->getAttribute('password_enabled') === false) || ! Hash::check($data['password'], $user->password)) {
             throw ValidationException::withMessages(['email' => 'البريد أو كلمة المرور غير صحيحة']);
         }
 
@@ -32,13 +32,13 @@ final class ReligiousAccountController extends Controller
 
     private function session(ReligiousAccount $user, int $status = 200)
     {
-        return response()->json(['data' => ['account' => $user->only('id', 'name', 'email'),
+        return response()->json(['data' => ['account' => ReligiousIdentityController::account($user),
             'token' => $user->createToken('religious-app', ['quran:sync'], now()->addDays(90))->plainTextToken]], $status);
     }
 
     public function profile(Request $request)
     {
-        return response()->json(['data' => $request->user()->only('id', 'name', 'email')]);
+        return response()->json(['data' => ReligiousIdentityController::account($request->user())]);
     }
 
     public function logout(Request $request)

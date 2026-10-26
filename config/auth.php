@@ -60,6 +60,10 @@ return [
     */
 
     'providers' => [
+        'religious' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ReligiousAccount::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
@@ -91,6 +95,12 @@ return [
     */
 
     'passwords' => [
+        'religious' => [
+            'provider' => 'religious',
+            'table' => 'religious_password_reset_tokens',
+            'expire' => 30,
+            'throttle' => 60,
+        ],
         'users' => [
             'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
