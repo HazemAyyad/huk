@@ -30,7 +30,7 @@ try {
     foreach ($key in $testEnvironment.Keys) {
         [Environment]::SetEnvironmentVariable($key, $testEnvironment[$key], 'Process')
     }
-    & $Php (Join-Path $projectRoot 'vendor/bin/phpunit') --bootstrap tests/religious-bootstrap.php --filter '(Quran|ReligiousCommunity|ReligiousAccount|ReligiousContent|ReligiousModule|ReligiousAdhkar|DeploymentRunner)'
+    & $Php (Join-Path $projectRoot 'vendor/bin/phpunit') --bootstrap tests/religious-bootstrap.php --filter '(Quran|ReligiousAssistant|ReligiousBilling|ReligiousCommunity|ReligiousAccount|ReligiousContent|ReligiousModule|ReligiousAdhkar|DeploymentRunner)'
     $exitCode = $LASTEXITCODE
 } finally {
     Pop-Location
