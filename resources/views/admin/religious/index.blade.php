@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="container-fluid py-4" dir="rtl">
         <h2>الأدعية والمحتوى الديني</h2>
+        <a href="{{ route('admin.religious.community.index') }}" class="btn btn-outline-primary mb-3">الحلقات ومراجعة المجتمع والرسائل</a>
         <p>إدارة النصوص والمراجع والتصنيفات والنشر في تطبيق حق. التعديلات تظهر للتطبيق بعد تحديث المحتوى.</p>
         @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
         @if($errors->any())<div class="alert alert-danger">{{ $errors->first() }}</div>@endif
