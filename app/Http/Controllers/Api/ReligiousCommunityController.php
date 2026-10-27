@@ -13,7 +13,7 @@ final class ReligiousCommunityController extends Controller
 
     public function capabilities()
     {
-        return response()->json(['data' => ['schema' => 1, 'enabled' => $this->community->ready(), 'review_required' => true, 'max_text' => 180, 'max_count_batch' => 100, 'page_size' => 20]]);
+        return response()->json(['data' => ['schema' => 1, 'enabled' => $this->community->ready(), 'push' => app(\App\Services\Religious\ReligiousPush::class)->ready(), 'review_required' => true, 'max_text' => 180, 'max_count_batch' => 100, 'page_size' => 20]]);
     }
 
     private function page(Request $request): array
