@@ -30,7 +30,10 @@ final class QuranSync
         } elseif ($key === 'preferences') {
             $valid = is_array($value) && in_array($value['mode'] ?? null, ['continuous', 'ayah', 'pages'], true)
                 && is_numeric($value['fontSize'] ?? null) && $value['fontSize'] >= 18 && $value['fontSize'] <= 36
-                && in_array($value['paper'] ?? null, ['light', 'ivory', 'green', 'dark'], true) && ! $op['deleted'];
+                && in_array($value['paper'] ?? null, ['light', 'ivory', 'green', 'dark'], true)
+                && (! array_key_exists('font', $value) || in_array($value['font'], ['amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'], true))
+                && (! array_key_exists('tajweed', $value) || is_bool($value['tajweed']))
+                && ! $op['deleted'];
         }
         if (! $valid) {
             throw ValidationException::withMessages(['operations' => 'Invalid Quran entity or value.']);
