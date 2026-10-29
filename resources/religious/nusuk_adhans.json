@@ -1,0 +1,774 @@
+{
+  "version": "2026-10-29.1",
+  "source": "نسك — التسجيلات المحفوظة من التطبيق المرجعي 17.5.8",
+  "voices": [
+    {
+      "id": "nusuk-1",
+      "name": "علي أحمد ملا",
+      "englishName": "Ali Ahmed Mulla",
+      "bundled": true,
+      "full": {
+        "file": "athan_1.mp3",
+        "bytes": 4020248,
+        "sha256": "4fcac32cb10a49ab05a0a4d24247810f16c46d57df7664fc4806e3942b8f44f9"
+      },
+      "takbeer": {
+        "file": "takbeer_1.mp3",
+        "bytes": 479297,
+        "sha256": "4d27bc639a870aefb09807bfdcc917242d144ca5f9f462157195c5aedbcc174a"
+      }
+    },
+    {
+      "id": "nusuk-2",
+      "name": "حمد بن أحمد الدغريري",
+      "englishName": "Hamad Ibn Ahmad Al-Daghriri",
+      "bundled": true,
+      "full": {
+        "file": "athan_2.mp3",
+        "bytes": 3035118,
+        "sha256": "e9cd83269e9ade27e7748f0f36109d222bc1c9d4cbd562d281f7cf28ff67dfd7"
+      },
+      "takbeer": {
+        "file": "takbeer_2.mp3",
+        "bytes": 480551,
+        "sha256": "7da5d065de96cd65fe0f422e619b4a771c76f09517c17793ac823246640966cb"
+      }
+    },
+    {
+      "id": "nusuk-3",
+      "name": "أحمد عبدالله بصنوي",
+      "englishName": "Ahmad Abdullah Basnawi",
+      "bundled": false,
+      "full": {
+        "file": "athan_3.mp3",
+        "bytes": 2475888,
+        "sha256": "6edb8c5e3dc0095857290fc40d03799b77a1e731bdc2cb52153496067fe06b42"
+      },
+      "takbeer": {
+        "file": "takbeer_3.mp3",
+        "bytes": 353910,
+        "sha256": "b8a8a61323cf836bd26d815ce44f301ce717adab134b83fcc5622214b201f411"
+      }
+    },
+    {
+      "id": "nusuk-4",
+      "name": "محمد علي شاكر",
+      "englishName": "Muhammad Ali Shakir",
+      "bundled": false,
+      "full": {
+        "file": "athan_4.mp3",
+        "bytes": 2528969,
+        "sha256": "859477f9eafb10eee0685ec282ae7728a0f7604bf3b0417c6d08357e6680979d"
+      },
+      "takbeer": {
+        "file": "takbeer_4.mp3",
+        "bytes": 311278,
+        "sha256": "9d6d5d99a0a2e97cdad6efdef60aacbb8fd9249da97b67c2502e071d95980324"
+      }
+    },
+    {
+      "id": "nusuk-5",
+      "name": "توفيق خوج",
+      "englishName": "Tawfiq Khuj",
+      "bundled": false,
+      "full": {
+        "file": "athan_5.mp3",
+        "bytes": 2162001,
+        "sha256": "0bd40d4d2688f53f7f4bbb111ca57174ef535e1b52962db2164f2b868deec33b"
+      },
+      "takbeer": {
+        "file": "takbeer_5.mp3",
+        "bytes": 341371,
+        "sha256": "a45e27fce719839d2d2e83050d5654a1a49b00361bb4fabb7082394964dae20b"
+      }
+    },
+    {
+      "id": "nusuk-6",
+      "name": "نايف فيدة",
+      "englishName": "Nayif Faydah",
+      "bundled": false,
+      "full": {
+        "file": "athan_6.mp3",
+        "bytes": 5262422,
+        "sha256": "90b86de5e0969841091bcd9834bd8bbb73fdfa343a287e6c2a420841211c7137"
+      },
+      "takbeer": {
+        "file": "takbeer_6.mp3",
+        "bytes": 735924,
+        "sha256": "3a0d8524b3b2f03cd495583d42e527ecc9ff457660154714af938cf6b51c4507"
+      }
+    },
+    {
+      "id": "nusuk-7",
+      "name": "أحمد نحاس",
+      "englishName": "Ahmad Nahas",
+      "bundled": false,
+      "full": {
+        "file": "athan_7.mp3",
+        "bytes": 6688499,
+        "sha256": "c77e292d429406b8e8e42b197a7cd132239fedcccccfd8e5e7c5f121a5954d47"
+      },
+      "takbeer": {
+        "file": "takbeer_7.mp3",
+        "bytes": 811993,
+        "sha256": "c50c30520658f4cd9dc78e7a60b66e2f06f7b98b32fb93b9de6290dab9fbe546"
+      }
+    },
+    {
+      "id": "nusuk-8",
+      "name": "ماجد العباس",
+      "englishName": "Majid Al-Abbas",
+      "bundled": false,
+      "full": {
+        "file": "athan_8.mp3",
+        "bytes": 3268757,
+        "sha256": "c0efb033d1402943365038da0cd54b28650b86f66fe5cafbbee01aceb8f8e564"
+      },
+      "takbeer": {
+        "file": "takbeer_8.mp3",
+        "bytes": 351820,
+        "sha256": "96ba21e2947dc6f50d189b4225eeef69677b0ff108619cde612cc793893d8f02"
+      }
+    },
+    {
+      "id": "nusuk-9",
+      "name": "أحمد يونس خوجة",
+      "englishName": "Ahmad Yunus Khuja",
+      "bundled": false,
+      "full": {
+        "file": "athan_9.mp3",
+        "bytes": 2800225,
+        "sha256": "192bebb6502a1032ef41e424d140f466135581a995be78527c03f80494543fec"
+      },
+      "takbeer": {
+        "file": "takbeer_9.mp3",
+        "bytes": 338863,
+        "sha256": "51379ee5439a37da340cdcbe6ceaf6d8135684fc10316d922f208b4df98e9c6b"
+      }
+    },
+    {
+      "id": "nusuk-10",
+      "name": "سامي عبدالرحيم ريس",
+      "englishName": "Sami Abdul-Rahim Ris",
+      "bundled": false,
+      "full": {
+        "file": "athan_10.mp3",
+        "bytes": 2592081,
+        "sha256": "259950fec0747f61a0ba9c46524344388d0be6768ca66646c93d47a80a0d0a33"
+      },
+      "takbeer": {
+        "file": "takbeer_10.mp3",
+        "bytes": 440427,
+        "sha256": "793ac7796cdfa4c94f52af3423bbfd08b2b8eb17af04b402c968659562994159"
+      }
+    },
+    {
+      "id": "nusuk-11",
+      "name": "عماد بقري",
+      "englishName": "Emad Baqri",
+      "bundled": false,
+      "full": {
+        "file": "athan_11.mp3",
+        "bytes": 5478089,
+        "sha256": "4e978ddb0ab9a90555173a4e5ab28228f1826a01939ba3f59e5ddcbade7dc06d"
+      },
+      "takbeer": {
+        "file": "takbeer_11.mp3",
+        "bytes": 786915,
+        "sha256": "8990a627e3684f308a7e88e28fa8f4ad42ec5224f9d1df61dfc4adb2fc98806f"
+      }
+    },
+    {
+      "id": "nusuk-12",
+      "name": "ساعد عمر فلاتة",
+      "englishName": "Saed Umar Fallatah",
+      "bundled": false,
+      "full": {
+        "file": "athan_12.mp3",
+        "bytes": 3053090,
+        "sha256": "e0b9c879724d04c83bcf785f4fa74ce8f05c9bb50584664294b83b7260e17b3c"
+      },
+      "takbeer": {
+        "file": "takbeer_12.mp3",
+        "bytes": 365612,
+        "sha256": "6ca12eccf4e9d72cecdf1aff2287d1759d67aff013929c532454fd02493058dd"
+      }
+    },
+    {
+      "id": "nusuk-13",
+      "name": "حسين شحات",
+      "englishName": "Hussain Shahat",
+      "bundled": false,
+      "full": {
+        "file": "athan_13.mp3",
+        "bytes": 2629279,
+        "sha256": "820300d01111bae29ddebd59d098b641ae465283c72e9cbe930b4d173b87a519"
+      },
+      "takbeer": {
+        "file": "takbeer_13.mp3",
+        "bytes": 277841,
+        "sha256": "f1c937a82e20b9534abb00b93bfd27431d92dd1c56c598911f437e840ad88532"
+      }
+    },
+    {
+      "id": "nusuk-14",
+      "name": "محمد العمري",
+      "englishName": "Muhammad Al-Umari",
+      "bundled": false,
+      "full": {
+        "file": "athan_14.mp3",
+        "bytes": 2954870,
+        "sha256": "e1814042e512a0e4cd1ad54b48bd21a0e1634afd7a5262746f424248d6be854d"
+      },
+      "takbeer": {
+        "file": "takbeer_14.mp3",
+        "bytes": 334683,
+        "sha256": "b97529de093f1c4314ba53e48fa6bfa13ace4d8e3db7a2a70f3c8dad5f6dfe9a"
+      }
+    },
+    {
+      "id": "nusuk-15",
+      "name": "هاشم السقاف",
+      "englishName": "Hashim Al-Saqqaf",
+      "bundled": false,
+      "full": {
+        "file": "athan_15.mp3",
+        "bytes": 2780163,
+        "sha256": "f1f42ebfa7647a131338416ba334086c42d6ca38fab3edbafc24db57c5c104f4"
+      },
+      "takbeer": {
+        "file": "takbeer_15.mp3",
+        "bytes": 238971,
+        "sha256": "353fde1d0d96d42463fff652a1dc2f4ffa3e219942bcaa4b8699c32bf97e9b9d"
+      }
+    },
+    {
+      "id": "nusuk-16",
+      "name": "سهيل عبدالملك حافظ",
+      "englishName": "Suhail Abdul-Malik Hafiz",
+      "bundled": false,
+      "full": {
+        "file": "athan_16.mp3",
+        "bytes": 3270011,
+        "sha256": "b5334c29a0ec001709f7502782ded72fddfbdf322649c052ca0d6375db9facc4"
+      },
+      "takbeer": {
+        "file": "takbeer_16.mp3",
+        "bytes": 315457,
+        "sha256": "618a38fc743c0805550c7f2cbdbd22365c85156ae584858870ee37e65850f36c"
+      }
+    },
+    {
+      "id": "nusuk-17",
+      "name": "عصام خان",
+      "englishName": "Essam Khan",
+      "bundled": false,
+      "full": {
+        "file": "athan_17.mp3",
+        "bytes": 3018817,
+        "sha256": "0a238c5c8b10e2341c739acc22ccb143f85e5b0ec9252f97a60e5acbdb5bbd91"
+      },
+      "takbeer": {
+        "file": "takbeer_17.mp3",
+        "bytes": 305008,
+        "sha256": "06924434aa737f7020b84696da0e3ad7b897fe68e112f75103f661d3fc9bc848"
+      }
+    },
+    {
+      "id": "nusuk-18",
+      "name": "تركي الحسني",
+      "englishName": "Turki Al-Hasani",
+      "bundled": false,
+      "full": {
+        "file": "athan_18.mp3",
+        "bytes": 2815271,
+        "sha256": "780a62cdaffc47e8d3ffbebb6b9a5e0e42ec3f2bc0ec8598a451fa1003e08212"
+      },
+      "takbeer": {
+        "file": "takbeer_18.mp3",
+        "bytes": 287036,
+        "sha256": "2c937468be69eeb43990e32c665671da169a57be3e0bf2549d8d2cc543cfd8c4"
+      }
+    },
+    {
+      "id": "nusuk-19",
+      "name": "محمد باسعد",
+      "englishName": "Muhammad Basa`d",
+      "bundled": false,
+      "full": {
+        "file": "athan_19.mp3",
+        "bytes": 3430507,
+        "sha256": "543707a51ef756d0110deb142155001a72e88cb63c6f599fef0bbfb0b07f0a3b"
+      },
+      "takbeer": {
+        "file": "takbeer_19.mp3",
+        "bytes": 376897,
+        "sha256": "bda417f6584ee946bc65149d078d3aa3623e605a2e04a97d3d62880877f3ac3d"
+      }
+    },
+    {
+      "id": "nusuk-20",
+      "name": "عبدالله باعفيف",
+      "englishName": "Abdullah Ba`afif",
+      "bundled": false,
+      "full": {
+        "file": "athan_20.mp3",
+        "bytes": 2846200,
+        "sha256": "a57f3a23dc7f6507aa25a5743edd6825658ad0f4fafff6b0d94c9569ddecbcf5"
+      },
+      "takbeer": {
+        "file": "takbeer_20.mp3",
+        "bytes": 309188,
+        "sha256": "5a703ca83622c36e689b4fea16de30079d7046a91dfc02de3babb54be756ae8e"
+      }
+    },
+    {
+      "id": "nusuk-21",
+      "name": "إبراهيم مدني",
+      "englishName": "Ibrahim Madani",
+      "bundled": false,
+      "full": {
+        "file": "athan_21.mp3",
+        "bytes": 2299928,
+        "sha256": "7c32b872e68ffabef5f8aaa76064285ec3a65e9b0fa6699503649f98c1ea1523"
+      },
+      "takbeer": {
+        "file": "takbeer_21.mp3",
+        "bytes": 273661,
+        "sha256": "93e45804c5f2ce7b797ad71c604ba0ff4a9b60dc4b6f31e64bd256fa706ce442"
+      }
+    },
+    {
+      "id": "nusuk-22",
+      "name": "فاروق عبدالرحمن حضراوي",
+      "englishName": "Farouk Abdur-Rahman Hadrawi",
+      "bundled": false,
+      "full": {
+        "file": "athan_22.mp3",
+        "bytes": 3934984,
+        "sha256": "d9fa83e577fb03a49c9db42a16be5e127a9697e6ac4ab8e470320da5311a1c03"
+      },
+      "takbeer": {
+        "file": "takbeer_22.mp3",
+        "bytes": 508554,
+        "sha256": "3a0a4294e90ad6378185beb981f4b4703c7e6e4b8551f82e40bf5df69d9a2b57"
+      }
+    },
+    {
+      "id": "nusuk-23",
+      "name": "محمد رمل",
+      "englishName": "Muhammad Raml",
+      "bundled": false,
+      "full": {
+        "file": "athan_23.mp3",
+        "bytes": 3225289,
+        "sha256": "994360c6a559b440e30a269144a9f7e5d492b5677f52914ca30e3f873724ab69"
+      },
+      "takbeer": {
+        "file": "takbeer_23.mp3",
+        "bytes": 454220,
+        "sha256": "98a7944f573886616725908fbe50d486b0a2a8cff60a587d5b356d73d849ea85"
+      }
+    },
+    {
+      "id": "nusuk-24",
+      "name": "محمد يوسف مؤذن",
+      "englishName": "Muhammad Yusuf Muazzin",
+      "bundled": false,
+      "full": {
+        "file": "athan_24.mp3",
+        "bytes": 1693051,
+        "sha256": "a4ae055c3fc97ef7168406d571b9558c3e0cdfa96a85cd4c0fb82fe06964d5f6"
+      },
+      "takbeer": {
+        "file": "takbeer_24.mp3",
+        "bytes": 287454,
+        "sha256": "cea242314f54013a728c07d3e54e078c509e996f395bc43387165c28fd44bc57"
+      }
+    },
+    {
+      "id": "nusuk-25",
+      "name": "محمد معروف",
+      "englishName": "Muhammad Ma`ruf",
+      "bundled": false,
+      "full": {
+        "file": "athan_25.mp3",
+        "bytes": 1673407,
+        "sha256": "d719c7a09203a93ce19ac639d81cf452b9738e47e38d5474af7369df1b520e3a"
+      },
+      "takbeer": {
+        "file": "takbeer_25.mp3",
+        "bytes": 1673407,
+        "sha256": "d719c7a09203a93ce19ac639d81cf452b9738e47e38d5474af7369df1b520e3a"
+      }
+    },
+    {
+      "id": "nusuk-26",
+      "name": "أحمد محمد مغربي",
+      "englishName": "Ahmad Muhammad Maghrabi",
+      "bundled": false,
+      "full": {
+        "file": "athan_26.mp3",
+        "bytes": 3155908,
+        "sha256": "5adc225d0496016d16ee9c2f93fde7ac0d86a49a6067cae8a3d9e42d2e3e5fc1"
+      },
+      "takbeer": {
+        "file": "takbeer_26.mp3",
+        "bytes": 351820,
+        "sha256": "9f8693b6582e691d31bd2b55ee680a0f88d4e0302524ef0518ad1b129eba2fbf"
+      }
+    },
+    {
+      "id": "nusuk-27",
+      "name": "محمد مغربي",
+      "englishName": "Muhammad Maghrabi",
+      "bundled": false,
+      "full": {
+        "file": "athan_27.mp3",
+        "bytes": 3403758,
+        "sha256": "0cddde5f70ad0aff9043acf9d6bf470c1b91dc67b3682af8ab7b050d8794b8e9"
+      },
+      "takbeer": {
+        "file": "takbeer_27.mp3",
+        "bytes": 269482,
+        "sha256": "e0cfb64c3aea4ae48a174ee33c292dd48bc7804aac3a1641216ca08366e69db3"
+      }
+    },
+    {
+      "id": "nusuk-28",
+      "name": "عبدالرحمن بن عبدالإله خاشقجي",
+      "englishName": "Abdul-Rahman Ibn Abdul-Ilah Khashuqji",
+      "bundled": false,
+      "full": {
+        "file": "athan_28.mp3",
+        "bytes": 3133338,
+        "sha256": "01e3ef37939c3397758c557969f57dc23a4f017832f4a01a7bb761b52fafc962"
+      },
+      "takbeer": {
+        "file": "takbeer_28.mp3",
+        "bytes": 601341,
+        "sha256": "94e397c3e67f1ab22e00648e7621e94121dd11bbfb29f539b40b2e6a77215fff"
+      }
+    },
+    {
+      "id": "nusuk-29",
+      "name": "عبدالمطلب صالح أحمد نجدي",
+      "englishName": "Abdul-Muttalib Salih Ahmad Najdi",
+      "bundled": false,
+      "full": {
+        "file": "athan_29.mp3",
+        "bytes": 9080270,
+        "sha256": "71a4c124ad859f36f4287ce85ca1aa53854e84f5b60840b9be86112943ffb4e7"
+      },
+      "takbeer": {
+        "file": "takbeer_29.mp3",
+        "bytes": 1117103,
+        "sha256": "9067bb6f39183d148664e7408639058efec230d700502aa82205516f692569d7"
+      }
+    },
+    {
+      "id": "nusuk-30",
+      "name": "حسين عبدالله حسين رجب",
+      "englishName": "Hussain Abdullah Hussain Rajab",
+      "bundled": false,
+      "full": {
+        "file": "athan_30.mp3",
+        "bytes": 1792107,
+        "sha256": "bc74825f23573df505df70b076012c3a09cf2fd8836afd6aa1ddfe1c6c566168"
+      },
+      "takbeer": {
+        "file": "takbeer_30.mp3",
+        "bytes": 231448,
+        "sha256": "aa83d4e4417babbf9fb05fdd3c8a5f7efef2edbb6385ae2cc917a0db5bac55a0"
+      }
+    },
+    {
+      "id": "nusuk-32",
+      "name": "حسن عبدالستار بخاري",
+      "englishName": "Hasan Abdul-Sattar Bukhari",
+      "bundled": false,
+      "full": {
+        "file": "athan_32.mp3",
+        "bytes": 6331562,
+        "sha256": "d51989f83de078ab2d7c0a6d6df9ed5edb00e4e288765619ce1f7813f124dcdd"
+      },
+      "takbeer": {
+        "file": "takbeer_32.mp3",
+        "bytes": 949083,
+        "sha256": "6a0a33d71a8ab48b42aed797531e97f10d49ee5ea16638bb0e6d8dc80fedfcc4"
+      }
+    },
+    {
+      "id": "nusuk-33",
+      "name": "سامي محمد ديوالي",
+      "englishName": "Sami Muhammad Diwali",
+      "bundled": false,
+      "full": {
+        "file": "athan_33.mp3",
+        "bytes": 2748816,
+        "sha256": "ef1646b6f2a94a1c1e0e155253557c0ccd40588e717e1dc021cf6a00ee23c94a"
+      },
+      "takbeer": {
+        "file": "takbeer_33.mp3",
+        "bytes": 366866,
+        "sha256": "e029ac151458868475b991277a0b01298d0c071ef477fcb78a82a21fbb137c3e"
+      }
+    },
+    {
+      "id": "nusuk-34",
+      "name": "عبدالعزيز حسين بخاري",
+      "englishName": "Abdul-Aziz Hussain Bukhari",
+      "bundled": false,
+      "full": {
+        "file": "athan_34.mp3",
+        "bytes": 4918442,
+        "sha256": "f9dd85ec8f4c7d0f424ec8f68af626ed7825e70907e2089a5970f2a53edb28b8"
+      },
+      "takbeer": {
+        "file": "takbeer_34.mp3",
+        "bytes": 780646,
+        "sha256": "c652073c56b28ea0cdb139bb3dba54f4469c56137d969f548178d2adafa973d2"
+      }
+    },
+    {
+      "id": "nusuk-35",
+      "name": "عصام حسين بخاري",
+      "englishName": "Essam Hussain Bukhari",
+      "bundled": false,
+      "full": {
+        "file": "athan_35.mp3",
+        "bytes": 8764711,
+        "sha256": "d174cf7299351a7c169055dc990ae53e99a1388390b24df68da8fda25165cc33"
+      },
+      "takbeer": {
+        "file": "takbeer_35.mp3",
+        "bytes": 1202785,
+        "sha256": "7dba1fd54f458f5e2175d44c974a4ba263dec595a6929268d0ac04a0119906ed"
+      }
+    },
+    {
+      "id": "nusuk-36",
+      "name": "ماجد حمزة حكيم",
+      "englishName": "Majid Hamzah Hakim",
+      "bundled": false,
+      "full": {
+        "file": "athan_36.mp3",
+        "bytes": 5554994,
+        "sha256": "cc97e5f9bebe698daf46a8af415bfb2a3f18d04901a33f294dbdc3d50c0012ba"
+      },
+      "takbeer": {
+        "file": "takbeer_36.mp3",
+        "bytes": 857132,
+        "sha256": "17f2423567766a8d552df68208ce7792814cb1e33749a72f7e133312914e75c9"
+      }
+    },
+    {
+      "id": "nusuk-37",
+      "name": "محمد ماجد حمزة حكيم",
+      "englishName": "Muhammad Majid Hamzah Hakim",
+      "bundled": false,
+      "full": {
+        "file": "athan_37.mp3",
+        "bytes": 7333201,
+        "sha256": "511d64c8957d2cdec9bea86e75fa5c71a22690cd1e58fc8da275ac55ae052caf"
+      },
+      "takbeer": {
+        "file": "takbeer_37.mp3",
+        "bytes": 1129642,
+        "sha256": "bc4726358343eea80d97f1f6189266e287b01394f46937b0a0537e0417094b40"
+      }
+    },
+    {
+      "id": "nusuk-38",
+      "name": "كامل سكو أحمد نجدي",
+      "englishName": "Kamil Sakuh Ahmad Najdi",
+      "bundled": false,
+      "full": {
+        "file": "athan_38.mp3",
+        "bytes": 3517861,
+        "sha256": "4c5ca9a0f75d68055c4961e34e99195a5c650c00faa31f9489ac940aa6ed5a08"
+      },
+      "takbeer": {
+        "file": "takbeer_38.mp3",
+        "bytes": 536140,
+        "sha256": "cf5e9918c6e8c82fdb1e3462fb31715b8e4f5056908d8764f2019a0d9e899127"
+      }
+    },
+    {
+      "id": "nusuk-39",
+      "name": "عمر يوسف محمد كمال",
+      "englishName": "Umar yusuf Muhammad Kamal",
+      "bundled": false,
+      "full": {
+        "file": "athan_39.mp3",
+        "bytes": 2959467,
+        "sha256": "8d51a5c8a8308cebc2727e45c48b5533754e12e445a173e45ff081257f289f3d"
+      },
+      "takbeer": {
+        "file": "takbeer_39.mp3",
+        "bytes": 585459,
+        "sha256": "70a41b12efcf1636a6b6fbd5f3a5643e725aa43fbadbc2b2fb98f4d608abe5b5"
+      }
+    },
+    {
+      "id": "nusuk-40",
+      "name": "عبدالملك النعمان",
+      "englishName": "Abdul-Malik Al-Nu`man",
+      "bundled": false,
+      "full": {
+        "file": "athan_40.mp3",
+        "bytes": 7298719,
+        "sha256": "104d7f97e2b7ab1046becc13252c38fcf4533b3f4743ebc33090c664111a67b7"
+      },
+      "takbeer": {
+        "file": "takbeer_40.mp3",
+        "bytes": 751389,
+        "sha256": "a73a4d687f8137f676c7895dba3f20de04dc33340919b2287123d493ceae9996"
+      }
+    },
+    {
+      "id": "nusuk-41",
+      "name": "فيصل عبدالملك النعمان",
+      "englishName": "Faysl Abdul-Malik Al-Nu`man",
+      "bundled": false,
+      "full": {
+        "file": "athan_41.mp3",
+        "bytes": 3934148,
+        "sha256": "775b1e12dffc08ff490871ab01a0dcf383ff687ed3486761d32a5ede09a69e02"
+      },
+      "takbeer": {
+        "file": "takbeer_41.mp3",
+        "bytes": 439173,
+        "sha256": "11083e289756da3f17504d9b29593fdc965e8095dd5033c0b4256fc768e20db5"
+      }
+    },
+    {
+      "id": "nusuk-42",
+      "name": "مصطفى عثمان نعمان",
+      "englishName": "Mustafa Uthman Nu`man",
+      "bundled": false,
+      "full": {
+        "file": "athan_42.mp3",
+        "bytes": 8762621,
+        "sha256": "ffaced2dc92e24850d2ada008d7514731e6edc08568b258da192ffecce193edf"
+      },
+      "takbeer": {
+        "file": "takbeer_42.mp3",
+        "bytes": 1145315,
+        "sha256": "858fa8ed63676052a614f70ea8ee5bc4af22ed0eaad1dc2f6c575de5acd19581"
+      }
+    },
+    {
+      "id": "nusuk-43",
+      "name": "سعود بن عبدالعزيز بن حسين بخاري",
+      "englishName": "Saud Ibn Abdul-Aziz Ibn Hussain Bukhri",
+      "bundled": false,
+      "full": {
+        "file": "athan_43.mp3",
+        "bytes": 6394883,
+        "sha256": "85d028b70d89f03a7b2fbdcfac6d1de69c90dec671aaf9c6996ba6d1301c9615"
+      },
+      "takbeer": {
+        "file": "takbeer_43.mp3",
+        "bytes": 917528,
+        "sha256": "d3c4b823bd40fb91483bf6e909c4c0acfa5af81bc235cfd839cdf240dfd2a90d"
+      }
+    },
+    {
+      "id": "nusuk-44",
+      "name": "إياد بن أحمد بن عباس شكري",
+      "englishName": "Iyad Ibn Ahmad Ibn Abbas Shukri",
+      "bundled": false,
+      "full": {
+        "file": "athan_44.mp3",
+        "bytes": 4364646,
+        "sha256": "3ca88263d6ed2773eb2343883293ea3367cd130ac1fd1a53c94c48c8347a0dac"
+      },
+      "takbeer": {
+        "file": "takbeer_44.mp3",
+        "bytes": 577936,
+        "sha256": "9e004d813af553b55a4cbc414f26f22b3ee1683a25b49b1e48e244708c1e5f59"
+      }
+    },
+    {
+      "id": "nusuk-45",
+      "name": "أشرف بن محمد بن حمزة عفيفي",
+      "englishName": "Ashraf Ibn Muhammd Ibn Hamzah Afifi",
+      "bundled": false,
+      "full": {
+        "file": "athan_45.mp3",
+        "bytes": 9110572,
+        "sha256": "e3e2cd45ff69d7766e758de633d73027b6a2fbb617c0bcdf90f6b3c813321e92"
+      },
+      "takbeer": {
+        "file": "takbeer_45.mp3",
+        "bytes": 8496172,
+        "sha256": "fe30ff8babc31c8ec095177573045da3fce4895e69577521988ecc2a0207e803"
+      }
+    },
+    {
+      "id": "nusuk-46",
+      "name": "عبدالمجيد بن سلام بن عودة السريحي",
+      "englishName": "Abdul-Majid Ibn Salam Ibn Awdah Al-Sarihi",
+      "bundled": false,
+      "full": {
+        "file": "athan_46.mp3",
+        "bytes": 8240172,
+        "sha256": "297e3482ddfe38180718e6dc21d6ce72508c444acbc27eb138134f7028d7fb9c"
+      },
+      "takbeer": {
+        "file": "takbeer_46.mp3",
+        "bytes": 1183976,
+        "sha256": "c65f6aa5f960b849f8aa6d239e33a5d19568124059df07fd6db9626810c74f2f"
+      }
+    },
+    {
+      "id": "nusuk-47",
+      "name": "عمر بن نبيل بن حمزة سنبل",
+      "englishName": "Umar Ibn Nabil Ibn Hamzah Sunbul",
+      "bundled": false,
+      "full": {
+        "file": "athan_47.mp3",
+        "bytes": 8998768,
+        "sha256": "aad2169753b99f787895ea39a5a016d0d725378e08b24eca4e55da92a5f796dc"
+      },
+      "takbeer": {
+        "file": "takbeer_47.mp3",
+        "bytes": 1202785,
+        "sha256": "cbd675df659c9dfedc7f3e0c402f49c22073efc7cd09c6e30073395b35c35a74"
+      }
+    },
+    {
+      "id": "nusuk-48",
+      "name": "محمد مروان قصاص",
+      "englishName": "Muhammad Marwan Qassas",
+      "bundled": false,
+      "full": {
+        "file": "athan_48.mp3",
+        "bytes": 8367650,
+        "sha256": "72b15219d699fc98bb88cf1971c830ed58fb0b44ed7822090e34473550e88107"
+      },
+      "takbeer": {
+        "file": "takbeer_48.mp3",
+        "bytes": 963503,
+        "sha256": "990c5200d597a88728a5f7ba6ff6edb010f2d2f48c6f00b9fe2edd387339ba3d"
+      }
+    },
+    {
+      "id": "nusuk-49",
+      "name": "عادل عبدالرحمن كاتب",
+      "englishName": "Adil Abdu-Rahman Katib",
+      "bundled": false,
+      "full": {
+        "file": "athan_49.mp3",
+        "bytes": 8242262,
+        "sha256": "b07b18146234c7961b71dca851f1bea090cf4412a59c98b5a5fd2de8febfda58"
+      },
+      "takbeer": {
+        "file": "takbeer_49.mp3",
+        "bytes": 8242262,
+        "sha256": "b07b18146234c7961b71dca851f1bea090cf4412a59c98b5a5fd2de8febfda58"
+      }
+    }
+  ]
+}

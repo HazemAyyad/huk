@@ -13,5 +13,6 @@ Route::post('/telegram/webhook/{secret}', [TelegramBotController::class, 'webhoo
 
 require __DIR__.'/quran.php';
 require __DIR__.'/religious.php';
+require __DIR__.'/religious_adhans.php';
 require __DIR__.'/religious_community.php';
 require __DIR__.'/religious_assistant.php';
