@@ -1,0 +1,18 @@
+{
+  "format": "haq.source.archive.metadata",
+  "schema": 1,
+  "provider": "HadeethEnc.com",
+  "locale": "en",
+  "version": "1.25.0",
+  "provider_last_update": "2026-05-10 17:43:35",
+  "provider_update_timezone": "unspecified",
+  "fetched_on": "2026-10-30",
+  "source_url": "https://hadeethenc.com/en/browse/download/en/csv",
+  "update_url": "https://hadeethenc.com/en/check/en/v1.25.0",
+  "policy_url": "https://hadeethenc.com/en/home",
+  "sha256": "a65e73317685f69cee26e56d2376516e375557b2e48a1d109a7eff5a6f07f48a",
+  "bytes": 10958600,
+  "record_count": 2328,
+  "reviewed": false,
+  "content_in_git": false
+}

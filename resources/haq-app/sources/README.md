@@ -2,6 +2,8 @@
 
 ## Publication terms verification update — 2026-10-30
 
+The official [English CSV export](https://hadeethenc.com/en/browse/download/en/csv) was downloaded into private review storage on 2026-10-30. Its document header identifies **v1.25.0**, last update `2026-05-10 17:43:35` (no timezone specified by the source), and its update-check URL. The 10,958,600-byte archive has SHA-256 `a65e73317685f69cee26e56d2376516e375557b2e48a1d109a7eff5a6f07f48a` and 2,328 records, retaining Arabic, English and source metadata fields. The raw CSV remains outside Git/public storage. An initial strict text-comparison audit did not establish unique automatic mappings to the 46 current Haq hadiths; this does not establish that their narrations are absent from the provider. No approximate mapping or translation was approved or published.
+
 ### Chapter interface metadata
 
 `quran-chapters-en-20261030.json` preserves the exact response from [Quran.com's chapter metadata API](https://api.quran.com/api/v4/chapters?language=en), SHA-256 `ff6ef5aadcc7710271179c0f9c1519c89ae613b11c8ba3265873c6c4fc6aed0b`. Its 114 unique IDs and verse counts match the bundled canonical dataset. English interface labels use `name_simple` (transliterated names); Arabic labels retain the exact local chapter names. This is chapter metadata, not a translation of Quranic verses. The snapshot and mapping have an isolated validation test. Quran text, Mushaf headings and personal identifiers are retained.
