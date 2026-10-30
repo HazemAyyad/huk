@@ -21,6 +21,9 @@ Route::prefix('v2')->middleware('throttle:60,1')->group(function (): void {
     Route::get('app-content/releases/{release}', [Content::class, 'release'])->whereNumber('release');
     Route::prefix('admin')->middleware(['auth:sanctum', AppAdminOnly::class])->group(function (): void {
         Route::get('languages', [Content::class, 'languages']);
+        Route::get('languages/{locale}/translations/export', [\App\Http\Controllers\Api\AppTranslationExchangeController::class, 'export']);
+        Route::post('languages/{locale}/translations/import', [\App\Http\Controllers\Api\AppTranslationExchangeController::class, 'import']);
+        Route::post('languages/{locale}/translations/review', [\App\Http\Controllers\Api\AppTranslationExchangeController::class, 'review']);
         Route::get('languages/{locale}/records', [Content::class, 'records']);
         Route::put('languages/{locale}/records', [Content::class, 'save']);
         Route::post('languages/{locale}/review', [Content::class, 'review']);

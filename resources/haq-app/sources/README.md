@@ -1,5 +1,13 @@
 # Published translation sources
 
+## Publication terms verification update — 2026-10-30
+
+The official [HadeethEnc home page, Terms and Policies](https://hadeethenc.com/en/home) now explicitly confirms downloading and republishing translations under conditions: preserve the complete content and document version metadata, identify HadeethEnc.com and the publisher, display the version, follow source updates, report translation observations to the source and exclude inappropriate advertising. This resolves the earlier unverified redistribution note below; no publisher message was sent.
+
+Current Haq hadith entries identify Sunnah.com references, not HadeethEnc IDs. Source acquisition still needs explicit reference mapping and preservation of the provider edition; equal-looking titles or matching hadith numbers from different collections do not establish identity. No hadith translation was generated or auto-published by this verification.
+
+The six absent matches in the captured QuranEnc index are `bn`, `my`, `kk`, `ko`, `ms`, `ru`. Rechecking the language-filtered live list returned no resources for five; Bengali lookup was unavailable. This is a provider-availability observation, not a permanent claim that a language has no published Quran translation. The official [API documentation](https://quranenc.com/en/home/api) also documents tafsir resources and per-verse translated audio; availability must be checked per resource before exposing it.
+
 Snapshots were retrieved on 2026-10-30 from the owning services:
 
 - [QuranEnc official API](https://quranenc.com/en/home/api), [live translation index](https://quranenc.com/api/v1/translations/list?localization=en).

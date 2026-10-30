@@ -390,4 +390,56 @@ final class HaqAppAccessTest extends TestCase
         config(['haq_app.signing_key' => '']);
         $this->artisan('haq-app:preflight')->expectsOutputToContain('Publication signing: not configured')->assertSuccessful();
     }
+
+    public function test_translation_exchange_previews_and_imports_atomically_without_approving_or_overwriting_conflicts(): void
+    {
+        [$token] = $this->admin();
+        $export = $this->withToken($token)->getJson('/api/v2/admin/languages/en/translations/export?kind=ui')->assertOk()->json('data');
+        $this->assertSame('haq.translation.exchange', $export['format']);
+        $this->assertCount(30, $export['records']);
+        $package = ['format' => $export['format'], 'schema' => 1, 'locale' => 'en', 'records' => [
+            ['key' => 'ui/nav.home', 'revision' => 1, 'value' => 'Start', 'status' => 'reviewed'],
+            ['key' => 'ui/nav.more', 'revision' => 1, 'value' => 'Services'],
+        ]];
+        $url = '/api/v2/admin/languages/en/translations/import';
+        $this->withToken($token)->postJson($url, ['package' => $package])->assertOk()->assertJsonPath('data.dry_run', true);
+        $this->assertSame(1, DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.home')->value('revision'));
+        $this->withToken($token)->postJson($url, ['package' => $package, 'dry_run' => false])->assertOk()->assertJsonPath('data.status', 'draft');
+        $row = DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.home')->first();
+        $this->assertSame('draft', $row->status);
+        $this->assertNull($row->reviewer_id);
+        $this->assertSame('Start', json_decode($row->value));
+        $package['records'][1]['revision'] = 2;
+        $package['records'][1]['value'] = 'Must not be written';
+        $this->withToken($token)->postJson($url, ['package' => $package, 'dry_run' => false])->assertStatus(409)->assertJsonPath('data.conflicts', ['ui/nav.home']);
+        $this->assertSame('Services', json_decode(DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.more')->value('value')));
+        $package['records'][0]['revision'] = 2;
+        $package['records'][1]['value'] = 'Invalid {invented}';
+        $this->withToken($token)->postJson($url, ['package' => $package, 'dry_run' => false])->assertUnprocessable();
+        $this->assertSame(2, DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.home')->value('revision'));
+        $reviewUrl = '/api/v2/admin/languages/en/translations/review';
+        $package['records'][1]['value'] = 'Different from the saved text';
+        $this->withToken($token)->postJson($reviewUrl, ['package' => $package, 'dry_run' => false])->assertStatus(409);
+        $this->assertSame('draft', DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.home')->value('status'));
+        $package['records'][1]['value'] = 'Services';
+        $this->withToken($token)->postJson($reviewUrl, ['package' => $package])->assertOk()->assertJsonPath('data.dry_run', true);
+        $this->withToken($token)->postJson($reviewUrl, ['package' => $package, 'dry_run' => false])->assertOk()->assertJsonPath('data.status', 'reviewed');
+        $this->assertSame(2, DB::table('app_translation_drafts')->where('locale', 'en')->whereIn('resource_key', ['ui/nav.home', 'ui/nav.more'])->where('status', 'reviewed')->count());
+    }
+
+    public function test_translation_exchange_rejects_wrong_locale_scope_and_mixed_permission_batches(): void
+    {
+        [$token] = $this->admin(['admin.enter', 'translations.edit'], ['en']);
+        $url = '/api/v2/admin/languages/en/translations/import';
+        $package = ['format' => 'haq.translation.exchange', 'schema' => 1, 'locale' => 'fr', 'records' => [
+            ['key' => 'ui/nav.home', 'revision' => 1, 'value' => 'Start'],
+        ]];
+        $this->withToken($token)->postJson($url, ['package' => $package])->assertUnprocessable();
+        $this->withToken($token)->getJson('/api/v2/admin/languages/ar/translations/export?kind=ui')->assertForbidden();
+        $package['locale'] = 'en';
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/translations/review', ['package' => $package, 'dry_run' => false])->assertForbidden();
+        $package['records'][] = ['key' => 'content/anything', 'revision' => 0, 'value' => ['title' => 'Not authorized']];
+        $this->withToken($token)->postJson($url, ['package' => $package, 'dry_run' => false])->assertForbidden();
+        $this->assertSame(1, DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.home')->value('revision'));
+    }
 }
