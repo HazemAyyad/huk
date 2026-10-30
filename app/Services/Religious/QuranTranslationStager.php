@@ -9,6 +9,8 @@ use RuntimeException;
 /** Fetches original provider records for review; never publishes or edits scripture. */
 final class QuranTranslationStager
 {
+    public function __construct(private readonly ?string $defaultDirectory = null) {}
+
     private function fetch(string $path): array
     {
         $response = Http::acceptJson()->connectTimeout(8)->timeout(25)
@@ -83,7 +85,7 @@ final class QuranTranslationStager
         if (strlen($json) > 32 * 1024 * 1024) {
             throw new RuntimeException('Staging package exceeds limit.');
         }
-        $directory ??= storage_path('app/private/haq-source-review');
+        $directory ??= $this->defaultDirectory ?? storage_path('app/private/haq-source-review');
         if (! is_dir($directory) && ! mkdir($directory, 0700, true) && ! is_dir($directory)) {
             throw new RuntimeException('Cannot create private source staging directory.');
         }

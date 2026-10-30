@@ -156,11 +156,13 @@ final class AppLocalization
             abort_unless($language && $language->revision === $expectedRevision, 409, 'revision_conflict');
             $strings = [];
             $content = [];
+            $source = null;
             if ($restore !== null) {
                 $old = DB::table('app_content_releases')->where('locale', $locale)->where('id', $restore)->first() ?? abort(404);
                 $snapshot = json_decode($old->payload, true, 512, JSON_THROW_ON_ERROR);
                 $strings = $snapshot['strings'];
                 $content = $snapshot['content'];
+                $source = $snapshot['quran_source'] ?? null;
             } else {
                 foreach (DB::table('app_translation_drafts')->where('locale', $locale)->where('status', 'reviewed')->get() as $row) {
                     if (str_starts_with($row->resource_key, 'ui/')) {
@@ -169,6 +171,12 @@ final class AppLocalization
                         $content[substr($row->resource_key, 8)] = json_decode($row->value, true);
                     }
                 }
+                if ($language->source_import_id ?? null) {
+                    $selected = DB::table('app_source_imports')->where('id', $language->source_import_id)->where('locale', $locale)->where('status', 'reviewed')->first();
+                    abort_unless($selected, 422, 'source_review_required');
+                    app(QuranSourceArchive::class)->validate($selected->artifact, $locale, $selected->provider_key, $selected->sha256);
+                    $source = ['artifact' => $selected->artifact, 'sha256' => $selected->sha256];
+                }
             }
             foreach (array_keys($this->keys()) as $key) {
                 if (! isset($strings[$key])) {
@@ -176,9 +184,13 @@ final class AppLocalization
                 }
                 $this->validateValue('ui/'.$key, $strings[$key]);
             }
+            if ($source !== null) {
+                $metadata = json_decode($source['artifact'], true, 512, JSON_THROW_ON_ERROR);
+                app(QuranSourceArchive::class)->validate($source['artifact'], $locale, $metadata['source']['key'], $source['sha256']);
+            }
             $version = $expectedRevision + 1;
             $json = json_encode(['schema' => 1, 'locale' => $locale, 'version' => $version,
-                'strings' => (object) $strings, 'content' => (object) $content], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+                'strings' => (object) $strings, 'content' => (object) $content, 'quran_source' => $source], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
             abort_if(strlen($json) > config('haq_app.max_package_bytes'), 422, 'package_too_large');
             $secret = base64_decode(config('haq_app.signing_key'), true);
             abort_unless(function_exists('sodium_crypto_sign_detached') && is_string($secret) && strlen($secret) === SODIUM_CRYPTO_SIGN_SECRETKEYBYTES, 503, 'signing_key_not_configured');

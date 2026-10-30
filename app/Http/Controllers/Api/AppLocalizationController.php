@@ -22,9 +22,12 @@ final class AppLocalizationController extends Controller
         $rows = DB::table('app_languages')->where('enabled', true)->whereNotNull('release_id')->get();
         $registry = collect($this->catalog->languages())->keyBy('locale');
 
-        return response()->json(['data' => ['schema' => 1, 'languages' => $rows->map(fn ($row) => [
-            ...$registry[$row->locale], 'release_id' => $row->release_id, 'version' => $row->revision,
-        ])]]);
+        return response()->json(['data' => ['schema' => 1, 'languages' => $rows->map(function ($row) use ($registry) {
+            $release = DB::table('app_content_releases')->where('id', $row->release_id)->first();
+            $snapshot = json_decode($release->payload, true, 512, JSON_THROW_ON_ERROR);
+
+            return [...$registry[$row->locale], 'release_id' => $row->release_id, 'version' => $snapshot['version']];
+        })]]);
     }
 
     public function release(int $release)

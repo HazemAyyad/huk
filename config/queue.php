@@ -30,6 +30,12 @@ return [
 
     'connections' => [
 
+        'haq_imports' => [
+            'driver' => 'database', 'connection' => env('DB_QUEUE_CONNECTION'),
+            'table' => env('DB_QUEUE_TABLE', 'jobs'), 'queue' => 'haq-imports',
+            'retry_after' => 1200, 'after_commit' => true,
+        ],
+
         'sync' => [
             'driver' => 'sync',
         ],

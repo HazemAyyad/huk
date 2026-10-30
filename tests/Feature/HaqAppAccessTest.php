@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Services\Religious\AppAdminAccess;
 use App\Services\Religious\AppLocalization;
 use App\Services\Religious\AppSessionProof;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 final class HaqAppAccessTest extends TestCase
@@ -31,7 +33,7 @@ final class HaqAppAccessTest extends TestCase
         (new \LaratrustSetupTables)->up();
         foreach (['0001_01_01_000000_create_users_table',
             '2026_10_13_120000_create_religious_accounts_and_quran_sync', '2026_01_12_150326_create_personal_access_tokens_table',
-            '2026_10_26_120000_extend_religious_account_identity', '2026_10_30_120000_create_haq_app_localization'] as $migration) {
+            '2026_10_26_120000_extend_religious_account_identity', '2026_10_30_120000_create_haq_app_localization', '2026_10_30_130000_create_app_source_imports'] as $migration) {
             (require database_path('migrations/'.$migration.'.php'))->up();
         }
         $pair = sodium_crypto_sign_keypair();
@@ -236,5 +238,156 @@ final class HaqAppAccessTest extends TestCase
         $input['permissions'] = ['admin.enter'];
         $this->withToken($token)->patchJson('/api/v2/admin/team/'.$grant, $input)->assertOk();
         $this->assertSame(['admin.enter'], app(AppAdminAccess::class)->session($account)['permissions']);
+    }
+
+    public function test_source_import_submission_is_idempotent_and_scope_checked_without_running_in_request(): void
+    {
+        Bus::fake();
+        [$token] = $this->admin();
+        $input = ['request_id' => '348bedda-097a-4d68-8b68-253dcce888a8', 'provider_key' => 'english_rwwad'];
+        $first = $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources', $input)->assertAccepted()->assertJsonPath('data.status', 'queued');
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources', $input)->assertAccepted()->assertJsonPath('data.id', $first->json('data.id'));
+        Bus::assertDispatchedTimes(\App\Jobs\ImportQuranSource::class, 1);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/fr/sources', $input)->assertUnprocessable();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources', [...$input, 'provider_key' => 'english_saheeh'])->assertConflict();
+        $this->assertSame(1, DB::table('app_source_imports')->count());
+    }
+
+    private function sourceArtifact(): string
+    {
+        $item = collect(app(\App\Services\Religious\ReligiousCatalog::class)->dataset()['items'])->firstWhere('type', 'quran');
+        $surahs = array_unique(array_map(fn ($key) => (int) explode(':', $key)[0], $item['verseKeys']));
+        $responses = [];
+        foreach ($surahs as $surah) {
+            $rows = [];
+            foreach (app(\App\Services\Quran\QuranCatalog::class)->dataset()['verses'] as $verse) {
+                [$s, $a] = explode(':', $verse['key']);
+                if ((int) $s === $surah) {
+                    $rows[] = ['id' => $verse['key'], 'sura' => $s, 'aya' => $a,
+                        'translation' => 'Published '.$verse['key'], 'footnotes' => 'Footnote preserved.'];
+                }
+            }
+            $raw = json_encode(['result' => $rows], JSON_THROW_ON_ERROR);
+            $responses[$surah] = ['raw_json' => $raw, 'sha256' => hash('sha256', $raw)];
+        }
+
+        return json_encode(['format' => 'haq.source.review', 'schema' => 1, 'provider' => 'QuranEnc.com', 'locale' => 'en',
+            'source' => ['key' => 'english_rwwad', 'language_iso_code' => 'en', 'version' => '1.0.20', 'title' => 'Published source', 'direction' => 'ltr'],
+            'policy_url' => 'https://quranenc.com/en/home', 'attribution' => 'QuranEnc.com v1.0.20',
+            'references' => [$item['id'] => $item['verseKeys']], 'surahs' => $responses], JSON_THROW_ON_ERROR);
+    }
+
+    public function test_source_review_selection_and_publication_preserve_exact_provider_bytes_and_version(): void
+    {
+        [$token, $owner] = $this->admin();
+        $artifact = $this->sourceArtifact();
+        $id = DB::table('app_source_imports')->insertGetId(['account_id' => $owner->id, 'request_id' => '348bedda-097a-4d68-8b68-253dcce888a8',
+            'locale' => 'en', 'provider_key' => 'english_rwwad', 'status' => 'ready', 'artifact' => $artifact,
+            'sha256' => hash('sha256', $artifact), 'created_at' => now(), 'updated_at' => now()]);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources/selection', ['source_id' => $id, 'language_revision' => 1])->assertUnprocessable();
+        $this->withToken($token)->getJson('/api/v2/admin/languages/en/sources/'.$id)->assertOk()->assertJsonPath('data.source.version', '1.0.20');
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources/'.$id.'/review', ['revision' => 1, 'mapping_confirmed' => false])->assertOk();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources/'.$id.'/review', ['revision' => 1, 'mapping_confirmed' => false])->assertConflict();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/sources/selection', ['source_id' => $id, 'language_revision' => 1])->assertOk();
+        DB::table('app_translation_drafts')->where('locale', 'en')->update(['status' => 'reviewed']);
+        $release = $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 2])->assertOk()->json('data.release_id');
+        $data = json_decode($this->getJson('/api/v2/app-content/releases/'.$release)->json('data.payload'), true);
+        $this->assertSame($artifact, $data['quran_source']['artifact']);
+        $this->assertSame(hash('sha256', $artifact), $data['quran_source']['sha256']);
+        $this->assertArrayNotHasKey('account_id', $data['quran_source']);
+    }
+
+    public function test_bootstrap_admin_seeder_creates_combined_content_admin_without_resetting_existing_roles_or_passwords(): void
+    {
+        config(['haq_app.bootstrap_admin' => ['email' => 'new-admin@example.test', 'name' => 'Content admin', 'password' => 'private-test-password-2026']]);
+        $existing = $this->staff('employee');
+        $this->seed(\Database\Seeders\HaqAppAdminSeeder::class);
+        $user = User::where('email', 'new-admin@example.test')->firstOrFail();
+        $account = AppAccount::where('user_id', $user->id)->firstOrFail();
+        $passwordHash = $user->password;
+        $this->assertSame(['association', 'religious'], $account->areas());
+        $this->assertTrue(app(AppAdminAccess::class)->session($account)['admin_access']);
+        $this->assertTrue(User::findOrFail($existing->id)->hasRole('employee'));
+        DB::table('app_admin_memberships')->where('app_account_id', $account->id)->update(['active' => false]);
+        config(['haq_app.bootstrap_admin.password' => 'a-different-password-2026']);
+        $this->seed(\Database\Seeders\HaqAppAdminSeeder::class);
+        $this->assertSame($passwordHash, $user->fresh()->password);
+        $this->assertFalse(app(AppAdminAccess::class)->session($account)['admin_access']);
+        $this->assertSame(2, User::count());
+    }
+
+    public function test_source_worker_registers_a_validated_draft_once_and_rejects_revoked_actor(): void
+    {
+        [$token, $owner, $grant] = $this->admin();
+        $verses = app(\App\Services\Quran\QuranCatalog::class)->dataset()['verses'];
+        Http::preventStrayRequests();
+        Http::fake(function ($request) use ($verses) {
+            if (str_contains($request->url(), 'translations/list')) {
+                return Http::response(['translations' => [['key' => 'english_rwwad', 'language_iso_code' => 'en', 'version' => '1.0.20',
+                    'last_update' => 1, 'title' => 'Published source', 'direction' => 'ltr']]]);
+            }
+            preg_match('~/english_rwwad/(\d+)$~', $request->url(), $matches);
+            $surah = (int) ($matches[1] ?? 0);
+            $rows = [];
+            foreach ($verses as $verse) {
+                [$s, $a] = explode(':', $verse['key']);
+                if ((int) $s === $surah) {
+                    $rows[] = ['sura' => $s, 'aya' => $a, 'translation' => 'Published '.$verse['key'], 'footnotes' => 'Preserved'];
+                }
+            }
+
+            return Http::response(['result' => $rows]);
+        });
+        $directory = storage_path('framework/testing/source-worker-'.bin2hex(random_bytes(8)));
+        mkdir($directory, 0700, true);
+        try {
+            $id = DB::table('app_source_imports')->insertGetId(['account_id' => $owner->id, 'request_id' => '348bedda-097a-4d68-8b68-253dcce888a8',
+                'locale' => 'en', 'provider_key' => 'english_rwwad', 'status' => 'queued', 'created_at' => now(), 'updated_at' => now()]);
+            $job = new \App\Jobs\ImportQuranSource($id);
+            $job->handle(new \App\Services\Religious\QuranTranslationStager($directory), app(\App\Services\Religious\QuranSourceArchive::class), app(AppAdminAccess::class));
+            $row = DB::table('app_source_imports')->where('id', $id)->first();
+            $this->assertSame('ready', $row->status);
+            $this->assertNull($row->reviewer_id);
+            $this->assertSame(hash('sha256', $row->artifact), $row->sha256);
+            $sent = count(Http::recorded());
+            $job->handle(new \App\Services\Religious\QuranTranslationStager($directory), app(\App\Services\Religious\QuranSourceArchive::class), app(AppAdminAccess::class));
+            $this->assertSame($sent, count(Http::recorded()));
+            DB::table('app_source_imports')->where('id', $id)->update(['status' => 'queued']);
+            DB::table('app_admin_memberships')->where('id', $grant)->update(['active' => false]);
+            $job->handle(new \App\Services\Religious\QuranTranslationStager($directory), app(\App\Services\Religious\QuranSourceArchive::class), app(AppAdminAccess::class));
+            $this->assertSame('failed', DB::table('app_source_imports')->where('id', $id)->value('status'));
+            $this->assertSame($sent, count(Http::recorded()));
+        } finally {
+            foreach (glob($directory.'/*') as $file) {
+                unlink($file);
+            }
+            rmdir($directory);
+        }
+    }
+
+    public function test_bootstrap_refuses_email_collision_without_promoting_existing_employee(): void
+    {
+        $employee = $this->staff('employee');
+        config(['haq_app.bootstrap_admin' => ['email' => $employee->email, 'name' => 'Admin', 'password' => 'private-test-password']]);
+        $this->expectException(\RuntimeException::class);
+        try {
+            app(\Database\Seeders\HaqAppAdminSeeder::class)->run();
+        } finally {
+            $this->assertSame(0, AppAccount::count());
+            $this->assertTrue($employee->hasRole('employee'));
+        }
+    }
+
+    public function test_read_only_preflight_reports_missing_queue_schema_and_never_exposes_signing_secret(): void
+    {
+        config(['haq_app.import_connection' => 'haq_imports']);
+        $this->artisan('haq-app:preflight')->expectsOutputToContain('missing prerequisites: jobs')->assertFailed();
+        (require database_path('migrations/0001_01_01_000002_create_jobs_table.php'))->up();
+        $before = DB::table('app_languages')->get()->toJson();
+        $this->artisan('haq-app:preflight')->expectsOutputToContain('Schema: ready')
+            ->expectsOutputToContain('Publication signing: configured')->assertSuccessful();
+        $this->assertSame($before, DB::table('app_languages')->get()->toJson());
+        config(['haq_app.signing_key' => '']);
+        $this->artisan('haq-app:preflight')->expectsOutputToContain('Publication signing: not configured')->assertSuccessful();
     }
 }
