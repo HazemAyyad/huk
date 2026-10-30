@@ -16,3 +16,4 @@ require __DIR__.'/religious.php';
 require __DIR__.'/religious_adhans.php';
 require __DIR__.'/religious_community.php';
 require __DIR__.'/religious_assistant.php';
+require __DIR__.'/haq_app.php';

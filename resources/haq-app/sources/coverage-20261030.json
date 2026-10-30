@@ -1,0 +1,355 @@
+[
+  {
+    "locale": "ar",
+    "source_locale": "ar",
+    "quran_sources": [],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "en",
+    "source_locale": "en",
+    "quran_sources": [
+      "english_rwwad",
+      "english_saheeh",
+      "english_hilali_khan"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "am",
+    "source_locale": "am",
+    "quran_sources": [
+      "amharic_zain",
+      "amharic_sadiq"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "az",
+    "source_locale": "az",
+    "quran_sources": [
+      "azeri_musayev"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "bn",
+    "source_locale": "bn",
+    "quran_sources": [],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "bs",
+    "source_locale": "bs",
+    "quran_sources": [
+      "bosnian_rwwad",
+      "bosnian_mihanovich"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "my",
+    "source_locale": "my",
+    "quran_sources": [],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "fil",
+    "source_locale": "tl",
+    "quran_sources": [
+      "tagalog_rwwad"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": true
+  },
+  {
+    "locale": "fr",
+    "source_locale": "fr",
+    "quran_sources": [
+      "french_rashid",
+      "french_montada"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "de",
+    "source_locale": "de",
+    "quran_sources": [
+      "german_rwwad",
+      "german_bubenheim"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "gu",
+    "source_locale": "gu",
+    "quran_sources": [
+      "gujarati_omari"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ha",
+    "source_locale": "ha",
+    "quran_sources": [
+      "hausa_gummi"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "hi",
+    "source_locale": "hi",
+    "quran_sources": [
+      "hindi_omari"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "id",
+    "source_locale": "id",
+    "quran_sources": [
+      "indonesian_sabiq",
+      "indonesian_affairs",
+      "indonesian_complex"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ja",
+    "source_locale": "ja",
+    "quran_sources": [
+      "japanese_saeedsato"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "kk",
+    "source_locale": "kk",
+    "quran_sources": [],
+    "hadith_available": false,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ko",
+    "source_locale": "ko",
+    "quran_sources": [],
+    "hadith_available": false,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ckb",
+    "source_locale": "ku",
+    "quran_sources": [
+      "kurdish_bamoki"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": true
+  },
+  {
+    "locale": "ms",
+    "source_locale": "ms",
+    "quran_sources": [],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ml",
+    "source_locale": "ml",
+    "quran_sources": [
+      "malayalam_kunhi"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ps",
+    "source_locale": "ps",
+    "quran_sources": [
+      "pashto_rwwad"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "fa",
+    "source_locale": "fa",
+    "quran_sources": [
+      "persian_ih"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "pt",
+    "source_locale": "pt",
+    "quran_sources": [
+      "portuguese_nasr"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ru",
+    "source_locale": "ru",
+    "quran_sources": [],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "zh-Hans",
+    "source_locale": "zh",
+    "quran_sources": [
+      "chinese_suliman",
+      "chinese_makin"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": true
+  },
+  {
+    "locale": "si",
+    "source_locale": "si",
+    "quran_sources": [
+      "sinhalese_mahir"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "so",
+    "source_locale": "so",
+    "quran_sources": [
+      "somali_yacob"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "es",
+    "source_locale": "es",
+    "quran_sources": [
+      "spanish_garcia",
+      "spanish_montada_eu",
+      "spanish_montada_latin"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "sw",
+    "source_locale": "sw",
+    "quran_sources": [
+      "swahili_rwwad",
+      "swahili_barawani"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ta",
+    "source_locale": "ta",
+    "quran_sources": [
+      "tamil_omar_brief",
+      "tamil_omar",
+      "tamil_baqavi"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "te",
+    "source_locale": "te",
+    "quran_sources": [
+      "telugu_muhammad"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "th",
+    "source_locale": "th",
+    "quran_sources": [
+      "thai_rwwad"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "tr",
+    "source_locale": "tr",
+    "quran_sources": [
+      "turkish_rwwad",
+      "turkish_shaban",
+      "turkish_shahin"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "ur",
+    "source_locale": "ur",
+    "quran_sources": [
+      "urdu_junagarhi"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  },
+  {
+    "locale": "uz",
+    "source_locale": "uz",
+    "quran_sources": [
+      "uzbek_rwwad",
+      "uzbek_mansour"
+    ],
+    "hadith_available": true,
+    "verified_at": "2026-10-30",
+    "mapping_review_required": false
+  }
+]
