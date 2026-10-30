@@ -2,6 +2,10 @@
 
 ## Publication terms verification update — 2026-10-30
 
+### Chapter interface metadata
+
+`quran-chapters-en-20261030.json` preserves the exact response from [Quran.com's chapter metadata API](https://api.quran.com/api/v4/chapters?language=en), SHA-256 `ff6ef5aadcc7710271179c0f9c1519c89ae613b11c8ba3265873c6c4fc6aed0b`. Its 114 unique IDs and verse counts match the bundled canonical dataset. English interface labels use `name_simple` (transliterated names); Arabic labels retain the exact local chapter names. This is chapter metadata, not a translation of Quranic verses. The snapshot and mapping have an isolated validation test. Quran text, Mushaf headings and personal identifiers are retained.
+
 The official [HadeethEnc home page, Terms and Policies](https://hadeethenc.com/en/home) now explicitly confirms downloading and republishing translations under conditions: preserve the complete content and document version metadata, identify HadeethEnc.com and the publisher, display the version, follow source updates, report translation observations to the source and exclude inappropriate advertising. This resolves the earlier unverified redistribution note below; no publisher message was sent.
 
 Current Haq hadith entries identify Sunnah.com references, not HadeethEnc IDs. Source acquisition still needs explicit reference mapping and preservation of the provider edition; equal-looking titles or matching hadith numbers from different collections do not establish identity. No hadith translation was generated or auto-published by this verification.

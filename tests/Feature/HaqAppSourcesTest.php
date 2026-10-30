@@ -10,6 +10,23 @@ use Tests\TestCase;
 
 final class HaqAppSourcesTest extends TestCase
 {
+    public function test_chapter_interface_metadata_preserves_canonical_ids_counts_and_arabic_names(): void
+    {
+        $raw = file_get_contents(resource_path('haq-app/sources/quran-chapters-en-20261030.json'));
+        $this->assertSame('ff6ef5aadcc7710271179c0f9c1519c89ae613b11c8ba3265873c6c4fc6aed0b', hash('sha256', $raw));
+        $chapters = json_decode($raw, true, 512, JSON_THROW_ON_ERROR)['chapters'];
+        $this->assertCount(114, $chapters);
+        $this->assertSame(range(1, 114), array_column($chapters, 'id'));
+        $local = app(QuranCatalog::class)->dataset()['surahs'];
+        $ui = json_decode(file_get_contents(resource_path('haq-app/ui.json')), true, 512, JSON_THROW_ON_ERROR);
+        foreach ($chapters as $chapter) {
+            $original = $local[$chapter['id'] - 1];
+            $this->assertSame($original['ayahCount'], $chapter['verses_count']);
+            $this->assertSame($original['name'], $ui['quran.surah.'.$chapter['id']]['ar']);
+            $this->assertSame($chapter['name_simple'], $ui['quran.surah.'.$chapter['id']]['en']);
+        }
+    }
+
     private string $directory;
 
     protected function setUp(): void
