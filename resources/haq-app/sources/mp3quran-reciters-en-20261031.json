@@ -1,0 +1,1999 @@
+{
+  "provider": "MP3Quran",
+  "source": "https://www.mp3quran.net/api/v3/reciters?language=eng",
+  "documentation": "https://www.mp3quran.net/eng/api",
+  "retrieved_on": "2026-10-31",
+  "source_sha256": "1746ff7c10401ba3bce0328e9334696b0b682f45ca996d346af4760505ca5836",
+  "scope": "Display metadata only. Numeric reciter and recitation IDs and exact audio server must match the existing bundled catalog. Audio files, URLs and availability are unchanged.",
+  "records": [
+    {
+      "reciter_id": 1,
+      "recitation_id": 1,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-akhdar/r1/",
+      "name_ar": "إبراهيم الأخضر",
+      "name_en": "Ibrahim Al-Akdar",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 10,
+      "recitation_id": 10,
+      "server": "https://cdn.mp3quran.net/audio/akram-alaqmi/r1/",
+      "name_ar": "أكرم العلاقمي",
+      "name_en": "Akram Alalaqmi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 100,
+      "recitation_id": 100,
+      "server": "https://cdn.mp3quran.net/audio/majed-anazi/r1/",
+      "name_ar": "ماجد العنزي",
+      "name_en": "Majed Al-Enezi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 102,
+      "recitation_id": 102,
+      "server": "https://cdn.mp3quran.net/audio/maher-muaiqly/r1/",
+      "name_ar": "ماهر المعيقلي",
+      "name_en": "Maher Al Meaqli",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 105,
+      "recitation_id": 105,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-barrak/r1/",
+      "name_ar": "محمد البراك",
+      "name_en": "Mohammed Al-Barrak",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 106,
+      "recitation_id": 106,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-tablawi/r1/",
+      "name_ar": "محمد الطبلاوي",
+      "name_en": "Mohammad Al-Tablaway",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 107,
+      "recitation_id": 107,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-luhaidan/r1/",
+      "name_ar": "محمد اللحيدان",
+      "name_en": "Mohammed Al-Lohaidan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 108,
+      "recitation_id": 108,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-muhaisni/r1/",
+      "name_ar": "محمد المحيسني",
+      "name_en": "Mohammed Al-Muhasny",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 109,
+      "recitation_id": 320,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-ayyub/r2/",
+      "name_ar": "محمد أيوب",
+      "name_en": "Mohammed Ayyub",
+      "style_ar": "حفص عن عاصم - تلاوة مميزة",
+      "style_en": "Rewayat Hafs A'n Assem - Featured Recitation"
+    },
+    {
+      "reciter_id": 109,
+      "recitation_id": 109,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-ayyub/r1/",
+      "name_ar": "محمد أيوب",
+      "name_en": "Mohammed Ayyub",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 110,
+      "recitation_id": 110,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-shah/r1/",
+      "name_ar": "محمد صالح عالم شاه",
+      "name_en": "Mohammad Saleh Alim Shah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 111,
+      "recitation_id": 111,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-jibreel/r1/",
+      "name_ar": "محمد جبريل",
+      "name_en": "Mohammed Jibreel",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 112,
+      "recitation_id": 10924,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-minshawi/r4/",
+      "name_ar": "محمد صديق المنشاوي",
+      "name_en": "Mohammed Siddiq Al-Minshawi",
+      "style_ar": "حفص عن عاصم - تسجيل عام 1387 هـ - 1967م",
+      "style_en": "Rewayat Hafs A'n Assem - Recorded in 1387 AH (1967 CE)"
+    },
+    {
+      "reciter_id": 112,
+      "recitation_id": 112,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-minshawi/r1/",
+      "name_ar": "محمد صديق المنشاوي",
+      "name_en": "Mohammed Siddiq Al-Minshawi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 115,
+      "recitation_id": 115,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-abdulkareem/r1/",
+      "name_ar": "محمد عبدالكريم",
+      "name_en": "Mohammad Abdullkarem",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 118,
+      "recitation_id": 118,
+      "server": "https://cdn.mp3quran.net/audio/mahmoud-husary/r1/",
+      "name_ar": "محمود خليل الحصري",
+      "name_en": "Mahmoud Khalil Al-Hussary",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 12,
+      "recitation_id": 12,
+      "server": "https://cdn.mp3quran.net/audio/idrees-abkar/r1/",
+      "name_ar": "إدريس أبكر",
+      "name_en": "Idrees Abkr",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 121,
+      "recitation_id": 121,
+      "server": "https://cdn.mp3quran.net/audio/mahmoud-banna/r1/",
+      "name_ar": "محمود علي البنا",
+      "name_en": "Mahmoud Ali  Albanna",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 123,
+      "recitation_id": 123,
+      "server": "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/",
+      "name_ar": "مشاري العفاسي",
+      "name_en": "Mishary Alafasi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 125,
+      "recitation_id": 125,
+      "server": "https://cdn.mp3quran.net/audio/mustafa-ismail/r1/",
+      "name_ar": "مصطفى إسماعيل",
+      "name_en": "Mustafa Ismail",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 126,
+      "recitation_id": 126,
+      "server": "https://cdn.mp3quran.net/audio/mustafa-lahouni/r1/",
+      "name_ar": "مصطفى اللاهوني",
+      "name_en": "Mustafa Al-Lahoni",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 127,
+      "recitation_id": 127,
+      "server": "https://cdn.mp3quran.net/audio/mustafa-azzawi/r1/",
+      "name_ar": "مصطفى رعد العزاوي",
+      "name_en": "Mustafa raad Alazawy",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 128,
+      "recitation_id": 128,
+      "server": "https://cdn.mp3quran.net/audio/muammar-za/r1/",
+      "name_ar": "معمر الأندونيسي",
+      "name_en": "Muamar (From Indonesia)",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 129,
+      "recitation_id": 182,
+      "server": "https://cdn.mp3quran.net/audio/muftah-saltani/r3/",
+      "name_ar": "مفتاح السلطني",
+      "name_en": "Muftah Alsaltany",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 13,
+      "recitation_id": 13,
+      "server": "https://cdn.mp3quran.net/audio/zain-ahmad/r1/",
+      "name_ar": "الزين محمد أحمد",
+      "name_en": "Alzain Mohammad Ahmad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 135,
+      "recitation_id": 135,
+      "server": "https://cdn.mp3quran.net/audio/abdulrahman-suwayid/r1/",
+      "name_ar": "عبدالرحمن السويّد",
+      "name_en": "Abdulrahman Alsuwayid",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 136,
+      "recitation_id": 136,
+      "server": "https://cdn.mp3quran.net/audio/abdulelah-aoun/r1/",
+      "name_ar": "عبدالإله بن عون",
+      "name_en": "Abdulelah bin Aoun",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 137,
+      "recitation_id": 137,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-humaid/r1/",
+      "name_ar": "أحمد طالب بن حميد",
+      "name_en": "Ahmad Talib bin Humaid",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 139,
+      "recitation_id": 139,
+      "server": "https://cdn.mp3quran.net/audio/majed-zamil/r1/",
+      "name_ar": "ماجد الزامل",
+      "name_en": "Majed Al-Zamil",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 149,
+      "recitation_id": 149,
+      "server": "https://cdn.mp3quran.net/audio/maher-shakhashiro/r1/",
+      "name_ar": "ماهر شخاشيرو",
+      "name_en": "Maher Shakhashero",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 15,
+      "recitation_id": 15,
+      "server": "https://cdn.mp3quran.net/audio/ashri-omran/r1/",
+      "name_ar": "العشري عمران",
+      "name_en": "Alashri Omran",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 150,
+      "recitation_id": 150,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-monshed/r1/",
+      "name_ar": "محمد المنشد",
+      "name_en": "Mohammad AlMonshed",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 152,
+      "recitation_id": 152,
+      "server": "https://cdn.mp3quran.net/audio/yasser-salama/r1/",
+      "name_ar": "ياسر سلامة",
+      "name_en": "Yasser Salamah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 153,
+      "recitation_id": 153,
+      "server": "https://cdn.mp3quran.net/audio/akhil-rawa/r1/",
+      "name_ar": "أخيل عبدالحي روا",
+      "name_en": "Akhil Abdulhayy Rawa",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 154,
+      "recitation_id": 154,
+      "server": "https://cdn.mp3quran.net/audio/zamri-abdullah/r1/",
+      "name_ar": "أستاذ زامري",
+      "name_en": "Ustaz Zamri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 159,
+      "recitation_id": 159,
+      "server": "https://cdn.mp3quran.net/audio/khalid-mohanna/r1/",
+      "name_ar": "خالد المهنا",
+      "name_en": "Khalid Almohana",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 160,
+      "recitation_id": 160,
+      "server": "https://cdn.mp3quran.net/audio/adel-kalbani/r1/",
+      "name_ar": "عادل الكلباني",
+      "name_en": "Adel Al-Khalbany",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 161,
+      "recitation_id": 161,
+      "server": "https://cdn.mp3quran.net/audio/musa-bilal/r1/",
+      "name_ar": "موسى بلال",
+      "name_en": "Mousa Bilal",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 162,
+      "recitation_id": 162,
+      "server": "https://cdn.mp3quran.net/audio/hussain-sheikh/r1/",
+      "name_ar": "حسين آل الشيخ",
+      "name_en": "Hussain Alshaik",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 163,
+      "recitation_id": 163,
+      "server": "https://cdn.mp3quran.net/audio/hatem-waer/r1/",
+      "name_ar": "حاتم فريد الواعر",
+      "name_en": "Hatem Fareed Alwaer",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 164,
+      "recitation_id": 164,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-jormy/r1/",
+      "name_ar": "إبراهيم الجرمي",
+      "name_en": "Ibrahim Aljormy",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 165,
+      "recitation_id": 165,
+      "server": "https://cdn.mp3quran.net/audio/mahmoud-rifai/r1/",
+      "name_ar": "محمود الرفاعي",
+      "name_en": "Mahmood Al rifai",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 166,
+      "recitation_id": 166,
+      "server": "https://cdn.mp3quran.net/audio/nasser-obaid/r1/",
+      "name_ar": "ناصر العبيد",
+      "name_en": "Nasser Al obaid",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 167,
+      "recitation_id": 167,
+      "server": "https://cdn.mp3quran.net/audio/wasel-methen/r1/",
+      "name_ar": "واصل المذن",
+      "name_en": "Wasel Almethen",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 17,
+      "recitation_id": 17,
+      "server": "https://cdn.mp3quran.net/audio/tawfeeq-sayegh/r1/",
+      "name_ar": "توفيق الصايغ",
+      "name_en": "Tawfeeq As-Sayegh",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 178,
+      "recitation_id": 232,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-dosari/r2/",
+      "name_ar": "إبراهيم الدوسري",
+      "name_en": "Ibrahim Aldosari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 18,
+      "recitation_id": 18,
+      "server": "https://cdn.mp3quran.net/audio/jamal-abdullah/r1/",
+      "name_ar": "جمال شاكر عبدالله",
+      "name_en": "Jamal Shaker Abdullah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 181,
+      "recitation_id": 181,
+      "server": "https://cdn.mp3quran.net/audio/jamaan-osaimi/r1/",
+      "name_ar": "جمعان العصيمي",
+      "name_en": "Jamaan Alosaimi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 183,
+      "recitation_id": 183,
+      "server": "https://cdn.mp3quran.net/audio/rodziah-abdulrahman/r1/",
+      "name_ar": "رضية عبدالرحمن",
+      "name_en": "Rodziah Abdulrahman",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 184,
+      "recitation_id": 184,
+      "server": "https://cdn.mp3quran.net/audio/rogayah-sulong/r1/",
+      "name_ar": "رقية سولونق",
+      "name_en": "Rogayah Sulong",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 185,
+      "recitation_id": 185,
+      "server": "https://cdn.mp3quran.net/audio/sapinah-mamat/r1/",
+      "name_ar": "سابينة مامات",
+      "name_en": "Sapinah Mamat",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 187,
+      "recitation_id": 187,
+      "server": "https://cdn.mp3quran.net/audio/saidin-abdulrahman/r1/",
+      "name_ar": "سيدين عبدالرحمن",
+      "name_en": "Saidin Abdulrahman",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 188,
+      "recitation_id": 188,
+      "server": "https://cdn.mp3quran.net/audio/abdulghani-abdullah/r1/",
+      "name_ar": "عبدالغني عبدالله",
+      "name_en": "Abdulghani Abdullah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 189,
+      "recitation_id": 189,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-fahmi/r1/",
+      "name_ar": "عبدالله فهمي",
+      "name_en": "Abdullah Fahmi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 19,
+      "recitation_id": 19,
+      "server": "https://cdn.mp3quran.net/audio/hamad-daghriri/r1/",
+      "name_ar": "حمد الدغريري",
+      "name_en": "Hamad Al Daghriri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 190,
+      "recitation_id": 190,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-hafiz/r1/",
+      "name_ar": "محمد الحافظ",
+      "name_en": "Muhammad Al-Hafiz",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 191,
+      "recitation_id": 191,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-ali/r1/",
+      "name_ar": "محمد حفص علي",
+      "name_en": "Mohammed Hafas Ali",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 192,
+      "recitation_id": 192,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-anuar/r1/",
+      "name_ar": "محمد خير النور",
+      "name_en": "Muhammed Khairul Anuar",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 193,
+      "recitation_id": 193,
+      "server": "https://cdn.mp3quran.net/audio/yousef-ahmad/r1/",
+      "name_ar": "يوسف بن نوح أحمد",
+      "name_en": "Yousef Bin Noah Ahmad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 194,
+      "recitation_id": 194,
+      "server": "https://cdn.mp3quran.net/audio/jamaluddin-zailai/r1/",
+      "name_ar": "جمال الدين الزيلعي",
+      "name_en": "Jamal Addeen Alzailaie",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 197,
+      "recitation_id": 197,
+      "server": "https://cdn.mp3quran.net/audio/moeedh-harthi/r1/",
+      "name_ar": "معيض الحارثي",
+      "name_en": "Moeedh Alharthi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 198,
+      "recitation_id": 198,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-shareef/r1/",
+      "name_ar": "محمد رشاد الشريف",
+      "name_en": "Mohammad Rashad Alshareef",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 2,
+      "recitation_id": 2,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-jibreen/r1/",
+      "name_ar": "إبراهيم الجبرين",
+      "name_en": "Ibrahim Al-Jebreen",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 20,
+      "recitation_id": 20,
+      "server": "https://cdn.mp3quran.net/audio/khalid-jalil/r1/",
+      "name_ar": "خالد الجليل",
+      "name_en": "Khalid Al-Jileel",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 201,
+      "recitation_id": 201,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-tarabulsi/r2/",
+      "name_ar": "أحمد الطرابلسي",
+      "name_en": "Ahmed Al-trabulsi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 202,
+      "recitation_id": 202,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-kandari/r1/",
+      "name_ar": "عبدالله الكندري",
+      "name_en": "Abdullah Al-Kandari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 203,
+      "recitation_id": 203,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-amer/r1/",
+      "name_ar": "أحمد عامر",
+      "name_en": "Ahmed Amer",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 204,
+      "recitation_id": 204,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-saadan/r1/",
+      "name_ar": "إبراهيم السعدان",
+      "name_en": "Ibrahem Assadan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 205,
+      "recitation_id": 205,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-hudhaifi/r1/",
+      "name_ar": "أحمد الحذيفي",
+      "name_en": "Ahmad Alhuthaifi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 206,
+      "recitation_id": 206,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-khan/r1/",
+      "name_ar": "محمد عثمان خان",
+      "name_en": "Mohammed Osman Khan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 207,
+      "recitation_id": 207,
+      "server": "https://cdn.mp3quran.net/audio/youssef-edghouch/r1/",
+      "name_ar": "يوسف الدغوش",
+      "name_en": "Youssef Edghouch",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 209,
+      "recitation_id": 209,
+      "server": "https://cdn.mp3quran.net/audio/wishear-arbili/r1/",
+      "name_ar": "وشيار حيدر اربيلي",
+      "name_en": "Wishear Hayder Arbili",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21,
+      "recitation_id": 21,
+      "server": "https://cdn.mp3quran.net/audio/khalid-qahtani/r1/",
+      "name_ar": "خالد القحطاني",
+      "name_en": "Khaled Al-Qahtani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21136,
+      "recitation_id": 10914,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-qarafi/r1/",
+      "name_ar": "عبدالله القرافي",
+      "name_en": "Abdullah Alqarafi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21148,
+      "recitation_id": 10915,
+      "server": "https://cdn.mp3quran.net/audio/abdulbadi-ghailan/r1/",
+      "name_ar": "عبدالبديع غيلان",
+      "name_en": "Abdulbadi Ghailan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21181,
+      "recitation_id": 340,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-burhaji/r1/",
+      "name_ar": "محمد برهجي",
+      "name_en": "Muhammad Burhaji",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21182,
+      "recitation_id": 10904,
+      "server": "https://cdn.mp3quran.net/audio/yousef-aidarous/r1/",
+      "name_ar": "يوسف العيدروس",
+      "name_en": "Yusuf ALaidroos",
+      "style_ar": "حفص عن عاصم - تلاوة مميزة",
+      "style_en": "Rewayat Hafs A'n Assem - Featured Recitation"
+    },
+    {
+      "reciter_id": 21183,
+      "recitation_id": 10905,
+      "server": "https://cdn.mp3quran.net/audio/hassan-daghriri/r1/",
+      "name_ar": "حسن الدغريري",
+      "name_en": "Hassan Aldaghriri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21184,
+      "recitation_id": 10906,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-faqih/r1/",
+      "name_ar": "محمد الفقيه",
+      "name_en": "Muhammad Al Faqih",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21186,
+      "recitation_id": 10908,
+      "server": "https://cdn.mp3quran.net/audio/junaid-abdullah/r1/",
+      "name_ar": "جنيد آدم عبدالله",
+      "name_en": "Junaid Adam Abdullah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21187,
+      "recitation_id": 10909,
+      "server": "https://cdn.mp3quran.net/audio/khalid-ziyadi/r1/",
+      "name_ar": "خالد الزيادي",
+      "name_en": "Khalid Alziyadi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21188,
+      "recitation_id": 10910,
+      "server": "https://cdn.mp3quran.net/audio/waleed-shamsan/r1/",
+      "name_ar": "الوليد الشمسان",
+      "name_en": "Alwaleed Alshamsan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21191,
+      "recitation_id": 10911,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-shahri/r1/",
+      "name_ar": "إبراهيم الشهري",
+      "name_en": "Ibrahim Al-Shahri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21193,
+      "recitation_id": 10913,
+      "server": "https://cdn.mp3quran.net/audio/abdulrahman-badr/r1/",
+      "name_ar": "عبدالرحمن بن عبدالرزاق البدر",
+      "name_en": "Abdul Rahman bin Abdul Razzaq Al Badr",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21196,
+      "recitation_id": 10917,
+      "server": "https://cdn.mp3quran.net/audio/alijon-hamdan/r1/",
+      "name_ar": "عليجان قوري حمدان",
+      "name_en": "Alijon Qori",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21197,
+      "recitation_id": 10918,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-zubaidi/r1/",
+      "name_ar": "محمد الزبيدي",
+      "name_en": "Mohammed Al-Zubaidi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21200,
+      "recitation_id": 10921,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-dibirov/r1/",
+      "name_ar": "محمد ديبيروف",
+      "name_en": "Mohammad Dibirov",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21201,
+      "recitation_id": 10922,
+      "server": "https://cdn.mp3quran.net/audio/asim-luhaidan/r1/",
+      "name_ar": "عاصم اللحیدان",
+      "name_en": "Asim Al-Luhaidan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21202,
+      "recitation_id": 10923,
+      "server": "https://cdn.mp3quran.net/audio/mahmoud-harfoush/r1/",
+      "name_ar": "محمود حرفوش",
+      "name_en": "Mahmoud Harfoush",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 21203,
+      "recitation_id": 10925,
+      "server": "https://server15.mp3quran.net/a-rushdi/Almusshaf-Al-Mo-lim/",
+      "name_ar": "أيمن رشدي سويد",
+      "name_en": "Ayman Rushdi Swaid",
+      "style_ar": "حفص عن عاصم - المصحف المعلم",
+      "style_en": "Rewayat Hafs A'n Assem - Almusshaf Al Mo'lim"
+    },
+    {
+      "reciter_id": 216,
+      "recitation_id": 216,
+      "server": "https://cdn.mp3quran.net/audio/othman-ansari/r1/",
+      "name_ar": "عثمان الأنصاري",
+      "name_en": "Othman Al-Ansary",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 217,
+      "recitation_id": 217,
+      "server": "https://cdn.mp3quran.net/audio/bandar-baleela/r1/",
+      "name_ar": "بندر بليله",
+      "name_en": "Bandar Balilah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 218,
+      "recitation_id": 218,
+      "server": "https://cdn.mp3quran.net/audio/khalid-shuraimi/r1/",
+      "name_ar": "خالد الشريمي",
+      "name_en": "Khalid Al-Shoraimy",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 219,
+      "recitation_id": 219,
+      "server": "https://cdn.mp3quran.net/audio/wadee-yamani/r1/",
+      "name_ar": "وديع اليمني",
+      "name_en": "Wadeea Al-Yamani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 22,
+      "recitation_id": 22,
+      "server": "https://cdn.mp3quran.net/audio/khalid-abdulkafi/r1/",
+      "name_ar": "خالد عبدالكافي",
+      "name_en": "Khalid Abdulkafi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 221,
+      "recitation_id": 221,
+      "server": "https://cdn.mp3quran.net/audio/raad-kurdi/r1/",
+      "name_ar": "رعد محمد الكردي",
+      "name_en": "Raad Al Kurdi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 225,
+      "recitation_id": 225,
+      "server": "https://cdn.mp3quran.net/audio/abdulrahman-oosi/r1/",
+      "name_ar": "عبدالرحمن العوسي",
+      "name_en": "Abdulrahman Aloosi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 226,
+      "recitation_id": 226,
+      "server": "https://cdn.mp3quran.net/audio/khalid-ghamdi/r1/",
+      "name_ar": "خالد الغامدي",
+      "name_en": "Khalid Algamdi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 227,
+      "recitation_id": 227,
+      "server": "https://cdn.mp3quran.net/audio/ramadan-shakoor/r1/",
+      "name_ar": "رمضان شكور",
+      "name_en": "Ramadan Shakoor",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 228,
+      "recitation_id": 228,
+      "server": "https://cdn.mp3quran.net/audio/abdulmajeed-arkani/r1/",
+      "name_ar": "عبدالمجيد الأركاني",
+      "name_en": "Abdulmajeed Al-Arkani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 229,
+      "recitation_id": 229,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-khalil/r1/",
+      "name_ar": "محمد خليل القارئ",
+      "name_en": "Mohammad Khalil Al-Qari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 23,
+      "recitation_id": 23,
+      "server": "https://cdn.mp3quran.net/audio/khalid-wahaibi/r1/",
+      "name_ar": "خالد الوهيبي",
+      "name_en": "Khalid Al-Wehabi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 230,
+      "recitation_id": 230,
+      "server": "https://cdn.mp3quran.net/audio/rami-duais/r1/",
+      "name_ar": "رامي الدعيس",
+      "name_en": "Rami Aldeais",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 231,
+      "recitation_id": 231,
+      "server": "https://cdn.mp3quran.net/audio/hazza-balushi/r1/",
+      "name_ar": "هزاع البلوشي",
+      "name_en": "Hazza Al-Balushi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 236,
+      "recitation_id": 236,
+      "server": "https://cdn.mp3quran.net/audio/abdulrahman-majed/r1/",
+      "name_ar": "عبدالرحمن الماجد",
+      "name_en": "Abdulrahman Al-Majed",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 24,
+      "recitation_id": 24,
+      "server": "https://cdn.mp3quran.net/audio/khalifa-tunaiji/r1/",
+      "name_ar": "خليفة الطنيجي",
+      "name_en": "Khalifa Altunaiji",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 240,
+      "recitation_id": 240,
+      "server": "https://cdn.mp3quran.net/audio/salman-otaibi/r1/",
+      "name_ar": "سلمان العتيبي",
+      "name_en": "Salman Alotaibi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 241,
+      "recitation_id": 241,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-refaat/r1/",
+      "name_ar": "محمد رفعت",
+      "name_en": "Mohammad Refat",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 243,
+      "recitation_id": 243,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-mousa/r1/",
+      "name_ar": "عبدالله الموسى",
+      "name_en": "Abdullah Al-Mousa",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 244,
+      "recitation_id": 244,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-khalaf/r1/",
+      "name_ar": "عبدالله الخلف",
+      "name_en": "Abdullah Al-Khalaf",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 245,
+      "recitation_id": 245,
+      "server": "https://cdn.mp3quran.net/audio/mansour-salimi/r1/",
+      "name_ar": "منصور السالمي",
+      "name_en": "Mansour Al-Salemi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 246,
+      "recitation_id": 246,
+      "server": "https://cdn.mp3quran.net/audio/salah-musalli/r1/",
+      "name_ar": "صلاح مصلي",
+      "name_en": "Salah Musali",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 247,
+      "recitation_id": 247,
+      "server": "https://cdn.mp3quran.net/audio/khalid-sharekh/r1/",
+      "name_ar": "خالد الشارخ",
+      "name_en": "Khalid Alsharekh",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 248,
+      "recitation_id": 248,
+      "server": "https://cdn.mp3quran.net/audio/nasser-asfour/r1/",
+      "name_ar": "ناصر العصفور",
+      "name_en": "Nasser Alosfor",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 25,
+      "recitation_id": 25,
+      "server": "https://cdn.mp3quran.net/audio/dawood-hamza/r1/",
+      "name_ar": "داود حمزة",
+      "name_en": "Dawood Hamza",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 250,
+      "recitation_id": 250,
+      "server": "https://cdn.mp3quran.net/audio/muhammad-bukhait/r1/",
+      "name_ar": "محمد البخيت",
+      "name_en": "Mohammad Albukheet",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 251,
+      "recitation_id": 251,
+      "server": "https://cdn.mp3quran.net/audio/nasser-majed/r1/",
+      "name_ar": "ناصر الماجد",
+      "name_en": "Nasser Almajed",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 252,
+      "recitation_id": 252,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-suwailem/r1/",
+      "name_ar": "أحمد السويلم",
+      "name_en": "Ahmed Al-Swailem",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 253,
+      "recitation_id": 253,
+      "server": "https://cdn.mp3quran.net/audio/islam-sobhi/r1/",
+      "name_ar": "إسلام صبحي",
+      "name_en": "Islam Sobhi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 254,
+      "recitation_id": 254,
+      "server": "https://cdn.mp3quran.net/audio/badr-turki/r1/",
+      "name_ar": "بدر التركي",
+      "name_en": "Bader Alturki",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 255,
+      "recitation_id": 255,
+      "server": "https://cdn.mp3quran.net/audio/haitham-jadani/r1/",
+      "name_ar": "هيثم الجدعاني",
+      "name_en": "Hitham Aljadani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 256,
+      "recitation_id": 256,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-shaheen/r1/",
+      "name_ar": "أحمد خليل شاهين",
+      "name_en": "Ahmad Shaheen",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 257,
+      "recitation_id": 257,
+      "server": "https://cdn.mp3quran.net/audio/saad-muqrin/r1/",
+      "name_ar": "سعد المقرن",
+      "name_en": "Saad Almqren",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 259,
+      "recitation_id": 259,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-nufais/r1/",
+      "name_ar": "أحمد النفيس",
+      "name_en": "Ahmad Al Nufais",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 260,
+      "recitation_id": 260,
+      "server": "https://cdn.mp3quran.net/audio/omar-duraiwiz/r1/",
+      "name_ar": "عمر الدريويز",
+      "name_en": "Omar Al Darweez",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 263,
+      "recitation_id": 263,
+      "server": "https://cdn.mp3quran.net/audio/abdulaziz-asiri/r1/",
+      "name_ar": "عبدالعزيز العسيري",
+      "name_en": "Abdulaziz Alasiri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 265,
+      "recitation_id": 265,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-deeban/r1/",
+      "name_ar": "أحمد ديبان",
+      "name_en": "Ahmad Deban",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 267,
+      "recitation_id": 267,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-kamel/r1/",
+      "name_ar": "عبدالله كامل",
+      "name_en": "Abdullah Kamel",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 268,
+      "recitation_id": 268,
+      "server": "https://cdn.mp3quran.net/audio/peshawa-kurdi/r1/",
+      "name_ar": "بيشه وا قادر الكردي",
+      "name_en": "Peshawa Qadr Al-Kurdi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 27,
+      "recitation_id": 261,
+      "server": "https://cdn.mp3quran.net/audio/rachid-belalia/r2/",
+      "name_ar": "رشيد بلعالية",
+      "name_en": "Rachid Belalya",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 271,
+      "recitation_id": 271,
+      "server": "https://cdn.mp3quran.net/audio/nadhir-maliki/r1/",
+      "name_ar": "نذير المالكي",
+      "name_en": "Nathier Almalki",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 273,
+      "recitation_id": 273,
+      "server": "https://cdn.mp3quran.net/audio/haitham-dukhain/r1/",
+      "name_ar": "هيثم الدخين",
+      "name_en": "Haitham Aldukhain",
+      "style_ar": "حفص عن عاصم - تلاوة مميزة",
+      "style_en": "Rewayat Hafs A'n Assem - Featured Recitation"
+    },
+    {
+      "reciter_id": 277,
+      "recitation_id": 277,
+      "server": "https://cdn.mp3quran.net/audio/mahmoud-abdulhakam/r1/",
+      "name_ar": "محمود عبدالحكم",
+      "name_en": "Mahmoud Abdul Hakam",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 278,
+      "recitation_id": 289,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-masarawi/r1/",
+      "name_ar": "أحمد عيسى المعصراوي",
+      "name_en": "Ahmad Issa Al Maasaraawi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 28,
+      "recitation_id": 28,
+      "server": "https://cdn.mp3quran.net/audio/zakaria-hamama/r1/",
+      "name_ar": "زكريا حمامة",
+      "name_en": "Zakaria Hamamah",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 280,
+      "recitation_id": 292,
+      "server": "https://cdn.mp3quran.net/audio/hashim-abudalal/r1/",
+      "name_ar": "هاشم أبو دلال",
+      "name_en": "Hashim Abu Dalal",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 281,
+      "recitation_id": 293,
+      "server": "https://cdn.mp3quran.net/audio/fouad-khamiri/r1/",
+      "name_ar": "فؤاد الخامري",
+      "name_en": "Fouad Alkhamery",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 282,
+      "recitation_id": 294,
+      "server": "https://cdn.mp3quran.net/audio/sayed-hashemi/r1/",
+      "name_ar": "سيد أحمد هاشمي",
+      "name_en": "Sayed Ahmad Hashemi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 283,
+      "recitation_id": 295,
+      "server": "https://cdn.mp3quran.net/audio/khalid-mohammadi/r1/",
+      "name_ar": "خالد كريم محمدي",
+      "name_en": "Khalid Mohammadi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 284,
+      "recitation_id": 297,
+      "server": "https://cdn.mp3quran.net/audio/malallah-jaber/r1/",
+      "name_ar": "مال الله عبدالرحمن الجابر",
+      "name_en": "Mal-Allah Abdulrhman Aljaber",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 285,
+      "recitation_id": 298,
+      "server": "https://cdn.mp3quran.net/audio/salman-siddiq/r1/",
+      "name_ar": "سلمان الصديق",
+      "name_en": "Salman Alsadeiq",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 286,
+      "recitation_id": 299,
+      "server": "https://cdn.mp3quran.net/audio/hassan-saleh/r1/",
+      "name_ar": "حسن صالح",
+      "name_en": "Hasan Saleh",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 287,
+      "recitation_id": 302,
+      "server": "https://cdn.mp3quran.net/audio/abdulrahman-shahat/r1/",
+      "name_ar": "عبدالرحمن الشحات",
+      "name_en": "Abdulrahman Alshahhat",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 288,
+      "recitation_id": 303,
+      "server": "https://cdn.mp3quran.net/audio/issa-sanankoua/r1/",
+      "name_ar": "عيسى عمر سناكو",
+      "name_en": "Issa Omar Sanankoua",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 289,
+      "recitation_id": 304,
+      "server": "https://cdn.mp3quran.net/audio/haroon-baqai/r1/",
+      "name_ar": "هارون بقائي",
+      "name_en": "Haroon Baqai",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 29,
+      "recitation_id": 281,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-bukhari/r1/",
+      "name_ar": "عبدالله بخاري",
+      "name_en": "Abdullah Bukhari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 290,
+      "recitation_id": 306,
+      "server": "https://cdn.mp3quran.net/audio/saleh-quraishi/r1/",
+      "name_ar": "صالح القريشي",
+      "name_en": "Saleh Alquraishi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 3,
+      "recitation_id": 3,
+      "server": "https://cdn.mp3quran.net/audio/ibrahim-asiri/r1/",
+      "name_ar": "إبراهيم العسيري",
+      "name_en": "Ibrahim Al-Asiri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 30,
+      "recitation_id": 30,
+      "server": "https://cdn.mp3quran.net/audio/saad-ghamdi/r1/",
+      "name_ar": "سعد الغامدي",
+      "name_en": "Saad Al-Ghamdi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 300,
+      "recitation_id": 300,
+      "server": "https://cdn.mp3quran.net/audio/saleh-shamrani/r1/",
+      "name_ar": "صالح الشمراني",
+      "name_en": "Saleh Alshamrani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 301,
+      "recitation_id": 307,
+      "server": "https://cdn.mp3quran.net/audio/faisal-hajri/r1/",
+      "name_ar": "فيصل الهاجري",
+      "name_en": "Faisal Al-Hajry",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 302,
+      "recitation_id": 314,
+      "server": "https://cdn.mp3quran.net/audio/anas-emadi/r1/",
+      "name_ar": "أنس العمادي",
+      "name_en": "Anas Alemadi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 303,
+      "recitation_id": 315,
+      "server": "https://cdn.mp3quran.net/audio/abdulmalik-askar/r1/",
+      "name_ar": "عبدالملك العسكر",
+      "name_en": "Abdulmalik Alaskar",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 304,
+      "recitation_id": 316,
+      "server": "https://cdn.mp3quran.net/audio/abdulkareem-hazmi/r1/",
+      "name_ar": "عبدالكريم الحازمي",
+      "name_en": "Abdulkareem Alhazmi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 306,
+      "recitation_id": 318,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-mishal/r1/",
+      "name_ar": "عبدالله المشعل",
+      "name_en": "Abdullah Al-Mishal",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 31,
+      "recitation_id": 31,
+      "server": "https://cdn.mp3quran.net/audio/saud-shuraim/r1/",
+      "name_ar": "سعود الشريم",
+      "name_en": "Saud Al-Shuraim",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 32,
+      "recitation_id": 32,
+      "server": "https://cdn.mp3quran.net/audio/sahl-yassin/r1/",
+      "name_ar": "سهل ياسين",
+      "name_en": "Sahl Yassin",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 33,
+      "recitation_id": 33,
+      "server": "https://cdn.mp3quran.net/audio/zaki-daghistani/r1/",
+      "name_ar": "زكي داغستاني",
+      "name_en": "Zaki Daghistani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 34,
+      "recitation_id": 34,
+      "server": "https://cdn.mp3quran.net/audio/sami-hassan/r1/",
+      "name_ar": "سامي الحسن",
+      "name_en": "Sami Al-Hasn",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 35,
+      "recitation_id": 35,
+      "server": "https://cdn.mp3quran.net/audio/sami-dosari/r1/",
+      "name_ar": "سامي الدوسري",
+      "name_en": "Sami Al-Dosari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 36,
+      "recitation_id": 36,
+      "server": "https://cdn.mp3quran.net/audio/sayed-ramadan/r1/",
+      "name_ar": "سيد رمضان",
+      "name_en": "Sayeed Ramadan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 37,
+      "recitation_id": 37,
+      "server": "https://cdn.mp3quran.net/audio/shaban-sayyad/r1/",
+      "name_ar": "شعبان الصياد",
+      "name_en": "Shaban Al-Sayiaad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 38,
+      "recitation_id": 38,
+      "server": "https://cdn.mp3quran.net/audio/shirzad-taher/r1/",
+      "name_ar": "شيرزاد عبدالرحمن طاهر",
+      "name_en": "Shirazad Taher",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 39,
+      "recitation_id": 39,
+      "server": "https://cdn.mp3quran.net/audio/saber-abdulhakam/r1/",
+      "name_ar": "صابر عبدالحكم",
+      "name_en": "Saber Abdulhakm",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 4,
+      "recitation_id": 4,
+      "server": "https://cdn.mp3quran.net/audio/abubakr-shatri/r1/",
+      "name_ar": "شيخ أبو بكر الشاطري",
+      "name_en": "Shaik Abu Bakr Al Shatri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 40,
+      "recitation_id": 40,
+      "server": "https://cdn.mp3quran.net/audio/saleh-sahood/r1/",
+      "name_ar": "صالح الصاهود",
+      "name_en": "Saleh Alsahood",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 41,
+      "recitation_id": 41,
+      "server": "https://cdn.mp3quran.net/audio/saleh-talib/r1/",
+      "name_ar": "صالح آل طالب",
+      "name_en": "Saleh Al-Talib",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 42,
+      "recitation_id": 42,
+      "server": "https://cdn.mp3quran.net/audio/saleh-habdan/r1/",
+      "name_ar": "صالح الهبدان",
+      "name_en": "Saleh Al-Habdan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 43,
+      "recitation_id": 43,
+      "server": "https://cdn.mp3quran.net/audio/salah-budair/r1/",
+      "name_ar": "صلاح البدير",
+      "name_en": "Salah Albudair",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 44,
+      "recitation_id": 44,
+      "server": "https://cdn.mp3quran.net/audio/salah-hashim/r1/",
+      "name_ar": "صلاح الهاشم",
+      "name_en": "Salah Alhashim",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 46,
+      "recitation_id": 46,
+      "server": "https://cdn.mp3quran.net/audio/salah-bukhatir/r1/",
+      "name_ar": "صلاح بو خاطر",
+      "name_en": "Slaah Bukhatir",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 47,
+      "recitation_id": 283,
+      "server": "https://cdn.mp3quran.net/audio/mukhtar-haj/r1/",
+      "name_ar": "مختار الحاج",
+      "name_en": "Mukhtar Al-Haj",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 48,
+      "recitation_id": 48,
+      "server": "https://cdn.mp3quran.net/audio/adel-rayyan/r1/",
+      "name_ar": "عادل ريان",
+      "name_en": "Adel Ryyan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 49,
+      "recitation_id": 49,
+      "server": "https://cdn.mp3quran.net/audio/abdulbari-thubaiti/r1/",
+      "name_ar": "عبدالبارئ الثبيتي",
+      "name_en": "Abdelbari Al-Toubayti",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 5,
+      "recitation_id": 5,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-ajmi/r1/",
+      "name_ar": "أحمد بن علي العجمي",
+      "name_en": "Ahmad Al-Ajmy",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 50,
+      "recitation_id": 50,
+      "server": "https://cdn.mp3quran.net/audio/abdulbari-muhammad/r1/",
+      "name_ar": "عبدالبارئ محمد",
+      "name_en": "Abdulbari Mohammad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 51,
+      "recitation_id": 53,
+      "server": "https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/",
+      "name_ar": "عبدالباسط عبدالصمد",
+      "name_en": "Abdulbasit Abdulsamad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 54,
+      "recitation_id": 54,
+      "server": "https://cdn.mp3quran.net/audio/abdulrahman-sudais/r1/",
+      "name_ar": "عبدالرحمن السديس",
+      "name_en": "Abdulrahman Alsudaes",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 55,
+      "recitation_id": 55,
+      "server": "https://cdn.mp3quran.net/audio/abdulaziz-ahmad/r1/",
+      "name_ar": "عبدالعزيز الأحمد",
+      "name_en": "Abdul Aziz Al-Ahmad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 56,
+      "recitation_id": 56,
+      "server": "https://cdn.mp3quran.net/audio/abdulaziz-zahrani/r1/",
+      "name_ar": "عبدالعزيز الزهراني",
+      "name_en": "Abdulaziz Az-Zahrani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 57,
+      "recitation_id": 57,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-buraimi/r1/",
+      "name_ar": "عبدالله البريمي",
+      "name_en": "Abdullah Al-Burimi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 58,
+      "recitation_id": 58,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-buaijan/r1/",
+      "name_ar": "عبدالله البعيجان",
+      "name_en": "Abdullah Albuajan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 59,
+      "recitation_id": 59,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-matrood/r1/",
+      "name_ar": "عبدالله المطرود",
+      "name_en": "Abdullah Al-Mattrod",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 6,
+      "recitation_id": 6,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-hawashi/r1/",
+      "name_ar": "أحمد الحواشي",
+      "name_en": "Ahmad Al-Hawashi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 60,
+      "recitation_id": 60,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-basfar/r1/",
+      "name_ar": "عبدالله بصفر",
+      "name_en": "Abdullah Basfer",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 61,
+      "recitation_id": 61,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-khayyat/r1/",
+      "name_ar": "عبدالله خياط",
+      "name_en": "Abdullah Khayyat",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 62,
+      "recitation_id": 62,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-juhani/r1/",
+      "name_ar": "عبدالله عواد الجهني",
+      "name_en": "Abdullah Al-Johany",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 63,
+      "recitation_id": 63,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-ghailan/r1/",
+      "name_ar": "عبدالله غيلان",
+      "name_en": "Abdullah Qaulan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 64,
+      "recitation_id": 258,
+      "server": "https://cdn.mp3quran.net/audio/abdulrasheed-sufi/r3/",
+      "name_ar": "عبدالرشيد صوفي",
+      "name_en": "Abdulrasheed Soufi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 66,
+      "recitation_id": 66,
+      "server": "https://cdn.mp3quran.net/audio/abdulmohsen-harthi/r1/",
+      "name_ar": "عبدالمحسن الحارثي",
+      "name_en": "Abdulmohsin Al-Harthy",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 67,
+      "recitation_id": 67,
+      "server": "https://cdn.mp3quran.net/audio/abdulmohsen-qasim/r1/",
+      "name_ar": "عبدالمحسن القاسم",
+      "name_en": "Abdulmohsen Al-Qasim",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 68,
+      "recitation_id": 68,
+      "server": "https://cdn.mp3quran.net/audio/abdulmohsen-askar/r1/",
+      "name_ar": "عبدالمحسن العسكر",
+      "name_en": "Abdulmohsin Al-Askar",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 69,
+      "recitation_id": 69,
+      "server": "https://cdn.mp3quran.net/audio/abdulmohsen-obaikan/r1/",
+      "name_ar": "عبدالمحسن العبيكان",
+      "name_en": "Abdulmohsin Al-Obaikan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 7,
+      "recitation_id": 7,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-saud/r1/",
+      "name_ar": "أحمد سعود",
+      "name_en": "Ahmad Saud",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 70,
+      "recitation_id": 70,
+      "server": "https://cdn.mp3quran.net/audio/abdulhadi-kanakeri/r1/",
+      "name_ar": "عبدالهادي أحمد كناكري",
+      "name_en": "Abdulhadi Kanakeri",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 71,
+      "recitation_id": 71,
+      "server": "https://cdn.mp3quran.net/audio/abdulwadood-haneef/r1/",
+      "name_ar": "عبدالودود حنيف",
+      "name_en": "Abdulwadood Haneef",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 72,
+      "recitation_id": 72,
+      "server": "https://cdn.mp3quran.net/audio/abdulwali-arkani/r1/",
+      "name_ar": "عبدالولي الأركاني",
+      "name_en": "Abdulwali Al-Arkani",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 73,
+      "recitation_id": 73,
+      "server": "https://cdn.mp3quran.net/audio/ali-abuhashim/r1/",
+      "name_ar": "علي أبو هاشم",
+      "name_en": "Ali Abo-Hashim",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 74,
+      "recitation_id": 74,
+      "server": "https://cdn.mp3quran.net/audio/ali-hudhaifi/r1/",
+      "name_ar": "علي بن عبدالرحمن الحذيفي",
+      "name_en": "Ali Alhuthaifi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 76,
+      "recitation_id": 76,
+      "server": "https://cdn.mp3quran.net/audio/ali-jaber/r1/",
+      "name_ar": "علي جابر",
+      "name_en": "Ali Jaber",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 77,
+      "recitation_id": 77,
+      "server": "https://cdn.mp3quran.net/audio/ali-souissi/r1/",
+      "name_ar": "علي حجاج السويسي",
+      "name_en": "Ali Hajjaj Alsouasi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 78,
+      "recitation_id": 78,
+      "server": "https://cdn.mp3quran.net/audio/imad-hafez/r1/",
+      "name_ar": "عماد زهير حافظ",
+      "name_en": "Emad Hafez",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 79,
+      "recitation_id": 282,
+      "server": "https://cdn.mp3quran.net/audio/abdulaziz-turki/r1/",
+      "name_ar": "عبدالعزيز التركي",
+      "name_en": "Abdulaziz Alturki",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 8,
+      "recitation_id": 8,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-saber/r1/",
+      "name_ar": "أحمد صابر",
+      "name_en": "Ahmad Saber",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 81,
+      "recitation_id": 81,
+      "server": "https://cdn.mp3quran.net/audio/fares-abbad/r1/",
+      "name_ar": "فارس عباد",
+      "name_en": "Fares Abbad",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 82,
+      "recitation_id": 82,
+      "server": "https://cdn.mp3quran.net/audio/fahad-otaibi/r1/",
+      "name_ar": "فهد العتيبي",
+      "name_en": "Fahad Al-Otaibi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 83,
+      "recitation_id": 83,
+      "server": "https://cdn.mp3quran.net/audio/fahad-kandari/r1/",
+      "name_ar": "فهد الكندري",
+      "name_en": "Fahad Al-Kandari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 84,
+      "recitation_id": 84,
+      "server": "https://cdn.mp3quran.net/audio/fawaz-kaabi/r1/",
+      "name_ar": "فواز الكعبي",
+      "name_en": "Fawaz Alkabi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 85,
+      "recitation_id": 85,
+      "server": "https://cdn.mp3quran.net/audio/lafi-oni/r1/",
+      "name_ar": "لافي العوني",
+      "name_en": "Lafi Al-Oni",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 86,
+      "recitation_id": 86,
+      "server": "https://cdn.mp3quran.net/audio/nasser-qatami/r1/",
+      "name_ar": "ناصر القطامي",
+      "name_en": "Nasser Alqatami",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 87,
+      "recitation_id": 87,
+      "server": "https://cdn.mp3quran.net/audio/nabil-rifai/r1/",
+      "name_ar": "نبيل الرفاعي",
+      "name_en": "Nabil Al Rifay",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 88,
+      "recitation_id": 88,
+      "server": "https://cdn.mp3quran.net/audio/neama-hassan/r1/",
+      "name_ar": "نعمة الحسان",
+      "name_en": "Neamah Al-Hassan",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 89,
+      "recitation_id": 89,
+      "server": "https://cdn.mp3quran.net/audio/hani-rifai/r1/",
+      "name_ar": "هاني الرفاعي",
+      "name_en": "Hani Arrifai",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 9,
+      "recitation_id": 9,
+      "server": "https://cdn.mp3quran.net/audio/ahmad-naina/r1/",
+      "name_ar": "أحمد نعينع",
+      "name_en": "Ahmad Nauina",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 90,
+      "recitation_id": 90,
+      "server": "https://cdn.mp3quran.net/audio/waleed-dulaimi/r1/",
+      "name_ar": "وليد الدليمي",
+      "name_en": "Walid Al-Dulaimi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 92,
+      "recitation_id": 92,
+      "server": "https://cdn.mp3quran.net/audio/yasser-dosari/r1/",
+      "name_ar": "ياسر الدوسري",
+      "name_en": "Yasser Al-Dosari",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 93,
+      "recitation_id": 93,
+      "server": "https://cdn.mp3quran.net/audio/yasser-qurashi/r1/",
+      "name_ar": "ياسر القرشي",
+      "name_en": "Yasser Al-Qurashi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 94,
+      "recitation_id": 94,
+      "server": "https://cdn.mp3quran.net/audio/yasser-faylakawi/r1/",
+      "name_ar": "ياسر الفيلكاوي",
+      "name_en": "Yasser Al-Faylakawi",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 96,
+      "recitation_id": 96,
+      "server": "https://cdn.mp3quran.net/audio/yahya-hawwa/r1/",
+      "name_ar": "يحيى حوا",
+      "name_en": "Yahya Hawwa",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 97,
+      "recitation_id": 97,
+      "server": "https://cdn.mp3quran.net/audio/yousef-shoaey/r1/",
+      "name_ar": "يوسف الشويعي",
+      "name_en": "Yousef Alshoaey",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    },
+    {
+      "reciter_id": 98,
+      "recitation_id": 284,
+      "server": "https://cdn.mp3quran.net/audio/abdullah-abdal/r1/",
+      "name_ar": "عبدالله عبدل",
+      "name_en": "Abdullah Abdal",
+      "style_ar": "حفص عن عاصم - مرتل",
+      "style_en": "Rewayat Hafs A'n Assem - Murattal"
+    }
+  ]
+}
