@@ -8,6 +8,9 @@ use Illuminate\Validation\ValidationException;
 
 final class AppLocalization
 {
+    /** Registry files are immutable during a request; this service is transient. */
+    private ?array $uiKeys = null;
+
     public function languages(): array
     {
         return json_decode(file_get_contents(resource_path('haq-app/languages.json')), true, 512, JSON_THROW_ON_ERROR);
@@ -15,7 +18,7 @@ final class AppLocalization
 
     public function keys(): array
     {
-        return json_decode(file_get_contents(resource_path('haq-app/ui.json')), true, 512, JSON_THROW_ON_ERROR);
+        return $this->uiKeys ??= json_decode(file_get_contents(resource_path('haq-app/ui.json')), true, 512, JSON_THROW_ON_ERROR);
     }
 
     public function initialize(): void
