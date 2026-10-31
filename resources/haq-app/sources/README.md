@@ -1,5 +1,11 @@
 # Published translation sources
 
+## Hadith acquisition and publication workflow — 2026-10-31
+
+HadeethEnc CSV acquisition is now implemented for explicit local-to-provider reference mappings, with private bounded streaming, full raw record/metadata retention, independent review and publication permissions, signed release snapshots, and offline reader display. Details and deployment migration: [hadith source workflow](../../../docs/hadith-translation-sources.md). No heuristic candidate is approved automatically. The 15-column metadata row with 14 empty trailing cells in the live export is covered by the parser fixture.
+
+A single current-English record was staged from the private v1.25.0 archive for `nawawi-01` / provider ID `66511`: 12,570 artifact bytes, SHA-256 `d64cda6744a906717bb050b5b2048f1bdfb24dce40b78a4ee2c03c0451780801`, unreviewed and unpublished. The full archive remains private. This is acquisition evidence, not approval of all current hadith mappings or language coverage.
+
 ## Publication terms verification update — 2026-10-30
 
 The official [English CSV export](https://hadeethenc.com/en/browse/download/en/csv) was downloaded into private review storage on 2026-10-30. Its document header identifies **v1.25.0**, last update `2026-05-10 17:43:35` (no timezone specified by the source), and its update-check URL. The 10,958,600-byte archive has SHA-256 `a65e73317685f69cee26e56d2376516e375557b2e48a1d109a7eff5a6f07f48a` and 2,328 records, retaining Arabic, English and source metadata fields. The raw CSV remains outside Git/public storage. An initial strict text-comparison audit did not establish unique automatic mappings to the 46 current Haq hadiths; this does not establish that their narrations are absent from the provider. No approximate mapping or translation was approved or published.

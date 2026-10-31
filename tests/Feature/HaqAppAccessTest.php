@@ -33,7 +33,8 @@ final class HaqAppAccessTest extends TestCase
         (new \LaratrustSetupTables)->up();
         foreach (['0001_01_01_000000_create_users_table',
             '2026_10_13_120000_create_religious_accounts_and_quran_sync', '2026_01_12_150326_create_personal_access_tokens_table',
-            '2026_10_26_120000_extend_religious_account_identity', '2026_10_30_120000_create_haq_app_localization', '2026_10_30_130000_create_app_source_imports'] as $migration) {
+            '2026_10_26_120000_extend_religious_account_identity', '2026_10_30_120000_create_haq_app_localization', '2026_10_30_130000_create_app_source_imports',
+            '2026_10_31_120000_create_app_hadith_imports'] as $migration) {
             (require database_path('migrations/'.$migration.'.php'))->up();
         }
         $pair = sodium_crypto_sign_keypair();
@@ -441,5 +442,121 @@ final class HaqAppAccessTest extends TestCase
         $package['records'][] = ['key' => 'content/anything', 'revision' => 0, 'value' => ['title' => 'Not authorized']];
         $this->withToken($token)->postJson($url, ['package' => $package, 'dry_run' => false])->assertForbidden();
         $this->assertSame(1, DB::table('app_translation_drafts')->where('locale', 'en')->where('resource_key', 'ui/nav.home')->value('revision'));
+    }
+
+    private function hadithArtifact(): string
+    {
+        $directory = storage_path('framework/testing/hadith-api-'.bin2hex(random_bytes(8)));
+        mkdir($directory, 0700, true);
+        try {
+            $path = $directory.'/fixture.csv';
+            file_put_contents($path, \Tests\Support\HadithSourceFixture::csv());
+            $result = app(\App\Services\Religious\HadithTranslationStager::class)->stageFromFile('en', ['nawawi-01' => '123'], $path, $directory);
+
+            return file_get_contents($result['path']);
+        } finally {
+            foreach (glob($directory.'/*') as $file) {
+                unlink($file);
+            }
+            rmdir($directory);
+        }
+    }
+
+    public function test_hadith_import_is_idempotent_and_does_not_guess_unknown_references(): void
+    {
+        [$token] = $this->admin();
+        Bus::fake();
+        $url = '/api/v2/admin/languages/en/hadith-sources';
+        $input = ['request_id' => '0a1b7c99-b75c-49b5-a8e0-389682ed2764', 'mapping' => ['nawawi-01' => '123']];
+        $id = $this->withToken($token)->postJson($url, $input)->assertAccepted()->assertJsonPath('data.status', 'queued')->json('data.id');
+        $this->withToken($token)->postJson($url, $input)->assertAccepted()->assertJsonPath('data.id', $id);
+        $retry = [...$input, 'request_id' => 'fc7013dc-39c9-422d-9275-beb4528b8d58'];
+        $this->withToken($token)->postJson($url, $retry)->assertAccepted()->assertJsonPath('data.id', $id);
+        $this->assertSame(1, DB::table('app_hadith_imports')->count());
+        Bus::assertDispatchedTimes(\App\Jobs\ImportHadithSource::class, 1);
+        $this->withToken($token)->postJson($url, [...$input, 'mapping' => ['nawawi-01' => '999']])->assertConflict();
+        $this->withToken($token)->postJson($url, [...$retry, 'mapping' => ['not-a-hadith' => '123']])->assertUnprocessable();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/hadith-sources/selection', ['source_id' => $id, 'language_revision' => 1])->assertUnprocessable();
+        $this->withToken($token)->getJson($url)->assertOk()->assertJsonPath('data.imports.data.0.id', $id);
+    }
+
+    public function test_hadith_reference_review_is_explicit_then_selected_for_a_signed_release_and_restore(): void
+    {
+        [$token, $owner] = $this->admin();
+        $artifact = $this->hadithArtifact();
+        $id = DB::table('app_hadith_imports')->insertGetId(['account_id' => $owner->id, 'request_id' => '7749acec-7c83-4c27-aa7a-e9b7c10690a8',
+            'locale' => 'en', 'requested_mapping' => '{"nawawi-01":"123"}', 'status' => 'ready', 'artifact' => $artifact,
+            'sha256' => hash('sha256', $artifact), 'created_at' => now(), 'updated_at' => now()]);
+        $url = '/api/v2/admin/languages/en/hadith-sources/'.$id;
+        $this->withToken($token)->getJson($url)->assertOk()->assertJsonPath('data.record.hadith_text', "  Fixture text with \"quoted\" words, comma\nand a new line  ")
+            ->assertJsonPath('data.original.id', 'nawawi-01');
+        $this->withToken($token)->getJson($url.'?content_id=not-mapped')->assertNotFound();
+        $review = ['revision' => 1, 'references_confirmed' => ['nawawi-02'], 'mapping_confirmed' => false];
+        $this->withToken($token)->postJson($url.'/review', $review)->assertUnprocessable();
+        $review['references_confirmed'] = ['nawawi-01'];
+        $this->withToken($token)->postJson($url.'/review', $review)->assertOk();
+        $this->withToken($token)->postJson($url.'/review', $review)->assertConflict();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/hadith-sources/selection', ['source_id' => $id, 'language_revision' => 1])->assertOk();
+        DB::table('app_translation_drafts')->where('locale', 'en')->update(['status' => 'reviewed']);
+        $release = app(AppLocalization::class)->publish('en', 2, $owner->id);
+        $envelope = json_decode(DB::table('app_content_releases')->where('id', $release['release_id'])->value('payload'), true);
+        $this->assertSame($artifact, $envelope['hadith_source']['artifact']);
+        $this->assertSame(hash('sha256', $artifact), $envelope['hadith_source']['sha256']);
+        $this->assertArrayNotHasKey('account_id', $envelope['hadith_source']);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/hadith-sources/selection', ['source_id' => null, 'language_revision' => 3])->assertOk();
+        $removed = app(AppLocalization::class)->publish('en', 4, $owner->id);
+        $this->assertNull(json_decode(DB::table('app_content_releases')->where('id', $removed['release_id'])->value('payload'), true)['hadith_source']);
+        $restored = app(AppLocalization::class)->publish('en', 5, $owner->id, $release['release_id']);
+        $this->assertSame($artifact, json_decode(DB::table('app_content_releases')->where('id', $restored['release_id'])->value('payload'), true)['hadith_source']['artifact']);
+    }
+
+    public function test_hadith_worker_rechecks_grant_after_download_and_cannot_register_revoked_work(): void
+    {
+        [, $owner, $grant] = $this->admin();
+        $directory = storage_path('framework/testing/hadith-worker-'.bin2hex(random_bytes(8)));
+        mkdir($directory, 0700, true);
+        try {
+            $id = DB::table('app_hadith_imports')->insertGetId(['account_id' => $owner->id, 'request_id' => '08c984fa-9796-44ad-9c3d-d4fb605b7758',
+                'locale' => 'en', 'requested_mapping' => '{"nawawi-01":"123"}', 'status' => 'queued', 'created_at' => now(), 'updated_at' => now()]);
+            $revoke = true;
+            Http::fake(function () use ($grant, &$revoke) {
+                if ($revoke) {
+                    DB::table('app_admin_memberships')->where('id', $grant)->update(['active' => false]);
+                }
+
+                return Http::response(\Tests\Support\HadithSourceFixture::csv());
+            });
+            $archive = app(\App\Services\Religious\HadithSourceArchive::class);
+            $job = new \App\Jobs\ImportHadithSource($id);
+            $job->handle(new \App\Services\Religious\HadithTranslationStager($archive, $directory), $archive, app(AppAdminAccess::class));
+            $this->assertSame('failed', DB::table('app_hadith_imports')->where('id', $id)->value('status'));
+            $this->assertNull(DB::table('app_hadith_imports')->where('id', $id)->value('artifact'));
+            DB::table('app_admin_memberships')->where('id', $grant)->update(['active' => true]);
+            DB::table('app_hadith_imports')->where('id', $id)->update(['status' => 'queued']);
+            $revoke = false;
+            $job->handle(new \App\Services\Religious\HadithTranslationStager($archive, $directory), $archive, app(AppAdminAccess::class));
+            $this->assertSame('ready', DB::table('app_hadith_imports')->where('id', $id)->value('status'));
+            $this->assertNotNull(DB::table('app_hadith_imports')->where('id', $id)->value('artifact'));
+            $job->handle(new \App\Services\Religious\HadithTranslationStager($archive, $directory), $archive, app(AppAdminAccess::class));
+            Http::assertSentCount(2);
+        } finally {
+            foreach (glob($directory.'/*') as $file) {
+                unlink($file);
+            }
+            rmdir($directory);
+        }
+    }
+
+    public function test_hadith_routes_intersect_locale_scope_and_edit_review_publish_permissions(): void
+    {
+        [$token, , $grant] = $this->admin(['admin.enter'], ['en']);
+        $url = '/api/v2/admin/languages/en/hadith-sources';
+        $this->withToken($token)->getJson($url)->assertOk();
+        $this->withToken($token)->getJson('/api/v2/admin/languages/fr/hadith-sources')->assertForbidden();
+        $this->withToken($token)->postJson($url, ['request_id' => '3cf3af99-a4f1-4bcb-a00f-f9a5699ca5fb', 'mapping' => ['nawawi-01' => '123']])->assertForbidden();
+        $this->withToken($token)->postJson($url.'/1/review', ['revision' => 1, 'references_confirmed' => ['nawawi-01'], 'mapping_confirmed' => false])->assertForbidden();
+        $this->withToken($token)->postJson($url.'/selection', ['source_id' => null, 'language_revision' => 1])->assertForbidden();
+        DB::table('app_admin_memberships')->where('id', $grant)->update(['active' => false]);
+        $this->withToken($token)->getJson($url)->assertForbidden();
     }
 }

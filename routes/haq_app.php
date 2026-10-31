@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AppHadithSourceController as HadithSources;
 use App\Http\Controllers\Api\AppLocalizationController as Content;
 use App\Http\Controllers\Api\AppSessionController as Session;
 use App\Http\Controllers\Api\AppSourceController as Sources;
@@ -35,6 +36,11 @@ Route::prefix('v2')->middleware('throttle:60,1')->group(function (): void {
         Route::post('languages/{locale}/sources/selection', [Sources::class, 'select']);
         Route::get('languages/{locale}/sources/{id}', [Sources::class, 'preview'])->whereNumber('id');
         Route::post('languages/{locale}/sources/{id}/review', [Sources::class, 'review'])->whereNumber('id');
+        Route::get('languages/{locale}/hadith-sources', [HadithSources::class, 'index']);
+        Route::post('languages/{locale}/hadith-sources', [HadithSources::class, 'create']);
+        Route::post('languages/{locale}/hadith-sources/selection', [HadithSources::class, 'select']);
+        Route::get('languages/{locale}/hadith-sources/{id}', [HadithSources::class, 'preview'])->whereNumber('id');
+        Route::post('languages/{locale}/hadith-sources/{id}/review', [HadithSources::class, 'review'])->whereNumber('id');
         Route::get('audit', [Content::class, 'audit']);
         Route::get('team', [Content::class, 'team']);
         Route::patch('team/{member}', [Content::class, 'updateMember'])->whereNumber('member');

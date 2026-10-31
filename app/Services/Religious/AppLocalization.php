@@ -157,12 +157,14 @@ final class AppLocalization
             $strings = [];
             $content = [];
             $source = null;
+            $hadithSource = null;
             if ($restore !== null) {
                 $old = DB::table('app_content_releases')->where('locale', $locale)->where('id', $restore)->first() ?? abort(404);
                 $snapshot = json_decode($old->payload, true, 512, JSON_THROW_ON_ERROR);
                 $strings = $snapshot['strings'];
                 $content = $snapshot['content'];
                 $source = $snapshot['quran_source'] ?? null;
+                $hadithSource = $snapshot['hadith_source'] ?? null;
             } else {
                 foreach (DB::table('app_translation_drafts')->where('locale', $locale)->where('status', 'reviewed')->get() as $row) {
                     if (str_starts_with($row->resource_key, 'ui/')) {
@@ -177,6 +179,11 @@ final class AppLocalization
                     app(QuranSourceArchive::class)->validate($selected->artifact, $locale, $selected->provider_key, $selected->sha256);
                     $source = ['artifact' => $selected->artifact, 'sha256' => $selected->sha256];
                 }
+                if ($language->hadith_import_id ?? null) {
+                    $selected = DB::table('app_hadith_imports')->where('id', $language->hadith_import_id)->where('locale', $locale)->where('status', 'reviewed')->first();
+                    abort_unless($selected, 422, 'source_review_required');
+                    $hadithSource = ['artifact' => $selected->artifact, 'sha256' => $selected->sha256];
+                }
             }
             foreach (array_keys($this->keys()) as $key) {
                 if (! isset($strings[$key])) {
@@ -188,9 +195,12 @@ final class AppLocalization
                 $metadata = json_decode($source['artifact'], true, 512, JSON_THROW_ON_ERROR);
                 app(QuranSourceArchive::class)->validate($source['artifact'], $locale, $metadata['source']['key'], $source['sha256']);
             }
+            if ($hadithSource !== null) {
+                app(HadithSourceArchive::class)->validate($hadithSource['artifact'], $locale, $hadithSource['sha256']);
+            }
             $version = $expectedRevision + 1;
             $json = json_encode(['schema' => 1, 'locale' => $locale, 'version' => $version,
-                'strings' => (object) $strings, 'content' => (object) $content, 'quran_source' => $source], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+                'strings' => (object) $strings, 'content' => (object) $content, 'quran_source' => $source, 'hadith_source' => $hadithSource], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
             abort_if(strlen($json) > config('haq_app.max_package_bytes'), 422, 'package_too_large');
             $secret = base64_decode(config('haq_app.signing_key'), true);
             abort_unless(function_exists('sodium_crypto_sign_detached') && is_string($secret) && strlen($secret) === SODIUM_CRYPTO_SIGN_SECRETKEYBYTES, 503, 'signing_key_not_configured');

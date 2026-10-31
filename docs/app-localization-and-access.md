@@ -1,12 +1,13 @@
 # تطبيق حق: هوية الحساب والصلاحيات وحزم اللغات
 
-## تجهيز النسخة للاختبار على السيرفر — 30 أكتوبر 2026
+## تجهيز النسخة للاختبار على السيرفر — 31 أكتوبر 2026
 
 الأوامر التالية للتنفيذ بعد رفع الكود وأخذ نسخة قاعدة البيانات والملفات. لم تنفذ على قاعدة الجمعية في جلسة التطوير.
 
 ```sh
 php artisan migrate --path=database/migrations/2026_10_30_120000_create_haq_app_localization.php --force
 php artisan migrate --path=database/migrations/2026_10_30_130000_create_app_source_imports.php --force
+php artisan migrate --path=database/migrations/2026_10_31_120000_create_app_hadith_imports.php --force
 php artisan db:seed --class=HaqAppAdminSeeder --force
 php artisan haq-app:preflight
 ```
@@ -18,6 +19,8 @@ php artisan haq-app:preflight
 بعد تجهيز الحساب: اضبط `HAQ_APP_ADMIN_ENABLED=true` ثم حدّث cache الإعدادات بالطريقة المعتمدة للسيرفر. مفتاح Ed25519 مطلوب للنشر فقط؛ دخول اللوحة والتحرير لا يحتاجان مفتاح نشر. المفتاح العام المقابل مطلوب في بناء Flutter لتثبيت الحزم المنشورة.
 
 ### مصادر معاني القرآن داخل اللوحة
+
+مصادر الأحاديث لها مسار مستقل للمطابقة والمراجعة والنشر والعرض مع معلومات الناشر؛ التفاصيل في [مصادر ترجمات الحديث](hadith-translation-sources.md).
 
 المسارات الجديدة تحت `admin/languages/{locale}`: `GET/POST sources`، و`GET sources/{id}?surah=...`، و`POST sources/{id}/review`، و`POST sources/selection`. الاستيراد يتطلب `content.edit`، والاعتماد `review`، والاختيار للنشر `publish`؛ جميعها مقيدة بنطاق اللغة.
 
