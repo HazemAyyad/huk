@@ -22,7 +22,7 @@ final class HaqAppPreflight extends Command
             'permission_user' => ['user_id', 'permission_id', 'user_type'], 'permission_role' => ['role_id', 'permission_id'],
             'app_accounts' => ['id', 'user_id', 'religious_account_id', 'association_enabled', 'religious_enabled'],
             'app_admin_memberships' => ['app_account_id', 'permissions', 'locales', 'active'],
-            'app_languages' => ['locale', 'revision', 'release_id', 'source_import_id', 'hadith_import_id'],
+            'app_languages' => ['locale', 'revision', 'release_id', 'ui_release_id', 'source_import_id', 'hadith_import_id'],
             'app_translation_drafts' => ['locale', 'resource_key', 'value', 'revision', 'status'],
             'app_content_releases' => ['payload', 'sha256', 'signature'], 'app_admin_audit' => ['action', 'subject'],
             'app_source_imports' => ['locale', 'status', 'artifact', 'sha256'],

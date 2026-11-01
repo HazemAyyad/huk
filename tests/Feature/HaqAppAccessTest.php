@@ -34,7 +34,7 @@ final class HaqAppAccessTest extends TestCase
         foreach (['0001_01_01_000000_create_users_table',
             '2026_10_13_120000_create_religious_accounts_and_quran_sync', '2026_01_12_150326_create_personal_access_tokens_table',
             '2026_10_26_120000_extend_religious_account_identity', '2026_10_30_120000_create_haq_app_localization', '2026_10_30_130000_create_app_source_imports',
-            '2026_10_31_120000_create_app_hadith_imports'] as $migration) {
+            '2026_10_31_120000_create_app_hadith_imports', '2026_10_31_130000_separate_app_interface_releases'] as $migration) {
             (require database_path('migrations/'.$migration.'.php'))->up();
         }
         $pair = sodium_crypto_sign_keypair();
@@ -90,6 +90,120 @@ final class HaqAppAccessTest extends TestCase
         $this->postJson('/api/v2/account/login', ['provider' => 'association', 'email' => $staff->email, 'password' => 'testing-password'])
             ->assertOk()->assertJsonPath('data.account.areas', ['association', 'religious'])
             ->assertJsonPath('data.account.admin_access', false)->assertJsonPath('data.religious_session.account.id', $religious->id);
+    }
+
+    public function test_content_only_publication_requires_review_and_keeps_incomplete_interface_out_of_legacy_discovery(): void
+    {
+        [$token, $account, $grant] = $this->admin([], ['tr']);
+        $input = ['revision' => 1, 'content_only' => true];
+        $this->withToken($token)->postJson('/api/v2/admin/languages/tr/publish', $input)->assertUnprocessable();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', $input)->assertForbidden();
+        $translation = ['title' => 'Test translation', 'text' => 'Synthetic translation fixture, not religious source text.',
+            'summary' => '', 'source' => 'Test fixture', 'sourceUrl' => 'https://example.test/source'];
+        $service = app(AppLocalization::class);
+        $service->save('tr', 'content/sunnah-hands', $translation, 0, $account->id);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/tr/publish', $input)->assertUnprocessable();
+        $service->review('tr', 'content/sunnah-hands', 1, $account->id);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/tr/publish', ['revision' => 1])->assertUnprocessable();
+        $id = $this->withToken($token)->postJson('/api/v2/admin/languages/tr/publish', $input)
+            ->assertOk()->assertJsonPath('data.ui_complete', false)->assertJsonPath('data.revision', 2)->json('data.release_id');
+        $release = DB::table('app_content_releases')->where('id', $id)->first();
+        $snapshot = json_decode($release->payload, true, 512, JSON_THROW_ON_ERROR);
+        $this->assertSame([], $snapshot['strings']);
+        $this->assertSame($translation, $snapshot['content']['sunnah-hands']);
+        $this->assertFalse($snapshot['ui_complete']);
+        $this->assertTrue(sodium_crypto_sign_verify_detached(base64_decode($release->signature), $release->payload,
+            sodium_crypto_sign_publickey_from_secretkey(base64_decode(config('haq_app.signing_key')))));
+        $this->assertNull(DB::table('app_languages')->where('locale', 'tr')->value('ui_release_id'));
+        $this->getJson('/api/v2/app-content/bootstrap')->assertJsonCount(0, 'data.languages');
+        $this->getJson('/api/v2/app-content/bootstrap?include_content_only=1')->assertOk()
+            ->assertJsonCount(1, 'data.languages')->assertJsonPath('data.languages.0.locale', 'tr')
+            ->assertJsonPath('data.languages.0.interface_release_id', null)->assertJsonPath('data.languages.0.content_release_id', $id);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/tr/publish', $input)->assertConflict();
+        DB::table('app_admin_memberships')->where('id', $grant)->update(['permissions' => json_encode(['admin.enter', 'content.edit'])]);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/tr/publish', ['revision' => 2, 'content_only' => true])->assertForbidden();
+        $this->assertSame(1, DB::table('app_content_releases')->count());
+    }
+
+    public function test_content_updates_and_restores_retain_the_last_interface_release_and_never_rewrite_artifacts(): void
+    {
+        [$token, $account] = $this->admin();
+        DB::table('app_translation_drafts')->where('locale', 'en')->update(['status' => 'reviewed']);
+        $interface = $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 1])->assertOk()->json('data.release_id');
+        $bytes = DB::table('app_content_releases')->where('id', $interface)->value('payload');
+        $service = app(AppLocalization::class);
+        $service->save('en', 'content/sunnah-hands', ['title' => 'Test', 'text' => 'Synthetic source fixture.', 'source' => 'Fixture', 'sourceUrl' => 'https://example.test/source'], 0, $account->id);
+        $service->review('en', 'content/sunnah-hands', 1, $account->id);
+        $content = $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 2, 'content_only' => true])
+            ->assertOk()->json('data.release_id');
+        $this->assertSame($interface, DB::table('app_languages')->where('locale', 'en')->value('ui_release_id'));
+        $this->getJson('/api/v2/app-content/bootstrap')->assertJsonPath('data.languages.0.release_id', $interface)->assertJsonPath('data.languages.0.version', 2);
+        $this->getJson('/api/v2/app-content/bootstrap?include_content_only=1')
+            ->assertJsonPath('data.languages.0.interface_release_id', $interface)->assertJsonPath('data.languages.0.content_release_id', $content);
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 3, 'restore_release_id' => $content, 'content_only' => true])->assertUnprocessable();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 3, 'restore_release_id' => $content])
+            ->assertOk()->assertJsonPath('data.revision', 4)->assertJsonPath('data.ui_complete', false);
+        $this->assertSame($interface, DB::table('app_languages')->where('locale', 'en')->value('ui_release_id'));
+        $restored = $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 4, 'restore_release_id' => $interface])
+            ->assertOk()->assertJsonPath('data.revision', 5)->assertJsonPath('data.ui_complete', true)->json('data.release_id');
+        $this->assertSame($restored, DB::table('app_languages')->where('locale', 'en')->value('ui_release_id'));
+        $this->assertSame($restored, DB::table('app_languages')->where('locale', 'en')->value('release_id'));
+        $this->assertSame($bytes, DB::table('app_content_releases')->where('id', $interface)->value('payload'));
+        $this->assertSame(4, DB::table('app_content_releases')->count());
+    }
+
+    public function test_interface_pointer_upgrade_keeps_existing_publications_and_new_clients_hide_incomplete_older_interfaces(): void
+    {
+        [$token] = $this->admin();
+        DB::table('app_translation_drafts')->where('locale', 'en')->update(['status' => 'reviewed']);
+        $release = $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 1])->assertOk()->json('data.release_id');
+        $before = DB::table('app_content_releases')->where('id', $release)->first();
+        $migration = require database_path('migrations/2026_10_31_130000_separate_app_interface_releases.php');
+        $migration->down();
+        $migration->up();
+        $this->assertSame($release, DB::table('app_languages')->where('locale', 'en')->value('ui_release_id'));
+        $this->assertSame($before->payload, DB::table('app_content_releases')->where('id', $release)->value('payload'));
+        $this->assertSame(2, DB::table('app_languages')->where('locale', 'en')->value('revision'));
+        $service = app(AppLocalization::class);
+        $snapshot = json_decode($before->payload, true, 512, JSON_THROW_ON_ERROR);
+        unset($snapshot['strings'][array_key_first($service->keys())]);
+        $this->assertFalse($service->interfaceReady($snapshot));
+        $this->assertFalse($service->interfaceReady([...$snapshot, 'ui_complete' => false]));
+        $this->assertTrue($service->interfaceReady(json_decode($before->payload, true, 512, JSON_THROW_ON_ERROR)));
+        // A valid older client release may predate a newly required UI key.
+        // Keep its exact signed fixture separate from the existing artifact.
+        unset($snapshot['ui_complete']);
+        $snapshot['version'] = 3;
+        $payload = json_encode($snapshot, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+        $legacy = DB::table('app_content_releases')->insertGetId(['locale' => 'en', 'payload' => $payload,
+            'sha256' => hash('sha256', $payload), 'signature' => base64_encode(sodium_crypto_sign_detached($payload, base64_decode(config('haq_app.signing_key')))),
+            'key_id' => $before->key_id, 'publisher_id' => $before->publisher_id, 'created_at' => now()]);
+        DB::table('app_languages')->where('locale', 'en')->update(['release_id' => $legacy, 'ui_release_id' => $legacy, 'revision' => 3]);
+        $this->getJson('/api/v2/app-content/bootstrap')->assertJsonPath('data.languages.0.release_id', $legacy);
+        $this->getJson('/api/v2/app-content/bootstrap?include_content_only=1')
+            ->assertJsonPath('data.languages.0.interface_release_id', null)->assertJsonPath('data.languages.0.content_release_id', $legacy);
+        $this->assertSame($before->payload, DB::table('app_content_releases')->where('id', $release)->value('payload'));
+    }
+
+    public function test_a_reviewed_hadith_archive_can_publish_without_any_reviewed_ui_keys(): void
+    {
+        [$token, $owner] = $this->admin();
+        $artifact = $this->hadithArtifact();
+        $id = DB::table('app_hadith_imports')->insertGetId(['account_id' => $owner->id, 'request_id' => '02a7968a-0e4c-4d6e-82b8-c773d2233be0',
+            'locale' => 'en', 'requested_mapping' => '{"nawawi-01":"123"}', 'status' => 'ready', 'artifact' => $artifact,
+            'sha256' => hash('sha256', $artifact), 'created_at' => now(), 'updated_at' => now()]);
+        $url = '/api/v2/admin/languages/en/hadith-sources/'.$id;
+        $this->withToken($token)->postJson($url.'/review', ['revision' => 1, 'references_confirmed' => ['nawawi-01'], 'mapping_confirmed' => false])->assertOk();
+        $this->withToken($token)->postJson('/api/v2/admin/languages/en/hadith-sources/selection', ['source_id' => $id, 'language_revision' => 1])->assertOk();
+        $this->assertSame(0, DB::table('app_translation_drafts')->where('locale', 'en')->where('status', 'reviewed')->count());
+        $release = $this->withToken($token)->postJson('/api/v2/admin/languages/en/publish', ['revision' => 2, 'content_only' => true])
+            ->assertOk()->assertJsonPath('data.ui_complete', false)->json('data.release_id');
+        $snapshot = json_decode(DB::table('app_content_releases')->where('id', $release)->value('payload'), true, 512, JSON_THROW_ON_ERROR);
+        $this->assertSame([], $snapshot['strings']);
+        $this->assertSame($artifact, $snapshot['hadith_source']['artifact']);
+        $this->assertSame(hash('sha256', $artifact), $snapshot['hadith_source']['sha256']);
+        $this->getJson('/api/v2/app-content/bootstrap')->assertJsonCount(0, 'data.languages');
+        $this->getJson('/api/v2/app-content/bootstrap?include_content_only=1')->assertJsonPath('data.languages.0.content_release_id', $release);
     }
 
     public function test_matching_emails_and_legacy_personal_tokens_never_grant_admin(): void

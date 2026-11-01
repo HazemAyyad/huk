@@ -47,14 +47,37 @@ final class AppLocalization
     public function summary(): array
     {
         $states = DB::table('app_languages')->get()->keyBy('locale');
+        $interfaces = DB::table('app_content_releases')->whereIn('id', $states->pluck('ui_release_id')->filter())
+            ->get(['id', 'payload'])->keyBy('id');
 
-        return array_map(function ($language) use ($states) {
+        return array_map(function ($language) use ($states, $interfaces) {
             $state = $states[$language['locale']] ?? null;
             $reviewed = DB::table('app_translation_drafts')->where('locale', $language['locale'])->where('resource_key', 'like', 'ui/%')->where('status', 'reviewed')->count();
 
             return [...$language, 'enabled' => (bool) ($state?->enabled ?? false), 'revision' => $state?->revision ?? 0,
-                'release_id' => $state?->release_id, 'reviewed' => $reviewed, 'total' => count($this->keys())];
+                'release_id' => $state?->release_id, 'ui_release_id' => $state?->ui_release_id,
+                'interface_ready' => isset($interfaces[$state?->ui_release_id]) && $this->interfaceReady(json_decode($interfaces[$state->ui_release_id]->payload, true, 512, JSON_THROW_ON_ERROR)),
+                'reviewed' => $reviewed, 'total' => count($this->keys())];
         }, $this->languages());
+    }
+
+    public function interfaceReady(array $snapshot): bool
+    {
+        if (($snapshot['ui_complete'] ?? true) !== true || ! is_array($snapshot['strings'] ?? null)) {
+            return false;
+        }
+        try {
+            foreach (array_keys($this->keys()) as $key) {
+                if (! isset($snapshot['strings'][$key])) {
+                    return false;
+                }
+                $this->validateValue('ui/'.$key, $snapshot['strings'][$key]);
+            }
+        } catch (ValidationException) {
+            return false;
+        }
+
+        return true;
     }
 
     public function resource(string $key): array
@@ -152,9 +175,9 @@ final class AppLocalization
         });
     }
 
-    public function publish(string $locale, int $expectedRevision, int $publisher, ?int $restore = null): array
+    public function publish(string $locale, int $expectedRevision, int $publisher, ?int $restore = null, bool $contentOnly = false): array
     {
-        return DB::transaction(function () use ($locale, $expectedRevision, $publisher, $restore) {
+        return DB::transaction(function () use ($locale, $expectedRevision, $publisher, $restore, $contentOnly) {
             $language = DB::table('app_languages')->where('locale', $locale)->lockForUpdate()->first();
             abort_unless($language && $language->revision === $expectedRevision, 409, 'revision_conflict');
             $strings = [];
@@ -164,6 +187,7 @@ final class AppLocalization
             if ($restore !== null) {
                 $old = DB::table('app_content_releases')->where('locale', $locale)->where('id', $restore)->first() ?? abort(404);
                 $snapshot = json_decode($old->payload, true, 512, JSON_THROW_ON_ERROR);
+                $contentOnly = ($snapshot['ui_complete'] ?? true) === false;
                 $strings = $snapshot['strings'];
                 $content = $snapshot['content'];
                 $source = $snapshot['quran_source'] ?? null;
@@ -188,11 +212,18 @@ final class AppLocalization
                     $hadithSource = ['artifact' => $selected->artifact, 'sha256' => $selected->sha256];
                 }
             }
-            foreach (array_keys($this->keys()) as $key) {
-                if (! isset($strings[$key])) {
-                    throw ValidationException::withMessages(['locale' => 'required_keys_not_reviewed']);
+            if ($contentOnly) {
+                $strings = [];
+                if (! $content && $source === null && $hadithSource === null) {
+                    throw ValidationException::withMessages(['locale' => 'reviewed_content_required']);
                 }
-                $this->validateValue('ui/'.$key, $strings[$key]);
+            } else {
+                foreach (array_keys($this->keys()) as $key) {
+                    if (! isset($strings[$key])) {
+                        throw ValidationException::withMessages(['locale' => 'required_keys_not_reviewed']);
+                    }
+                    $this->validateValue('ui/'.$key, $strings[$key]);
+                }
             }
             if ($source !== null) {
                 $metadata = json_decode($source['artifact'], true, 512, JSON_THROW_ON_ERROR);
@@ -202,7 +233,7 @@ final class AppLocalization
                 app(HadithSourceArchive::class)->validate($hadithSource['artifact'], $locale, $hadithSource['sha256']);
             }
             $version = $expectedRevision + 1;
-            $json = json_encode(['schema' => 1, 'locale' => $locale, 'version' => $version,
+            $json = json_encode(['schema' => 1, 'locale' => $locale, 'version' => $version, 'ui_complete' => ! $contentOnly,
                 'strings' => (object) $strings, 'content' => (object) $content, 'quran_source' => $source, 'hadith_source' => $hadithSource], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
             abort_if(strlen($json) > config('haq_app.max_package_bytes'), 422, 'package_too_large');
             $secret = base64_decode(config('haq_app.signing_key'), true);
@@ -210,10 +241,11 @@ final class AppLocalization
             $signature = base64_encode(sodium_crypto_sign_detached($json, $secret));
             $id = DB::table('app_content_releases')->insertGetId(['locale' => $locale, 'payload' => $json, 'sha256' => hash('sha256', $json),
                 'key_id' => config('haq_app.signing_key_id'), 'signature' => $signature, 'publisher_id' => $publisher, 'created_at' => now()]);
-            DB::table('app_languages')->where('locale', $locale)->update(['enabled' => true, 'revision' => $version, 'release_id' => $id, 'updated_at' => now()]);
-            app(AppAdminAccess::class)->audit($publisher, $restore ? 'release.restored' : 'release.published', $locale, ['release_id' => $id, 'restored_from' => $restore]);
+            DB::table('app_languages')->where('locale', $locale)->update(['enabled' => true, 'revision' => $version, 'release_id' => $id,
+                ...($contentOnly ? [] : ['ui_release_id' => $id]), 'updated_at' => now()]);
+            app(AppAdminAccess::class)->audit($publisher, $restore ? 'release.restored' : 'release.published', $locale, ['release_id' => $id, 'restored_from' => $restore, 'content_only' => $contentOnly]);
 
-            return ['release_id' => $id, 'revision' => $version];
+            return ['release_id' => $id, 'revision' => $version, 'ui_complete' => ! $contentOnly];
         });
     }
 }

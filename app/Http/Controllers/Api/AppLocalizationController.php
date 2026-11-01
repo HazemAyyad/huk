@@ -16,18 +16,36 @@ final class AppLocalizationController extends Controller
 {
     public function __construct(private AppLocalization $catalog, private AppAdminAccess $access) {}
 
-    public function bootstrap()
+    public function bootstrap(Request $request)
     {
         abort_unless(config('haq_app.enabled'), 503, 'localization_disabled');
+        $request->validate(['include_content_only' => 'sometimes|boolean']);
+        $includeContentOnly = $request->boolean('include_content_only');
         $rows = DB::table('app_languages')->where('enabled', true)->whereNotNull('release_id')->get();
         $registry = collect($this->catalog->languages())->keyBy('locale');
+        $languages = [];
+        foreach ($rows as $row) {
+            $content = DB::table('app_content_releases')->where('id', $row->release_id)->where('locale', $row->locale)->first();
+            if (! $content) {
+                continue;
+            }
+            $interface = $row->ui_release_id ? DB::table('app_content_releases')->where('id', $row->ui_release_id)->where('locale', $row->locale)->first() : null;
+            $uiSnapshot = $interface ? json_decode($interface->payload, true, 512, JSON_THROW_ON_ERROR) : null;
+            if ($interface && (($uiSnapshot['ui_complete'] ?? true) !== true || ($includeContentOnly && ! $this->catalog->interfaceReady($uiSnapshot)))) {
+                $interface = null;
+            }
+            // Existing clients discover only interface releases. New clients can
+            // independently request the latest reviewed content in any locale.
+            if (! $includeContentOnly && ! $interface) {
+                continue;
+            }
+            $primary = $interface ?? $content;
+            $snapshot = json_decode($primary->payload, true, 512, JSON_THROW_ON_ERROR);
+            $languages[] = [...$registry[$row->locale], 'release_id' => $primary->id, 'version' => $snapshot['version'],
+                'interface_release_id' => $interface?->id, 'content_release_id' => $content->id];
+        }
 
-        return response()->json(['data' => ['schema' => 1, 'languages' => $rows->map(function ($row) use ($registry) {
-            $release = DB::table('app_content_releases')->where('id', $row->release_id)->first();
-            $snapshot = json_decode($release->payload, true, 512, JSON_THROW_ON_ERROR);
-
-            return [...$registry[$row->locale], 'release_id' => $row->release_id, 'version' => $snapshot['version']];
-        })]]);
+        return response()->json(['data' => ['schema' => 1, 'languages' => $languages]])->header('Cache-Control', 'no-store');
     }
 
     public function release(int $release)
@@ -80,10 +98,12 @@ final class AppLocalizationController extends Controller
     public function publish(Request $request, string $locale)
     {
         $this->access->require($request->user(), 'publish', $locale);
-        $data = $request->validate(['revision' => 'required|integer|min:1', 'restore_release_id' => 'nullable|integer|min:1']);
+        $data = $request->validate(['revision' => 'required|integer|min:1', 'restore_release_id' => 'nullable|integer|min:1',
+            'content_only' => ['sometimes', 'boolean', Rule::prohibitedIf($request->filled('restore_release_id'))]]);
         $this->catalog->language($locale);
 
-        return response()->json(['data' => $this->catalog->publish($locale, $data['revision'], $request->user()->id, $data['restore_release_id'] ?? null)]);
+        return response()->json(['data' => $this->catalog->publish($locale, $data['revision'], $request->user()->id,
+            $data['restore_release_id'] ?? null, $data['content_only'] ?? false)]);
     }
 
     public function hide(Request $request, string $locale)
