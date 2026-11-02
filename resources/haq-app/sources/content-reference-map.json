@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "note": "Explicit canonical narration associations. Publisher Arabic, translation, explanation, grade and provenance are retained together. These associations do not assert byte-identical local narrations.",
+  "dhikr": {"hisn-api-185": "58114"},
+  "hadith": {
+    "nawawi-01": "66511", "nawawi-02": "4563", "nawawi-03": "66512", "nawawi-04": "66513",
+    "nawawi-05": "66514", "nawawi-06": "66515", "nawawi-07": "66516", "nawawi-08": "4211",
+    "nawawi-09": "4725", "nawawi-10": "66518", "nawawi-11": "66519", "nawawi-12": "65255",
+    "nawawi-13": "66520", "nawawi-14": "4714", "nawawi-15": "5437", "nawawi-16": "4709",
+    "nawawi-17": "66521", "nawawi-18": "4302", "nawawi-19": "66522", "nawawi-20": "66523",
+    "nawawi-21": "65018", "nawawi-22": "66525", "nawawi-23": "66526", "nawawi-24": "4810",
+    "nawawi-25": "4558", "nawawi-26": "66527", "nawawi-27": "66540", "nawawi-28": "66529",
+    "nawawi-29": "66530", "nawawi-30": "66510", "nawawi-31": "4307", "nawawi-32": "66531",
+    "nawawi-33": "66532", "nawawi-34": "65001", "nawawi-35": "4706", "nawawi-36": "4801",
+    "nawawi-37": "66533", "nawawi-38": "66534", "nawawi-39": "4216", "nawawi-40": "4704",
+    "nawawi-41": "66535", "nawawi-42": "5456", "ramadan-suhur-hadith": "4498",
+    "ramadan-iftar-hadith": "6271", "ramadan-itikaf-hadith": "4495", "ramadan-last-ten-hadith": "4944",
+    "sunnah-early": "5393", "sunnah-wudu": "6263", "sunnah-hands": "3095",
+    "sunnah-listen": "3107", "sunnah-wash": "5394"
+  }
+}

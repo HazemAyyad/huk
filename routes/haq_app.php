@@ -19,6 +19,8 @@ Route::prefix('v2')->middleware('throttle:60,1')->group(function (): void {
         Route::post('admin/session', [Session::class, 'admin']);
     });
     Route::get('app-content/bootstrap', [Content::class, 'bootstrap']);
+    Route::get('app-content/prepared', [\App\Http\Controllers\Api\PreparedContentController::class, 'index']);
+    Route::get('app-content/prepared/{locale}/{kind}', [\App\Http\Controllers\Api\PreparedContentController::class, 'download']);
     Route::get('app-content/releases/{release}', [Content::class, 'release'])->whereNumber('release');
     Route::prefix('admin')->middleware(['auth:sanctum', AppAdminOnly::class])->group(function (): void {
         Route::get('languages', [Content::class, 'languages']);

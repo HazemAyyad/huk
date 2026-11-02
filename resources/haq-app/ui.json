@@ -12038,5 +12038,61 @@
   "prayer.label.1f95bcdab035": {
     "ar": "المعاينة بدون صوت",
     "en": "Preview is silent"
+  },
+  "source.tafsir": {
+    "ar": "تفسير منشور باللغة المختارة",
+    "en": "Published tafsir in the selected language"
+  },
+  "source.nameMeaning": {
+    "ar": "معنى الاسم",
+    "en": "Meaning of the name"
+  },
+  "source.publisherTranslation": {
+    "ar": "ترجمة نص المصدر",
+    "en": "Translation of the publisher's text"
+  },
+  "source.localUnavailable": {
+    "ar": "تعذّر فتح الترجمة المحفوظة؛ الأصل العربي متاح.",
+    "en": "The saved translation could not be opened. The Arabic original is available."
+  },
+  "source.narrationNotice": {
+    "ar": "هذه ترجمة نص المصدر؛ قد تختلف ألفاظه عن النص العربي المعروض. راجع نص المصدر للمقارنة.",
+    "en": "This translation follows the publisher's text, whose wording may differ from the Arabic text shown. See the publisher's record to compare."
+  },
+  "source.publisherArabic": {
+    "ar": "رواية المصدر بالعربية",
+    "en": "Publisher's Arabic narration"
+  },
+  "source.openRecord": {
+    "ar": "فتح النص عند المصدر",
+    "en": "Open this publisher record"
+  },
+  "source.openPublisher": {
+    "ar": "الناشر ومعلومات المصدر",
+    "en": "Publisher and source information"
+  },
+  "source.documentMetadata": {
+    "ar": "بيانات الوثيقة والإصدار",
+    "en": "Document and edition metadata"
+  },
+  "source.contentCoverage": {
+    "ar": "تغطية المحتوى المتاح",
+    "en": "Available content coverage"
+  },
+  "source.coverage": {
+    "ar": "معاني القرآن: {quran} آية • التفسير: {tafsir} آية • الأذكار: {dhikr} • الأسماء: {names} • روايات الحديث: {hadith}",
+    "en": "Quran meanings: {quran} verses • Tafsir: {tafsir} verses • Adhkar: {dhikr} • Names: {names} • Hadith narrations: {hadith}"
+  },
+  "source.notSeparateTafsir": {
+    "ar": "لا يقدّم المصدر شرحًا مستقلًا لهذه الآية. يمكنك قراءة تفسير السورة كاملًا للاطلاع على سياق الشرح.",
+    "en": "The publisher does not provide a separate commentary block for this ayah. Read the full chapter's tafsir for the surrounding explanation."
+  },
+  "source.readChapterTafsir": {
+    "ar": "قراءة تفسير السورة من المصدر",
+    "en": "Read the publisher's full chapter tafsir"
+  },
+  "source.fullChapter": {
+    "ar": "تفسير السورة كاملًا",
+    "en": "Full chapter tafsir"
   }
 }
