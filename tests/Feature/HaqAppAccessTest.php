@@ -53,6 +53,34 @@ final class HaqAppAccessTest extends TestCase
         return ReligiousAccount::create(['name' => 'Reader', 'email' => $email, 'password' => 'testing-password']);
     }
 
+    public function test_source_link_visibility_defaults_off_and_only_a_global_admin_can_change_it(): void
+    {
+        $this->getJson('/api/v2/app-content/bootstrap')->assertOk()->assertJsonPath('data.settings.show_translation_source_links', false);
+        (require database_path('migrations/2026_11_02_180000_create_app_content_settings.php'))->up();
+        [$token] = $this->admin();
+        $this->withToken($token)->getJson('/api/v2/admin/settings')->assertOk()->assertJsonPath('data.revision', 0);
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => true, 'revision' => 0])
+            ->assertOk()->assertJsonPath('data.show_translation_source_links', true)->assertJsonPath('data.revision', 1);
+        $this->getJson('/api/v2/app-content/bootstrap')->assertOk()->assertJsonPath('data.settings.show_translation_source_links', true);
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => false, 'revision' => 0])->assertConflict();
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => false, 'revision' => 1])
+            ->assertOk()->assertJsonPath('data.show_translation_source_links', false)->assertJsonPath('data.revision', 2);
+        $this->assertSame(2, DB::table('app_admin_audit')->where('action', 'app.settings.updated')->count());
+    }
+
+    public function test_content_editors_cannot_change_global_source_link_visibility(): void
+    {
+        [$token] = $this->admin(['admin.enter', 'content.edit']);
+        $this->withToken($token)->getJson('/api/v2/admin/settings')->assertForbidden();
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => true, 'revision' => 0])->assertForbidden();
+    }
+
+    public function test_locale_scoped_admins_cannot_change_global_source_link_visibility(): void
+    {
+        [$token] = $this->admin(['admin.enter', 'languages.manage'], ['en']);
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => true, 'revision' => 0])->assertForbidden();
+    }
+
     public function test_bundled_turkish_suggestions_preserve_existing_reviewed_admin_edits(): void
     {
         $catalog = app(AppLocalization::class);

@@ -7,6 +7,7 @@ use App\Models\AppAccount;
 use App\Models\Permission;
 use App\Models\User;
 use App\Services\Religious\AppAdminAccess;
+use App\Services\Religious\AppContentSettings;
 use App\Services\Religious\AppLocalization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +46,27 @@ final class AppLocalizationController extends Controller
                 'interface_release_id' => $interface?->id, 'content_release_id' => $content->id];
         }
 
-        return response()->json(['data' => ['schema' => 1, 'languages' => $languages]])->header('Cache-Control', 'no-store');
+        return response()->json(['data' => ['schema' => 1, 'languages' => $languages,
+            'settings' => app(AppContentSettings::class)->current()]])->header('Cache-Control', 'no-store');
+    }
+
+    public function settings(Request $request)
+    {
+        $grant = $this->access->require($request->user(), 'languages.manage');
+        abort_unless(json_decode($grant->locales, true) === [], 403, 'global_settings_scope_required');
+
+        return response()->json(['data' => app(AppContentSettings::class)->current()])->header('Cache-Control', 'no-store');
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $grant = $this->access->require($request->user(), 'languages.manage');
+        abort_unless(json_decode($grant->locales, true) === [], 403, 'global_settings_scope_required');
+        $data = $request->validate(['show_translation_source_links' => 'required|boolean', 'revision' => 'required|integer|min:0']);
+
+        return response()->json(['data' => app(AppContentSettings::class)->update(
+            (bool) $data['show_translation_source_links'], (int) $data['revision'], $request->user()->id
+        )])->header('Cache-Control', 'no-store');
     }
 
     public function release(int $release)
