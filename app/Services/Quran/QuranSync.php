@@ -32,6 +32,7 @@ final class QuranSync
                 && is_numeric($value['fontSize'] ?? null) && $value['fontSize'] >= 18 && $value['fontSize'] <= 36
                 && in_array($value['paper'] ?? null, ['light', 'ivory', 'green', 'dark'], true)
                 && (! array_key_exists('font', $value) || in_array($value['font'], ['amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'], true))
+                && (! array_key_exists('pageFont', $value) || in_array($value['pageFont'], ['original', 'amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'], true))
                 && (! array_key_exists('tajweed', $value) || is_bool($value['tajweed']))
                 && ! $op['deleted'];
         }

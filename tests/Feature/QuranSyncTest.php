@@ -109,7 +109,14 @@ final class QuranSyncTest extends TestCase
             $revision = $response->json('data.revision');
             $this->assertSame($op['value'], $response->json('data.entities.preferences.value'));
         }
-        foreach ([['font' => 'invalid'], ['tajweed' => 1]] as $invalid) {
+        foreach (['original', 'amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'] as $pageFont) {
+            $op = $this->op('preferences', $revision);
+            $op['value'] = ['mode' => 'pages', 'fontSize' => 24, 'paper' => 'light', 'pageFont' => $pageFont];
+            $response = $this->postJson('/api/v1/quran/sync', ['operations' => [$op]])->assertOk();
+            $revision = $response->json('data.revision');
+            $this->assertSame($pageFont, $response->json('data.entities.preferences.value.pageFont'));
+        }
+        foreach ([['font' => 'invalid'], ['pageFont' => 'invalid'], ['pageFont' => 1], ['tajweed' => 1]] as $invalid) {
             $op = $this->op('preferences', $revision);
             $op['value'] = ['mode' => 'ayah', 'fontSize' => 24, 'paper' => 'light'] + $invalid;
             $this->postJson('/api/v1/quran/sync', ['operations' => [$op]])->assertUnprocessable();
