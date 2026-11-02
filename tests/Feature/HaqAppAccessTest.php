@@ -53,6 +53,24 @@ final class HaqAppAccessTest extends TestCase
         return ReligiousAccount::create(['name' => 'Reader', 'email' => $email, 'password' => 'testing-password']);
     }
 
+    public function test_bundled_turkish_suggestions_preserve_existing_reviewed_admin_edits(): void
+    {
+        $catalog = app(AppLocalization::class);
+        $initial = $catalog->records('tr', 'ui', 'nav.home', 1)['items'][0];
+        $this->assertSame('Ana sayfa', $initial['value']);
+        $this->assertSame('Ana sayfa', $initial['suggestion']);
+        DB::table('app_translation_drafts')->where('locale', 'tr')->where('resource_key', 'ui/nav.home')
+            ->update(['value' => json_encode('Özel ana sayfa'), 'status' => 'reviewed', 'revision' => 8]);
+        $catalog->initialize();
+        $row = $catalog->records('tr', 'ui', 'nav.home', 1)['items'][0];
+        $this->assertSame('Özel ana sayfa', $row['value']);
+        $this->assertSame('reviewed', $row['status']);
+        $this->assertSame(8, $row['revision']);
+        $this->assertSame('Ana sayfa', $row['suggestion']);
+        $english = $catalog->records('en', 'ui', 'nav.home', 1)['items'][0];
+        $this->assertSame('Home', $english['suggestion']);
+    }
+
     private function staff(string $role = 'superadmin'): User
     {
         $user = User::create(['name' => 'Staff', 'email' => 'staff@example.test', 'password' => 'testing-password']);

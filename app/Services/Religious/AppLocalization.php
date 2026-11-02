@@ -107,10 +107,14 @@ final class AppLocalization
         $selected = array_slice($resources, ($page - 1) * 30, 30);
         $drafts = DB::table('app_translation_drafts')->where('locale', $locale)->whereIn('resource_key', $selected)->get()->keyBy('resource_key');
 
-        return ['items' => array_map(function ($key) use ($drafts) {
+        return ['items' => array_map(function ($key) use ($drafts, $locale) {
             $draft = $drafts[$key] ?? null;
+            $resource = $this->resource($key);
+            if ($resource['kind'] === 'ui') {
+                $resource['suggestion'] = $this->keys()[substr($key, 3)][$locale] ?? null;
+            }
 
-            return [...$this->resource($key), 'value' => $draft ? json_decode($draft->value, true) : null,
+            return [...$resource, 'value' => $draft ? json_decode($draft->value, true) : null,
                 'revision' => $draft?->revision ?? 0, 'status' => $draft?->status ?? 'missing'];
         }, $selected), 'page' => $page, 'total' => count($resources), 'per_page' => 30];
     }

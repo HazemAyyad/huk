@@ -38,7 +38,7 @@ labels = {
 }
 registry = json.loads((server / "resources/haq-app/ui.json").read_text("utf-8"))
 for key, (ar, en) in labels.items():
-    registry[key] = {"ar": ar, "en": en}
+    registry.setdefault(key, {}).update({"ar": ar, "en": en})
 for path in (server / "resources/haq-app/ui.json", flutter / "assets/localization/ui.json"):
     path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 languages = json.loads((flutter / "assets/localization/languages.json").read_text("utf-8"))
