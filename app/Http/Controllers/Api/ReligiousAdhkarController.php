@@ -8,7 +8,11 @@ final class ReligiousAdhkarController extends Controller
 {
     private function raw(): string
     {
-        return file_get_contents(resource_path('religious/adhkar.json'));
+        if (! is_file(app(\App\Services\Religious\AppManagedContent::class)->path())) {
+            return file_get_contents(resource_path('religious/adhkar.json'));
+        }
+
+        return json_encode(app(\App\Services\Religious\AppManagedContent::class)->published()['adhkar'], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
     }
 
     public function manifest()

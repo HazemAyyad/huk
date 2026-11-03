@@ -144,7 +144,7 @@ final class ReligiousCatalog
         return null;
     }
 
-    public function saveItem(array $input): void
+    public function saveItem(array $input, ?string $expectedVersion = null): void
     {
         $input += ['tags' => [], 'verseKeys' => [], 'related' => [], 'sections' => []];
         $data = Validator::make($input, [
@@ -165,7 +165,8 @@ final class ReligiousCatalog
             'sections.*.title' => 'required|string|max:200', 'sections.*.text' => 'required|string|max:150000',
             'sections.*.source' => 'nullable|string|max:1500', 'published' => 'required|boolean',
         ])->validate();
-        $this->mutate(function (array $catalog) use ($data): array {
+        $this->mutate(function (array $catalog) use ($data, $expectedVersion): array {
+            abort_if($expectedVersion !== null && $catalog['version'] !== $expectedVersion, 409, 'تغيّر المحتوى؛ حدّث الصفحة');
             $categoryIds = array_column($catalog['categories'], 'id');
             $contentIds = array_column($catalog['items'], 'id');
             $verses = array_column(app(\App\Services\Quran\QuranCatalog::class)->dataset()['verses'], null, 'key');
@@ -201,7 +202,7 @@ final class ReligiousCatalog
         });
     }
 
-    public function saveCategory(array $input): void
+    public function saveCategory(array $input, ?string $expectedVersion = null): void
     {
         $data = Validator::make($input, [
             'id' => ['required', 'regex:/^[a-z0-9][a-z0-9_-]{0,95}$/D'],
@@ -212,7 +213,8 @@ final class ReligiousCatalog
             'published' => 'required|boolean',
             'position' => 'nullable|integer|min:1|max:1000',
         ])->validate();
-        $this->mutate(function (array $catalog) use ($data): array {
+        $this->mutate(function (array $catalog) use ($data, $expectedVersion): array {
+            abort_if($expectedVersion !== null && $catalog['version'] !== $expectedVersion, 409, 'تغيّر المحتوى؛ حدّث الصفحة');
             $categories = array_column($catalog['categories'], null, 'id');
             $categories[$data['id']] = $data;
             $parent = $data['parent'];
@@ -233,6 +235,33 @@ final class ReligiousCatalog
             unset($data['position']);
             array_splice($ordered, $position, 0, [$data]);
             $catalog['categories'] = $ordered;
+
+            return $catalog;
+        });
+    }
+
+    public function savePlacement(string $section, array $input, string $expectedVersion): void
+    {
+        $this->mutate(function (array $catalog) use ($section, $input, $expectedVersion): array {
+            abort_unless($catalog['version'] === $expectedVersion, 409, 'تغيّر المحتوى؛ حدّث الصفحة');
+            $ids = array_column($catalog['items'], 'id');
+            if ($section === 'moods') {
+                $data = Validator::make($input, ['id' => 'required|string|max:96', 'title' => 'required|string|max:200',
+                    'item_ids' => 'required|array|min:1|max:100', 'item_ids.*' => ['required', 'distinct', Rule::in($ids)]])->validate();
+                $found = false;
+                foreach ($catalog['moods'] as &$mood) {
+                    if ($mood['id'] === $data['id']) {
+                        $mood = array_replace($mood, $data);
+                        $found = true;
+                    }
+                }
+                abort_unless($found, 422, 'اختر حالة موجودة');
+            } else {
+                $data = Validator::make($input, ['day' => 'required|integer|min:1|max:30', 'item_id' => ['required', Rule::in($ids)]])->validate();
+                $catalog['ramadan_days'] = array_values(array_filter($catalog['ramadan_days'], fn ($day) => $day['day'] !== $data['day']));
+                $catalog['ramadan_days'][] = $data;
+                usort($catalog['ramadan_days'], fn ($a, $b) => $a['day'] <=> $b['day']);
+            }
 
             return $catalog;
         });

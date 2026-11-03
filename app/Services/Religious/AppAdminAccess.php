@@ -17,6 +17,16 @@ final class AppAdminAccess
         'publish' => 'publish_app_content',
         'languages.manage' => 'update_app_languages',
         'team.manage' => 'update_app_team',
+        'publications.manage' => 'update_app_publications',
+        'publications.publish' => 'publish_app_publications',
+        'community.manage' => 'update_app_circles',
+        'community.moderate' => 'moderate_app_community',
+        'library.manage' => 'update_app_library',
+        'catalogs.manage' => 'update_app_catalogs',
+        'catalogs.review' => 'review_app_catalogs',
+        'catalogs.publish' => 'publish_app_catalogs',
+        'services.manage' => 'update_app_services',
+        'accounts.manage' => 'read_app_accounts',
     ];
 
     public function grant(AppAccount $account): ?object

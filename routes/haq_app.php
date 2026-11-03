@@ -19,10 +19,15 @@ Route::prefix('v2')->middleware('throttle:60,1')->group(function (): void {
         Route::post('admin/session', [Session::class, 'admin']);
     });
     Route::get('app-content/bootstrap', [Content::class, 'bootstrap']);
+    Route::get('app-content/managed', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'publicContent']);
     Route::get('app-content/prepared', [\App\Http\Controllers\Api\PreparedContentController::class, 'index']);
     Route::get('app-content/prepared/{locale}/{kind}', [\App\Http\Controllers\Api\PreparedContentController::class, 'download']);
     Route::get('app-content/releases/{release}', [Content::class, 'release'])->whereNumber('release');
     Route::prefix('admin')->middleware(['auth:sanctum', AppAdminOnly::class])->group(function (): void {
+        Route::get('workspace', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'overview']);
+        Route::get('workspace/{section}', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'index']);
+        Route::post('workspace/{section}', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'save']);
+        Route::post('workspace/{section}/{id}/action', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'action']);
         Route::get('languages', [Content::class, 'languages']);
         Route::get('settings', [Content::class, 'settings']);
         Route::put('settings', [Content::class, 'updateSettings']);
