@@ -95,7 +95,7 @@ final class QuranSyncTest extends TestCase
         $this->assertSame(['reading'], $response['conflicts']);
     }
 
-    public function test_font_and_tajweed_preferences_sync_with_legacy_compatibility_and_validation(): void
+    public function test_reading_preferences_sync_with_legacy_compatibility_and_validation(): void
     {
         Sanctum::actingAs($this->owner(), ['quran:sync']);
         $revision = 0;
@@ -111,12 +111,12 @@ final class QuranSyncTest extends TestCase
         }
         foreach (['original', 'amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'] as $pageFont) {
             $op = $this->op('preferences', $revision);
-            $op['value'] = ['mode' => 'pages', 'fontSize' => 24, 'paper' => 'light', 'pageFont' => $pageFont];
+            $op['value'] = ['mode' => 'pages', 'fontSize' => 24, 'paper' => 'light', 'pageFont' => $pageFont, 'pageDirection' => 'vertical'];
             $response = $this->postJson('/api/v1/quran/sync', ['operations' => [$op]])->assertOk();
             $revision = $response->json('data.revision');
-            $this->assertSame($pageFont, $response->json('data.entities.preferences.value.pageFont'));
+            $this->assertSame($op['value'], $response->json('data.entities.preferences.value'));
         }
-        foreach ([['font' => 'invalid'], ['pageFont' => 'invalid'], ['pageFont' => 1], ['tajweed' => 1]] as $invalid) {
+        foreach ([['font' => 'invalid'], ['pageFont' => 'invalid'], ['pageFont' => 1], ['tajweed' => 1], ['pageDirection' => 'diagonal']] as $invalid) {
             $op = $this->op('preferences', $revision);
             $op['value'] = ['mode' => 'ayah', 'fontSize' => 24, 'paper' => 'light'] + $invalid;
             $this->postJson('/api/v1/quran/sync', ['operations' => [$op]])->assertUnprocessable();

@@ -1,6 +1,6 @@
 # Quran catalog, content and account API
 
-Flutter's default API base is `https://hak.duosparktech.com/api`. The catalog remains file-backed and publicly accessible. The Quran dataset is unmodified Tanzil Uthmani 1.1 / Simple Clean 1.1 with metadata 1.0; copyright notices and source hashes remain embedded. Search operates on the separately licensed Simple Clean text; display uses Uthmani text.
+Flutter's default API base is `https://hak.dr-bike.shop/api`. The catalog remains file-backed and publicly accessible. The Quran dataset is unmodified Tanzil Uthmani 1.1 / Simple Clean 1.1 with metadata 1.0; copyright notices and source hashes remain embedded. Search operates on the separately licensed Simple Clean text; display uses Uthmani text.
 
 ## Public endpoints
 
@@ -58,7 +58,7 @@ php artisan optimize:clear
 php artisan route:list --path=api/v1/quran --except-vendor
 ```
 
-If Sanctum's existing token migration has never been deployed, run its named migration separately after checking status; do not blindly migrate unrelated application changes. Set server `APP_URL=https://hak.duosparktech.com` so the manifest dataset link is public HTTPS. Ensure `storage/framework/cache` is writable. Test manifest, register/login, offline merge, two-device conflict/deletion and logout on the deployed server. This chat did not push or deploy the backend repository.
+If Sanctum's existing token migration has never been deployed, run its named migration separately after checking status; do not blindly migrate unrelated application changes. Set server `APP_URL=https://hak.dr-bike.shop` so the manifest dataset link is public HTTPS. Ensure `storage/framework/cache` is writable. Test manifest, register/login, offline merge, two-device conflict/deletion and logout on the deployed server. This chat did not push or deploy the backend repository.
 
 ## Validation
 

@@ -34,6 +34,7 @@ final class QuranSync
                 && (! array_key_exists('font', $value) || in_array($value['font'], ['amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'], true))
                 && (! array_key_exists('pageFont', $value) || in_array($value['pageFont'], ['original', 'amiri', 'uthmani', 'scheherazade', 'noto', 'lateef'], true))
                 && (! array_key_exists('tajweed', $value) || is_bool($value['tajweed']))
+                && (! array_key_exists('pageDirection', $value) || in_array($value['pageDirection'], ['horizontal', 'vertical'], true))
                 && ! $op['deleted'];
         }
         if (! $valid) {
