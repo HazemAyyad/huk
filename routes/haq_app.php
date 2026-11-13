@@ -4,12 +4,14 @@ use App\Http\Controllers\Api\AppHadithSourceController as HadithSources;
 use App\Http\Controllers\Api\AppLocalizationController as Content;
 use App\Http\Controllers\Api\AppSessionController as Session;
 use App\Http\Controllers\Api\AppSourceController as Sources;
+use App\Http\Controllers\Api\NearbyMosquesController;
 use App\Http\Middleware\AppAccountOnly;
 use App\Http\Middleware\AppAdminOnly;
 use App\Http\Middleware\ReligiousAccountOnly;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v2')->middleware('throttle:60,1')->group(function (): void {
+    Route::post('mosques/nearby', NearbyMosquesController::class)->middleware('throttle:10,1,mosques');
     Route::post('account/login', [Session::class, 'login'])->middleware('throttle:10,1');
     Route::post('account/exchange', [Session::class, 'exchange'])->middleware(['auth:sanctum', ReligiousAccountOnly::class]);
     Route::middleware(['auth:sanctum', AppAccountOnly::class])->group(function (): void {

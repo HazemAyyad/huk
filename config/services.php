@@ -24,6 +24,10 @@ return [
     'google_maps' => [
         'key' => env('GOOGLE_MAPS_API_KEY', env('MIX_GOOGLE_MAPS_KEY')),
     ],
+
+    'google_places' => [
+        'key' => env('GOOGLE_PLACES_API_KEY'),
+    ],
     
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
