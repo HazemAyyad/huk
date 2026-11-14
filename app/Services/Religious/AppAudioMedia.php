@@ -12,7 +12,7 @@ final class AppAudioMedia
 {
     public function store(string $path, string $type, int $user, ?int $surah, ?string $token): array
     {
-        $limit = $type === 'recitation' ? 100 * 1024 * 1024 : 20 * 1024 * 1024;
+        $limit = in_array($type, ['recitation', 'adhkar_recitation'], true) ? 100 * 1024 * 1024 : 20 * 1024 * 1024;
         abort_unless(is_file($path) && filesize($path) >= 1000 && filesize($path) <= $limit, 422, 'حجم التسجيل غير مدعوم');
         $handle = fopen($path, 'rb');
         try {
@@ -61,11 +61,12 @@ final class AppAudioMedia
             'bytes' => filesize($path), 'sha256' => hash_file('sha256', $path), 'surah' => $surah];
     }
 
-    public function download(string $url, string $type, int $user, ?int $surah, ?string $token): array
+    public function download(string $url, string $type, int $user, ?int $surah, ?string $token, ?array $expected = null): array
     {
         $parts = parse_url($url);
         $host = strtolower($parts['host'] ?? '');
         $allowed = in_array($host, ['cdn.aladhan.com', 'media.way2quran.com', 'www.hisnmuslim.com'], true)
+            || ($type === 'adhkar_recitation' && $host === 'd1.islamhouse.com' && str_starts_with($parts['path'] ?? '', '/data/ar/ih_sounds/'))
             || $host === 'mp3quran.net' || str_ends_with($host, '.mp3quran.net')
             || ($host === 'raw.githubusercontent.com' && str_starts_with($parts['path'] ?? '', '/Kiwifu/adhan-mp3/'));
         abort_unless(($parts['scheme'] ?? '') === 'https' && ! isset($parts['user']) && ! isset($parts['pass'])
@@ -73,7 +74,7 @@ final class AppAudioMedia
             && $allowed && str_ends_with(strtolower($parts['path'] ?? ''), '.mp3'), 422, 'اختر رابط MP3 من المصادر المدعومة أو ارفع الملف من جهازك');
         $response = Http::connectTimeout(10)->timeout(180)->withOptions(['stream' => true, 'allow_redirects' => false])->get($url);
         abort_unless($response->status() === 200, 422, 'تعذّر تنزيل التسجيل من المصدر');
-        $limit = $type === 'recitation' ? 100 * 1024 * 1024 : 20 * 1024 * 1024;
+        $limit = in_array($type, ['recitation', 'adhkar_recitation'], true) ? 100 * 1024 * 1024 : 20 * 1024 * 1024;
         abort_if((int) $response->header('Content-Length') > $limit, 422, 'التسجيل أكبر من الحجم المدعوم');
         $temporary = tempnam(sys_get_temp_dir(), 'haq-audio-');
         $output = fopen($temporary, 'wb');
@@ -89,6 +90,9 @@ final class AppAudioMedia
             }
             fclose($output);
             $output = null;
+            if ($expected !== null) {
+                abort_unless(filesize($temporary) === $expected['bytes'] && hash_file('sha256', $temporary) === $expected['sha256'], 422, 'تغيّر تسجيل المصدر؛ أعد مراجعته قبل إضافته');
+            }
 
             return $this->store($temporary, $type, $user, $surah, $token);
         } finally {

@@ -1,0 +1,109 @@
+[
+  {
+    "sha256": "40aef2e20056f97d6c18a18366f9dac4db832e541c352427bc6748029d8a05a5",
+    "source_url": "https://islamhouse.com/ar/audios/92368/",
+    "bytes": 33333722,
+    "type": "adhkar_recitation",
+    "groups": [
+      "morning"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain_01/Mishari_Raashid/Azkar_AlSba7_w_AlMsa/ar_1434_Azkar_AlSba7.mp3",
+    "title": "أذكار الصباح — مشاري العفاسي",
+    "reciter": "مشاري بن راشد العفاسي",
+    "source": "IslamHouse",
+    "id": "afasy-morning",
+    "published": true
+  },
+  {
+    "sha256": "6d579e4002a8cd21effcd3aa94c50455c96f275265ae645081bb354ec9f085a0",
+    "source_url": "https://islamhouse.com/ar/audios/327603/",
+    "bytes": 24109982,
+    "type": "adhkar_recitation",
+    "groups": [
+      "evening"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain_01/Mishari_Raashid/Azkar_AlSba7_w_AlMsa/ar_1434_Azkar_AlMsa.mp3",
+    "title": "أذكار المساء — مشاري العفاسي",
+    "reciter": "مشاري بن راشد العفاسي",
+    "source": "IslamHouse",
+    "id": "afasy-evening",
+    "published": true
+  },
+  {
+    "sha256": "ca5e33412bad2a0dd55b49f0f65870f5c674632ebf24d23df304dfdb1c3e0b28",
+    "source_url": "https://islamhouse.com/ar/audios/171291/",
+    "bytes": 5031709,
+    "type": "adhkar_recitation",
+    "groups": [
+      "sleep"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain/ar_Mashari_Athkar/ar_Mashari_Azkar06.mp3",
+    "title": "أذكار النوم — مشاري العفاسي",
+    "reciter": "مشاري بن راشد العفاسي",
+    "source": "IslamHouse",
+    "id": "afasy-sleep",
+    "published": true
+  },
+  {
+    "sha256": "3ed1f288adab34f68fd8ad9254387de3a73d7c506de3ea6160e564a691470904",
+    "source_url": "https://islamhouse.com/ar/audios/289563/",
+    "bytes": 4166743,
+    "type": "adhkar_recitation",
+    "groups": [
+      "morning",
+      "evening"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain_01/Hisn_Almuslim/Hisn_Almuslim_Faris/ar_11_Hisn_Almuslim_Faris_Abbad.mp3",
+    "title": "أذكار الصباح والمساء — فارس عباد",
+    "reciter": "فارس عباد",
+    "source": "IslamHouse",
+    "id": "fares-morning-evening",
+    "published": true
+  },
+  {
+    "sha256": "04643a295824d46c4916fb7347b62e3a85d25b8bba3972e4617daa91277d137b",
+    "source_url": "https://islamhouse.com/ar/audios/289563/",
+    "bytes": 1749881,
+    "type": "adhkar_recitation",
+    "groups": [
+      "sleep"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain_01/Hisn_Almuslim/Hisn_Almuslim_Faris/ar_12_Hisn_Almuslim_Faris_Abbad.mp3",
+    "title": "أذكار النوم — فارس عباد",
+    "reciter": "فارس عباد",
+    "source": "IslamHouse",
+    "id": "fares-sleep",
+    "published": true
+  },
+  {
+    "sha256": "ee3a0e1b6d372c2d528d420f085e48efe77d2b33a0c02f6d62e268f9ff5519de",
+    "source_url": "https://islamhouse.com/ar/audios/2799103/",
+    "bytes": 8049242,
+    "type": "adhkar_recitation",
+    "groups": [
+      "morning",
+      "evening"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain_01/Hisn_Almuslim/Hisn_Almuslim_AlShwehi/ar_029_Hisn_Almuslim_Alshwehi.mp3",
+    "title": "أذكار الصباح والمساء — سليمان الشويهي",
+    "reciter": "سليمان بن محمد الشويهي",
+    "source": "IslamHouse",
+    "id": "shuweihi-morning-evening",
+    "published": true
+  },
+  {
+    "sha256": "333bf07da5a9b3c12a6d943b5d5c6e772f5834e8678dd3e87490b6de02ef2c4c",
+    "source_url": "https://islamhouse.com/ar/audios/2799103/",
+    "bytes": 5634292,
+    "type": "adhkar_recitation",
+    "groups": [
+      "sleep"
+    ],
+    "url": "https://d1.islamhouse.com/data/ar/ih_sounds/chain_01/Hisn_Almuslim/Hisn_Almuslim_AlShwehi/ar_030_Hisn_Almuslim_Alshwehi.mp3",
+    "title": "أذكار النوم — سليمان الشويهي",
+    "reciter": "سليمان بن محمد الشويهي",
+    "source": "IslamHouse",
+    "id": "shuweihi-sleep",
+    "published": true
+  }
+]

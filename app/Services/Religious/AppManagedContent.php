@@ -122,7 +122,7 @@ final class AppManagedContent
                 'name' => 'required|string|max:100', 'tagline' => 'required|string|max:500', 'dhikr' => 'present|array|max:30', 'dhikr.*' => 'string|max:2000',
                 'verses' => 'required|array|min:1|max:30', 'verses.*' => 'string', 'closing_dua' => 'required|string|max:5000', 'closing_source' => 'required|string|max:1500'],
             'daily' => ['date' => 'required|date_format:Y-m-d', 'verse_key' => 'required|string', 'published' => 'required|boolean'],
-            'audio' => ['title' => 'required|string|max:200', 'type' => 'required|in:adhan,reminder,dhikr,recitation,religious',
+            'audio' => ['title' => 'required|string|max:200', 'type' => 'required|in:adhan,reminder,dhikr,adhkar_recitation,recitation,religious',
                 'url' => 'required|url:https|max:2000', 'source' => 'required|string|max:500', 'source_url' => 'required|url:https|max:2000', 'published' => 'required|boolean',
                 'surahs' => 'sometimes|array|max:114', 'surahs.*' => 'integer|min:1|max:114|distinct'],
             'adhkar-groups' => ['title' => 'required|string|max:200', 'icon' => 'required|string|max:40',
@@ -146,6 +146,12 @@ final class AppManagedContent
             abort_if(collect($document['daily'])->contains(fn ($row) => $row['id'] !== $data['id'] && $row['date'] === $data['date']), 422, 'يوجد محتوى لهذا اليوم');
         }
         if ($section === 'audio') {
+            if ($data['type'] === 'adhkar_recitation') {
+                $groups = Validator::make($input, ['groups' => 'required|array|min:1|max:3', 'groups.*' => 'required|in:morning,evening,sleep|distinct'])->validate();
+                $data['groups'] = $groups['groups'];
+            } else {
+                $data['groups'] = [];
+            }
             $data['surahs'] = array_map('intval', $data['surahs'] ?? []);
             abort_if(parse_url($data['url'], PHP_URL_USER) !== null, 422, 'الرابط لا يقبل بيانات دخول');
             if ($data['type'] === 'recitation') {

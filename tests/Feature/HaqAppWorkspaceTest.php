@@ -83,6 +83,42 @@ final class HaqAppWorkspaceTest extends TestCase
 
     private string $directory;
 
+    public function test_full_adhkar_recordings_require_explicit_groups_and_allow_larger_files(): void
+    {
+        Storage::fake('public');
+        [$token] = $this->admin();
+        $file = UploadedFile::fake()->createWithContent('full-reading.mp3', 'ID3'.str_repeat("\0", 1500));
+        $handle = fopen($file->getRealPath(), 'r+b');
+        ftruncate($handle, 21 * 1024 * 1024);
+        fclose($handle);
+        $uploaded = $this->withToken($token)->post($this->url('audio/media'), ['type' => 'adhkar_recitation', 'file' => $file])->assertOk()->json('data');
+        $record = ['id' => 'reading', 'title' => 'قراءة الصباح والمساء', 'type' => 'adhkar_recitation', 'url' => $uploaded['url'], 'source' => 'القارئ', 'source_url' => 'https://example.test/source', 'published' => true];
+        $this->withToken($token)->postJson($this->url('audio'), ['record' => $record, 'revision' => 0])->assertUnprocessable();
+        $this->withToken($token)->postJson($this->url('audio'), ['record' => [...$record, 'groups' => ['other']], 'revision' => 0])->assertUnprocessable();
+        $this->withToken($token)->postJson($this->url('audio'), ['record' => [...$record, 'groups' => ['morning', 'evening']], 'revision' => 0])->assertOk();
+        $this->assertFalse(collect(app(AppManagedContent::class)->published()['audio'])->contains('id', 'reading'));
+        $this->assertSame(['morning', 'evening'], collect(app(AppManagedContent::class)->state()['draft']['audio'])->firstWhere('id', 'reading')['groups']);
+    }
+
+    public function test_known_reading_sources_are_pinned_and_reject_mismatched_downloads(): void
+    {
+        Storage::fake('public');
+        Http::preventStrayRequests();
+        [$token] = $this->admin();
+        $body = 'ID3'.str_repeat("\0", 1500);
+        $url = 'https://d1.islamhouse.com/data/ar/ih_sounds/test-reading.mp3';
+        $path = $this->directory.'/readers.json';
+        file_put_contents($path, json_encode([['id' => 'test-reader', 'url' => $url, 'bytes' => strlen($body), 'sha256' => hash('sha256', $body)]]));
+        config(['haq_app.dhikr_readers' => $path]);
+        Http::fake([$url => Http::sequence()->push($body, 200)->push('ID3'.str_repeat('x', 1500), 200)]);
+        $payload = ['type' => 'adhkar_recitation', 'url' => $url, 'source_id' => 'test-reader'];
+        $this->withToken($token)->postJson($this->url('audio/media'), $payload)->assertOk();
+        $this->withToken($token)->postJson($this->url('audio/media'), $payload)->assertUnprocessable();
+        $this->withToken($token)->postJson($this->url('audio/media'), [...$payload, 'url' => 'https://d1.islamhouse.com/data/ar/ih_sounds/other.mp3'])->assertUnprocessable();
+        $this->assertCount(1, Storage::disk('public')->allFiles('haq-audio'));
+        Http::assertSentCount(2);
+    }
+
     public function withToken($token, $type = 'Bearer')
     {
         $this->app['auth']->forgetGuards();
