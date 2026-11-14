@@ -75,6 +75,34 @@ final class HaqAppAccessTest extends TestCase
         $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => true, 'revision' => 0])->assertForbidden();
     }
 
+    public function test_translation_names_and_footnotes_are_independent_hidden_by_default_and_revisioned(): void
+    {
+        $this->getJson('/api/v2/app-content/bootstrap')->assertOk()
+            ->assertJsonPath('data.settings.show_translation_source_names', false)
+            ->assertJsonPath('data.settings.show_translation_footnotes', false);
+        (require database_path('migrations/2026_11_02_180000_create_app_content_settings.php'))->up();
+        (require database_path('migrations/2026_11_14_120000_add_translation_display_settings.php'))->up();
+        [$token] = $this->admin();
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_names' => true, 'revision' => 0])
+            ->assertOk()->assertJsonPath('data.show_translation_source_names', true)
+            ->assertJsonPath('data.show_translation_footnotes', false)->assertJsonPath('data.revision', 1);
+        // Older clients can still change links without erasing newer preferences.
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_source_links' => true, 'revision' => 1])
+            ->assertOk()->assertJsonPath('data.show_translation_source_names', true);
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_footnotes' => true, 'revision' => 1])
+            ->assertConflict();
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_footnotes' => true, 'revision' => 2])
+            ->assertOk()->assertJsonPath('data.show_translation_footnotes', true)->assertJsonPath('data.revision', 3);
+        $this->getJson('/api/v2/app-content/bootstrap')->assertOk()
+            ->assertJsonPath('data.settings.show_translation_source_names', true)
+            ->assertJsonPath('data.settings.show_translation_footnotes', true);
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_footnotes' => 'invalid', 'revision' => 3])
+            ->assertUnprocessable();
+        DB::table('app_admin_memberships')->update(['permissions' => json_encode(['admin.enter', 'content.edit'])]);
+        $this->withToken($token)->putJson('/api/v2/admin/settings', ['show_translation_footnotes' => false, 'revision' => 3])
+            ->assertForbidden();
+    }
+
     public function test_locale_scoped_admins_cannot_change_global_source_link_visibility(): void
     {
         [$token] = $this->admin(['admin.enter', 'languages.manage'], ['en']);

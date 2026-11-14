@@ -15693,5 +15693,30 @@
     "ar": "الرقية بالدعاء والقرآن، وهذه قائمة آيات مختارة وليست تسجيلًا واحدًا ذا مدة ثابتة. يُعرض اسم القارئ والمدة من الصوت الفعلي. الرقية لا تُغني عن الرعاية الطبية عند الحاجة.",
     "en": "Ruqya uses supplication and Quran recitation. This is a playlist of selected verses, not a single recording with a fixed duration. The reciter and duration come from the actual audio. Ruqya does not replace medical care when needed.",
     "tr": "Rukye, dua ve Kur’an tilavetiyle yapılır. Bu, sabit süreli tek bir kayıt değil, seçilmiş ayetlerden oluşan bir çalma listesidir. Kâri ve süre bilgisi gerçek ses kaydından alınır. Rukye, ihtiyaç duyulan tıbbi bakımın yerini tutmaz."
+  },
+  "admin.showSourceNames": {
+    "ar": "إظهار اسم المترجم والمصدر",
+    "en": "Show translator and source names",
+    "tr": "Çevirmen ve kaynak adlarını göster"
+  },
+  "admin.showSourceNamesHelp": {
+    "ar": "إظهار أسماء المترجمين والناشرين أسفل المحتوى. مخفية افتراضيًا.",
+    "en": "Show translator and publisher names below content. Hidden by default.",
+    "tr": "İçeriğin altında çevirmen ve yayıncı adlarını gösterir. Varsayılan olarak gizlidir."
+  },
+  "admin.showTranslationFootnotes": {
+    "ar": "إظهار حواشي الترجمة",
+    "en": "Show translation footnotes",
+    "tr": "Çeviri dipnotlarını göster"
+  },
+  "admin.showTranslationFootnotesHelp": {
+    "ar": "إظهار الملاحظات التوضيحية المرفقة بالترجمة. مخفية افتراضيًا، وتبقى محفوظة في المصدر.",
+    "en": "Show explanatory notes supplied with the translation. Hidden by default; source notes remain saved.",
+    "tr": "Çeviriyle sağlanan açıklayıcı notları gösterir. Varsayılan olarak gizlidir; kaynak notları saklanır."
+  },
+  "quran.wordMeaningsUnavailable": {
+    "ar": "معاني الكلمات كلمةً بكلمة غير متوفرة باللغة المختارة حاليًا.",
+    "en": "Word-by-word meanings are currently unavailable in the selected language.",
+    "tr": "Seçilen dilde kelime kelime anlamlar şu anda mevcut değil."
   }
 }
