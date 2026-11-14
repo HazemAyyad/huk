@@ -32,7 +32,7 @@ final class AppAdminSchema
             'adhkar-groups' => [$id, $f('title', 'اسم المجموعة'), $f('icon', 'رمز المجموعة'), $f('position', 'ترتيب المجموعة', 'number'), $f('item_ids', 'الأذكار بالترتيب', 'multi', ['options' => $choices($managed['adhkar']['items'])])],
             'sakinah' => [$id, $f('name', 'اسم المسار'), $f('tagline', 'الوصف'), $f('dhikr', 'أذكار الجلسة، كل ذكر بسطر', 'lines'), $f('verses', 'الآيات المرتبطة، كل مرجع بسطر', 'lines'), $f('closing_dua', 'الدعاء الختامي', 'multiline'), $f('closing_source', 'المصدر والتخريج')],
             'daily' => [$id, $f('date', 'يوم الظهور', 'date'), $f('verse_key', 'مرجع الآية (مثل 65:4)'), $publish],
-            'audio' => [$id, $f('title', 'اسم التسجيل'), $select('type', 'نوع التسجيل', $pairs(['أذان' => 'adhan', 'تنبيه' => 'reminder', 'تلاوة' => 'recitation', 'محتوى ديني' => 'religious'])), $f('url', 'رابط التسجيل، أو مجلد التلاوة'), $f('source', 'المصدر أو القارئ'), $f('source_url', 'رابط المصدر'),
+            'audio' => [$id, $f('title', 'اسم التسجيل'), $select('type', 'نوع التسجيل', $pairs(['أذان' => 'adhan', 'تنبيه قبل الصلاة' => 'reminder', 'تذكير الأذكار' => 'dhikr', 'تلاوة' => 'recitation', 'محتوى ديني' => 'religious'])), $f('url', 'رابط التسجيل، أو مجلد التلاوة'), $f('source', 'المصدر أو القارئ'), $f('source_url', 'رابط المصدر'),
                 $f('surahs', 'السور المتاحة للتلاوة', 'multi', ['options' => array_map(fn ($n) => ['value' => (string) $n, 'label' => 'سورة '.$n], range(1, 114))]), $publish],
             'moods' => [$id, $f('title', 'عنوان الحالة'), $f('item_ids', 'المواد بالترتيب', 'multi', ['options' => $items])],
             'ramadan' => [$f('day', 'اليوم', 'number'), $select('item_id', 'المادة الموثقة', $items)],

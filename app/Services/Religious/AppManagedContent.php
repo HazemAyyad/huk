@@ -122,7 +122,7 @@ final class AppManagedContent
                 'name' => 'required|string|max:100', 'tagline' => 'required|string|max:500', 'dhikr' => 'present|array|max:30', 'dhikr.*' => 'string|max:2000',
                 'verses' => 'required|array|min:1|max:30', 'verses.*' => 'string', 'closing_dua' => 'required|string|max:5000', 'closing_source' => 'required|string|max:1500'],
             'daily' => ['date' => 'required|date_format:Y-m-d', 'verse_key' => 'required|string', 'published' => 'required|boolean'],
-            'audio' => ['title' => 'required|string|max:200', 'type' => 'required|in:adhan,reminder,recitation,religious',
+            'audio' => ['title' => 'required|string|max:200', 'type' => 'required|in:adhan,reminder,dhikr,recitation,religious',
                 'url' => 'required|url:https|max:2000', 'source' => 'required|string|max:500', 'source_url' => 'required|url:https|max:2000', 'published' => 'required|boolean',
                 'surahs' => 'sometimes|array|max:114', 'surahs.*' => 'integer|min:1|max:114|distinct'],
             'adhkar-groups' => ['title' => 'required|string|max:200', 'icon' => 'required|string|max:40',

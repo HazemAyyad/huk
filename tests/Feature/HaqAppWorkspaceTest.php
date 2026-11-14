@@ -8,12 +8,79 @@ use App\Services\Religious\AppAdminAccess;
 use App\Services\Religious\AppManagedContent;
 use App\Services\Religious\AppSessionProof;
 use App\Services\Religious\ReligiousCatalog;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 final class HaqAppWorkspaceTest extends TestCase
 {
+    public function test_audio_upload_requires_global_catalog_edit_permission(): void
+    {
+        Storage::fake('public');
+        [$token] = $this->admin(['admin.enter', 'catalogs.review']);
+        $this->withToken($token)->postJson($this->url('audio/media'), ['type' => 'dhikr', 'url' => 'https://127.0.0.1/a.mp3'])->assertForbidden();
+        $this->assertSame([], Storage::disk('public')->allFiles());
+    }
+
+    public function test_audio_upload_stays_a_draft_until_review_and_publication(): void
+    {
+        Storage::fake('public');
+        [$token] = $this->admin();
+        $before = app(AppManagedContent::class)->published()['audio'];
+        $file = UploadedFile::fake()->createWithContent('my-voice.mp3', 'ID3'.str_repeat("\0", 1500));
+        $uploaded = $this->withToken($token)->post($this->url('audio/media'), ['type' => 'dhikr', 'file' => $file])->assertOk()->json('data');
+        $this->assertStringStartsWith('https://', $uploaded['url']);
+        $this->assertSame(1503, $uploaded['bytes']);
+        $this->assertSame($before, app(AppManagedContent::class)->published()['audio']);
+        $record = ['id' => 'test-dhikr', 'title' => 'نداء خاص', 'type' => 'dhikr', 'url' => $uploaded['url'], 'source' => 'تسجيلي', 'source_url' => 'https://example.test/source', 'published' => true];
+        $this->withToken($token)->postJson($this->url('audio'), ['record' => $record, 'revision' => 0])->assertOk();
+        $this->assertSame($before, app(AppManagedContent::class)->published()['audio']);
+        $this->withToken($token)->postJson($this->url('audio/catalog/action'), ['action' => 'review', 'revision' => 1])->assertOk();
+        $this->withToken($token)->postJson($this->url('audio/catalog/action'), ['action' => 'publish', 'revision' => 1])->assertOk();
+        $this->assertSame($uploaded['url'], collect(app(AppManagedContent::class)->published()['audio'])->firstWhere('id', 'test-dhikr')['url']);
+        $this->assertCount(1, Storage::disk('public')->allFiles('haq-audio'));
+    }
+
+    public function test_recitation_uploads_share_a_folder_and_never_overwrite_completed_surahs(): void
+    {
+        Storage::fake('public');
+        [$token] = $this->admin();
+        $file = fn () => UploadedFile::fake()->createWithContent('002.mp3', 'ID3'.str_repeat("\0", 1500));
+        $first = $this->withToken($token)->post($this->url('audio/media'), ['type' => 'recitation', 'surah' => 2, 'file' => $file()])->assertOk()->json('data');
+        $second = $this->withToken($token)->post($this->url('audio/media'), ['type' => 'recitation', 'surah' => 1, 'file' => $file(), 'batch_token' => $first['batch_token']])->assertOk()->json('data');
+        $this->assertSame($first['url'], $second['url']);
+        $this->assertStringEndsWith('/002.mp3', $first['file_url']);
+        $this->assertStringEndsWith('/001.mp3', $second['file_url']);
+        $this->withToken($token)->post($this->url('audio/media'), ['type' => 'recitation', 'surah' => 1, 'file' => $file(), 'batch_token' => $first['batch_token']])->assertConflict();
+        $this->withToken($token)->post($this->url('audio/media'), ['type' => 'adhan', 'file' => $file(), 'batch_token' => $first['batch_token']])->assertUnprocessable();
+        $this->withToken($token)->post($this->url('audio/media'), ['type' => 'recitation', 'surah' => 3, 'file' => $file(), 'batch_token' => 'invalid'])->assertUnprocessable();
+        $this->assertCount(2, Storage::disk('public')->allFiles('haq-audio'));
+    }
+
+    public function test_audio_download_is_bounded_and_rejects_untrusted_hosts_redirects_and_non_audio(): void
+    {
+        Storage::fake('public');
+        Http::preventStrayRequests();
+        [$token] = $this->admin();
+        foreach (['https://127.0.0.1/private.mp3', 'https://user@cdn.aladhan.com/a.mp3', 'https://cdn.aladhan.com.evil.test/a.mp3'] as $url) {
+            $this->withToken($token)->postJson($this->url('audio/media'), ['type' => 'adhan', 'url' => $url])->assertUnprocessable();
+        }
+        Http::assertNothingSent();
+        Http::fake(['https://cdn.aladhan.com/audio/adhans/*' => Http::sequence()
+            ->push('ID3'.str_repeat("\0", 1500), 200)
+            ->push('', 302, ['Location' => 'https://127.0.0.1/secret'])
+            ->push('<html>'.str_repeat('x', 1500), 200)
+            ->push('', 200, ['Content-Length' => 21 * 1024 * 1024])]);
+        $this->withToken($token)->postJson($this->url('audio/media'), ['type' => 'adhan', 'url' => 'https://cdn.aladhan.com/audio/adhans/test.mp3'])->assertOk();
+        for ($i = 0; $i < 3; $i++) {
+            $this->withToken($token)->postJson($this->url('audio/media'), ['type' => 'adhan', 'url' => 'https://cdn.aladhan.com/audio/adhans/test.mp3'])->assertUnprocessable();
+        }
+        $this->assertCount(1, Storage::disk('public')->allFiles('haq-audio'));
+    }
+
     private string $directory;
 
     public function withToken($token, $type = 'Bearer')

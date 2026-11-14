@@ -27,6 +27,7 @@ Route::prefix('v2')->middleware('throttle:60,1')->group(function (): void {
     Route::get('app-content/releases/{release}', [Content::class, 'release'])->whereNumber('release');
     Route::prefix('admin')->middleware(['auth:sanctum', AppAdminOnly::class])->group(function (): void {
         Route::get('workspace', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'overview']);
+        Route::post('workspace/audio/media', \App\Http\Controllers\Api\AppAudioMediaController::class);
         Route::get('workspace/{section}', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'index']);
         Route::post('workspace/{section}', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'save']);
         Route::post('workspace/{section}/{id}/action', [\App\Http\Controllers\Api\AppWorkspaceController::class, 'action']);
