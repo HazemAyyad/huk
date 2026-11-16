@@ -11,6 +11,7 @@ Route::prefix('v1/religious/community')->middleware('throttle:60,1,religious-com
     Route::middleware(['auth:sanctum', ReligiousAccountOnly::class])->group(function (): void {
         Route::get('circles', [Community::class, 'circles']);
         Route::get('circles/{circle}', [Community::class, 'circle'])->whereNumber('circle');
+        Route::put('circles/{circle}/presence', [Community::class, 'presence'])->whereNumber('circle');
         Route::put('circles/{circle}/membership', [Community::class, 'membership'])->whereNumber('circle');
         Route::post('circles/{circle}/counts', [Community::class, 'count'])->whereNumber('circle');
         Route::get('entries', [Community::class, 'entries']);

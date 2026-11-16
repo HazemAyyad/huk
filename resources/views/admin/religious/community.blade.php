@@ -10,6 +10,7 @@
       <input type="hidden" name="id" value="{{ $circle->id }}">
       <label>العنوان<input class="form-control" name="title" maxlength="100" value="{{ $circle->title }}" required></label>
       <label>المحتوى<select class="form-control" name="content_id" required>@foreach($items as $item)<option value="{{ $item['id'] }}" @selected($circle->content_id===$item['id'])>{{ $item['title'] }} — {{ $item['id'] }}</option>@endforeach</select></label>
+      <label>عبارة العدّ بالصوت (اختياري)<input class="form-control" name="voice_phrase" maxlength="180" value="{{ $circle->voice_phrase ?? '' }}"></label>
       <label>هدف جماعي<input class="form-control" name="goal" type="number" min="1" max="1000000000000" value="{{ $circle->goal }}" required></label>
       <label>الحالة<select class="form-control" name="published"><option value="0" @selected(!$circle->published)>مسودة</option><option value="1" @selected($circle->published)>منشورة</option></select></label>
       <button class="btn btn-primary mt-2">حفظ الحلقة</button>

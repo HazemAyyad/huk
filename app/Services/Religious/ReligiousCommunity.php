@@ -64,10 +64,23 @@ final class ReligiousCommunity
     {
         return ['id' => (int) $row->id, 'title' => $row->title, 'goal' => (int) $row->goal,
             'content' => $this->content($row->content_id),
+            'voice_phrase' => $row->voice_phrase ?? null,
+            'online' => $this->online((int) $row->id),
             'total' => (int) DB::table('religious_circle_counts')->where('circle_id', $row->id)->sum('amount'),
             'mine' => (int) DB::table('religious_circle_counts')->where('circle_id', $row->id)->where('account_id', $owner)->sum('amount'),
             'participants' => DB::table('religious_circle_members')->where('circle_id', $row->id)->where('active', true)->count(),
             'joined' => DB::table('religious_circle_members')->where('circle_id', $row->id)->where('account_id', $owner)->where('active', true)->exists()];
+    }
+
+    public function online(int $circle): ?int
+    {
+        if (! Schema::hasTable('religious_circle_presence')) {
+            return null;
+        }
+
+        return DB::table('religious_circle_presence')->where('circle_id', $circle)->where('expires_at', '>', now())
+            ->whereNotIn('account_id', fn ($query) => $query->select('account_id')->from('religious_community_accounts')->where('suspended', true))
+            ->distinct()->count('account_id');
     }
 
     public function count(ReligiousAccount $account, int $circle, string $operation, int $amount): array

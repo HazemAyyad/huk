@@ -5,11 +5,13 @@ namespace Tests\Feature;
 use App\Http\Controllers\Admin\ReligiousCommunityAdminController;
 use App\Models\ReligiousAccount;
 use App\Models\User;
+use App\Services\Religious\CommunityAdministration;
 use App\Services\Religious\ReligiousCommunity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -252,6 +254,41 @@ final class ReligiousCommunityTest extends TestCase
         $this->assertSame(0, DB::table('religious_community_entries')->count());
         $this->assertNotNull($this->other->fresh());
         $this->assertSame(1, DB::table('religious_circles')->count());
+    }
+
+    public function test_circle_voice_phrase_is_an_optional_excerpt_of_its_published_text(): void
+    {
+        (require database_path('migrations/2026_11_16_220000_add_voice_phrase_to_religious_circles.php'))->up();
+        $source = app(ReligiousCommunity::class)->content($this->content);
+        $phrase = Str::words(Str::squish($source['text']), 3, '');
+        $fields = ['id' => $this->circle, 'title' => 'حلقة', 'content_id' => $this->content, 'goal' => 5, 'published' => true];
+        $admin = app(CommunityAdministration::class);
+        $admin->circle(Request::create('/', 'POST', [...$fields, 'voice_phrase' => $phrase]));
+        // Older clients omit the optional voice field when updating an existing circle.
+        $admin->circle(Request::create('/', 'POST', $fields));
+        $this->sign();
+        $this->getJson($this->url('circles/'.$this->circle))->assertOk()->assertJsonPath('data.voice_phrase', $phrase);
+
+        $this->expectException(ValidationException::class);
+        $admin->circle(Request::create('/', 'POST', [...$fields, 'voice_phrase' => 'محتوى غير موجود في النص المختار']));
+    }
+
+    public function test_presence_counts_current_accounts_deduplicates_sessions_and_expires(): void
+    {
+        (require database_path('migrations/2026_11_16_223000_create_religious_circle_presence.php'))->up();
+        $this->sign();
+        $one = (string) Str::uuid();
+        $two = (string) Str::uuid();
+        $route = $this->url('circles/'.$this->circle.'/presence');
+        $this->putJson($route, ['session_id' => $one, 'active' => true])->assertOk()->assertJsonPath('data.online', 1);
+        $this->putJson($route, ['session_id' => $two, 'active' => true])->assertOk()->assertJsonPath('data.online', 1);
+        $this->putJson($route, ['session_id' => $one, 'active' => false])->assertOk()->assertJsonPath('data.online', 1);
+        $this->sign($this->other);
+        $this->putJson($route, ['session_id' => $one, 'active' => true])->assertOk()->assertJsonPath('data.online', 2);
+        $this->putJson($route, ['session_id' => $one, 'active' => false])->assertOk()->assertJsonPath('data.online', 1);
+        $this->travel(76)->seconds();
+        $this->getJson($this->url('circles/'.$this->circle))->assertOk()->assertJsonPath('data.online', 0);
+        $this->assertSame(0, DB::table('religious_circle_counts')->count());
     }
 
     public function test_moderation_approves_comments_only_with_visible_parent_and_report_can_suspend_then_restore(): void

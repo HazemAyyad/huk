@@ -40,6 +40,26 @@ final class ReligiousCommunityController extends Controller
         return response()->json(['data' => $this->community->circle($row, $owner)]);
     }
 
+    public function presence(Request $request, int $circle)
+    {
+        $data = $request->validate(['session_id' => 'required|uuid', 'active' => 'required|boolean']);
+        abort_unless(\Illuminate\Support\Facades\Schema::hasTable('religious_circle_presence'), 503);
+        DB::transaction(function () use ($request, $circle, $data): void {
+            $owner = $this->community->actor($request->user(), true);
+            abort_unless(DB::table('religious_circles')->where('id', $circle)->where('published', true)->exists(), 404);
+            // Expired sessions cannot inflate the current count after an interrupted connection.
+            DB::table('religious_circle_presence')->where('expires_at', '<=', now())->delete();
+            $identity = ['circle_id' => $circle, 'account_id' => $owner, 'session_id' => $data['session_id']];
+            if ($data['active']) {
+                DB::table('religious_circle_presence')->updateOrInsert($identity, ['expires_at' => now()->addSeconds(75)]);
+            } else {
+                DB::table('religious_circle_presence')->where($identity)->delete();
+            }
+        });
+
+        return response()->json(['data' => ['online' => $this->community->online($circle)]]);
+    }
+
     public function membership(Request $request, int $circle)
     {
         $data = $request->validate(['joined' => 'required|boolean']);

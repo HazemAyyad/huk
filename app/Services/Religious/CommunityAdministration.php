@@ -5,6 +5,7 @@ namespace App\Services\Religious;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 /** Shared mutations for web and verified in-app administration. */
@@ -14,8 +15,15 @@ final class CommunityAdministration
 
     public function circle(Request $request)
     {
-        $data = $request->validate(['id' => 'nullable|integer|min:1', 'title' => 'required|string|max:100', 'content_id' => 'required|string|max:120', 'goal' => 'required|integer|min:1|max:1000000000000', 'published' => 'required|boolean']);
-        $this->community->content($data['content_id']);
+        $data = $request->validate(['id' => 'nullable|integer|min:1', 'title' => 'required|string|max:100', 'content_id' => 'required|string|max:120',
+            'voice_phrase' => 'nullable|string|max:180', 'goal' => 'required|integer|min:1|max:1000000000000', 'published' => 'required|boolean']);
+        $content = $this->community->content($data['content_id']);
+        if (isset($data['voice_phrase'])) {
+            $data['voice_phrase'] = Str::squish($data['voice_phrase']) ?: null;
+            if ($data['voice_phrase'] !== null && ! str_contains(Str::squish($content['text']), $data['voice_phrase'])) {
+                throw ValidationException::withMessages(['voice_phrase' => 'اختر عبارة حرفية من نص الذكر الموثق.']);
+            }
+        }
         DB::transaction(function () use ($data): void {
             if (! empty($data['id'])) {
                 $row = DB::table('religious_circles')->where('id', $data['id'])->lockForUpdate()->first();
@@ -26,6 +34,9 @@ final class CommunityAdministration
                 }
                 if ($sum > (int) $data['goal']) {
                     throw ValidationException::withMessages(['goal' => 'الهدف أقل من المساهمات الموجودة']);
+                }
+                if ($row->content_id !== $data['content_id'] && isset($row->voice_phrase) && ! array_key_exists('voice_phrase', $data)) {
+                    $data['voice_phrase'] = null;
                 }
                 DB::table('religious_circles')->where('id', $row->id)->update([...array_diff_key($data, ['id' => true]), 'updated_at' => now()]);
             } else {

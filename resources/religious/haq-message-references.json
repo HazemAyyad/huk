@@ -1,0 +1,102 @@
+[
+  {
+    "kind": "dua",
+    "title": "دعاء الصدق في الدخول والخروج",
+    "content_id": "qdua-entrance"
+  },
+  {
+    "kind": "dhikr",
+    "title": "الصلاة على النبي ﷺ",
+    "content_id": "haq-message-salawat",
+    "item": {
+      "type": "dua",
+      "text": "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ.",
+      "source": "الصلاة على النبي ﷺ • أصل المشروعية: سورة الأحزاب، الآية 56",
+      "sourceUrl": "https://quran.com/33/56",
+      "image": "prophetic",
+      "categories": ["prophetic-duas"]
+    }
+  },
+  {
+    "kind": "dua",
+    "title": "دعاء قنوت الوتر",
+    "content_id": "haq-message-qunut-witr",
+    "item": {
+      "type": "dua",
+      "text": "اللَّهُمَّ اهْدِنِي فِيمَنْ هَدَيْتَ، وَعَافِنِي فِيمَنْ عَافَيْتَ، وَتَوَلَّنِي فِيمَنْ تَوَلَّيْتَ، وَبَارِكْ لِي فِيمَا أَعْطَيْتَ، وَقِنِي شَرَّ مَا قَضَيْتَ.",
+      "source": "جامع الترمذي • 464 • مقتطف من دعاء الوتر",
+      "sourceUrl": "https://sunnah.com/tirmidhi:464",
+      "image": "hands",
+      "categories": ["prophetic-duas"]
+    }
+  },
+  {
+    "kind": "hadith",
+    "title": "الاستعاذة من الهم والحزن",
+    "content_id": "haq-message-bukhari-6369",
+    "item": {
+      "type": "hadith",
+      "text": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ، وَغَلَبَةِ الرِّجَالِ.",
+      "source": "صحيح البخاري • 6369 • الدعاء الوارد عن أنس بن مالك",
+      "sourceUrl": "https://sunnah.com/bukhari:6369",
+      "image": "prophetic",
+      "categories": ["hadith"]
+    }
+  },
+  {
+    "kind": "hadith",
+    "title": "سؤال العفو والعافية صباحًا ومساءً",
+    "content_id": "haq-message-abudawud-5074",
+    "item": {
+      "type": "hadith",
+      "text": "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي.",
+      "source": "سنن أبي داود • 5074 • مقتطف من الدعاء الوارد عن عبد الله بن عمر",
+      "sourceUrl": "https://sunnah.com/abudawud:5074",
+      "image": "prophetic",
+      "categories": ["hadith"]
+    }
+  },
+  {
+    "kind": "quran",
+    "title": "العشر الأولى من سورة الكهف",
+    "content_id": "haq-message-kahf-1-10",
+    "item": {
+      "type": "quran",
+      "source": "سورة الكهف • الآيات 1–10 • نص مشروع تنزيل",
+      "sourceUrl": "https://tanzil.net/#18:1",
+      "verseKeys": ["18:1", "18:2", "18:3", "18:4", "18:5", "18:6", "18:7", "18:8", "18:9", "18:10"],
+      "image": "quran",
+      "categories": ["sunnah-recitation"]
+    }
+  },
+  {
+    "kind": "quran",
+    "title": "آية الكرسي",
+    "content_id": "ruqya-kursi"
+  },
+  {
+    "kind": "link",
+    "title": "قراءة سورة الكهف والاستماع إليها",
+    "body": "افتح سورة الكهف كاملة على منصة القرآن الكريم للقراءة أو الاستماع.",
+    "link": "https://quran.com/ar/al-kahf"
+  },
+  {
+    "kind": "video",
+    "title": "تلاوة سورة الإخلاص",
+    "body": "تلاوة سورة الإخلاص برواية حفص عن عاصم، بصوت الشيخ مشاري راشد العفاسي.",
+    "youtube_id": "RzMhAkThMDg"
+  },
+  {
+    "kind": "tasbih",
+    "title": "كلمتان خفيفتان على اللسان",
+    "content_id": "haq-message-bukhari-6406",
+    "item": {
+      "type": "hadith",
+      "text": "كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ، سُبْحَانَ اللَّهِ الْعَظِيمِ، سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.",
+      "source": "صحيح البخاري • 6406 • فضل التسبيح",
+      "sourceUrl": "https://sunnah.com/bukhari:6406",
+      "image": "beads",
+      "categories": ["glorification"]
+    }
+  }
+]
