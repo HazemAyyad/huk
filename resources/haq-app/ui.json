@@ -15718,5 +15718,20 @@
     "ar": "معاني الكلمات كلمةً بكلمة غير متوفرة باللغة المختارة حاليًا.",
     "en": "Word-by-word meanings are currently unavailable in the selected language.",
     "tr": "Seçilen dilde kelime kelime anlamlar şu anda mevcut değil."
+  },
+  "adhkar.resumePrompt": {
+    "ar": "أنجزت {read} من {total}. هل تريد المتابعة أم تصفير العدادات؟",
+    "en": "You have completed {read} of {total}. Would you like to continue or reset the counters?",
+    "tr": "{total} tekrarın {read} tanesini tamamladınız. Devam etmek mi, sayaçları sıfırlamak mı istersiniz?"
+  },
+  "adhkar.continueReading": {
+    "ar": "متابعة",
+    "en": "Continue",
+    "tr": "Devam et"
+  },
+  "adhkar.resetCounters": {
+    "ar": "تصفير",
+    "en": "Reset",
+    "tr": "Sıfırla"
   }
 }

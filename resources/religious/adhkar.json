@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "version": "2026-10-24.1",
+  "version": "2026-11-16.1",
   "source": "https://www.hisnmuslim.com/api/ar/husn_ar.json",
   "source_sha256": "d48599a7ede75e9299c063729af1ea153b46767306c512eac7a6fec5e4c4c797",
   "quran_source": {
@@ -16,29 +16,35 @@
         27
       ],
       "item_ids": [
-        "hisn-api-075",
-        "hisn-api-076",
-        "hisn-api-077",
-        "hisn-api-078",
-        "hisn-api-079",
-        "hisn-api-080",
-        "hisn-api-081",
-        "hisn-api-082",
-        "hisn-api-083",
-        "hisn-api-084",
-        "hisn-api-085",
-        "hisn-api-086",
-        "hisn-api-087",
-        "hisn-api-088",
-        "hisn-api-089",
-        "hisn-api-090",
-        "hisn-api-091",
-        "hisn-api-092",
-        "hisn-api-093",
-        "hisn-api-094",
-        "hisn-api-095",
-        "hisn-api-096",
-        "hisn-api-098"
+        "azkari-000",
+        "azkari-001",
+        "azkari-002",
+        "azkari-003",
+        "azkari-004",
+        "azkari-005",
+        "azkari-006",
+        "azkari-007",
+        "azkari-008",
+        "azkari-009",
+        "azkari-010",
+        "azkari-011",
+        "azkari-012",
+        "azkari-013",
+        "azkari-014",
+        "azkari-015",
+        "azkari-016",
+        "azkari-017",
+        "azkari-018",
+        "azkari-019",
+        "azkari-020",
+        "azkari-021",
+        "azkari-022",
+        "azkari-023",
+        "azkari-024",
+        "azkari-025",
+        "azkari-026",
+        "azkari-027",
+        "azkari-028"
       ]
     },
     {
@@ -49,27 +55,36 @@
         27
       ],
       "item_ids": [
-        "hisn-api-075",
-        "hisn-api-076",
-        "hisn-api-077",
-        "hisn-api-078",
-        "hisn-api-079",
-        "hisn-api-080",
-        "hisn-api-081",
-        "hisn-api-082",
-        "hisn-api-083",
-        "hisn-api-084",
-        "hisn-api-085",
-        "hisn-api-086",
-        "hisn-api-087",
-        "hisn-api-088",
-        "hisn-api-089",
-        "hisn-api-090",
-        "hisn-api-091",
-        "hisn-api-092",
-        "hisn-api-096",
-        "hisn-api-097",
-        "hisn-api-098"
+        "azkari-029",
+        "azkari-030",
+        "azkari-031",
+        "azkari-032",
+        "azkari-033",
+        "azkari-034",
+        "azkari-035",
+        "azkari-036",
+        "azkari-037",
+        "azkari-038",
+        "azkari-039",
+        "azkari-040",
+        "azkari-041",
+        "azkari-042",
+        "azkari-043",
+        "azkari-044",
+        "azkari-045",
+        "azkari-046",
+        "azkari-047",
+        "azkari-048",
+        "azkari-049",
+        "azkari-050",
+        "azkari-051",
+        "azkari-052",
+        "azkari-053",
+        "azkari-054",
+        "azkari-055",
+        "azkari-056",
+        "azkari-057",
+        "azkari-058"
       ]
     },
     {
@@ -1635,7 +1650,9 @@
           ],
           "text": "ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ"
         }
-      ]
+      ],
+      "benefit": "سورة البقرة ، آية 255 من قالها حين يمسي أجير منهم حتى يصبح أخرجه الحاكم 1/ 562وصححه الألباني في صحيح الترغيب والترهيب 1/ 273 وعزاه إلى النسائي والطبراني وقال : وإسناد الطبراني جيد",
+      "benefit_en": "Whoever recites it in the evening is protected from them until morning."
     },
     {
       "id": "hisn-api-076",
@@ -1679,7 +1696,9 @@
           ],
           "text": "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَـٰهِ ٱلنَّاسِ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ"
         }
-      ]
+      ],
+      "benefit": "من قالها ثلاث مرات حين يصبح وحين يمسي كفته من كل شيء . أبو داود 4/ 322 والترمذي 5/ 567وانظر صحيح الترمذي 3/ 182",
+      "benefit_en": "Reciting these three times in the morning and evening suffices as protection from everything."
     },
     {
       "id": "hisn-api-077",
@@ -1718,7 +1737,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 79",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها موقناً بها حين يمسي فمات من ليلته دخل الجنة ، وكذلك إذا أصبح أخرجه البخاري 7/150",
+      "benefit_en": "Whoever says this with certainty in the evening and dies that night will enter Paradise; the same applies in the morning."
     },
     {
       "id": "hisn-api-080",
@@ -1731,7 +1752,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 80",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها حين يصبح وحين يمسي أربع مرات أعتقه الله من النار . أخرجه أبو داود 4/ 317 والبخاري في الأدب المفرد برقم 1201 والنسائي في عمل اليوم والليلة برقم 9، وابن السني برقم 70 وحسن سماحة الشيخ ابن باز إسناد النسائي وأبي داود في تحفة الأخيار ص 23",
+      "benefit_en": "Whoever says this four times in the morning and evening will be freed by Allah from the Fire."
     },
     {
       "id": "hisn-api-081",
@@ -1744,7 +1767,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 81",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها حين يصبح فقد أدي شكر يومه ، ومن قالها حين يمسى فقد أدى شكر ليلته . أخرجه أبو داود 4/318 ، والنسائي في عمل اليوم والليلة برقم 7وابن السني برقم 41 وابن حبان (( موارد)) رقم 2361وحسن ابن باز إسناده في تحفة الأخيار ص24",
+      "benefit_en": "Whoever says this in the morning has fulfilled the gratitude due for that day; whoever says it in the evening has fulfilled the gratitude due for that night."
     },
     {
       "id": "hisn-api-082",
@@ -1770,7 +1795,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 83",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها حين يصبح ويمسي سبع مرات كفاه الله ما أهمه من أمر الدنيا والآخرة .أخرجه ابن السني برقم 71مرفوعاً وأبو موقوف 4/321،وصحح إسناده شعيب وعبد القادر الأرناؤوط . انظر زاد المعاد 2/ 376",
+      "benefit_en": "Whoever says this seven times in the morning and evening, Allah will suffice them concerning their worries in this world and the Hereafter."
     },
     {
       "id": "hisn-api-084",
@@ -1809,7 +1836,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 86",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها ثلاثاً إذا أصبح وثلاثاً إذا أمسى لم يضره شيء أخرجه أبو داود 4/ 323 والترمذي 5/ 465 وابن ماجه وأحمد . انظر : صحيح ابن ماجه 2/332 وحسن إسناده العلامة ابن باز في تحفة الأخيار ص39",
+      "benefit_en": "Whoever says this three times in the morning and evening will not be harmed by anything."
     },
     {
       "id": "hisn-api-087",
@@ -1822,7 +1851,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 87",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها ثلاثاً حين يصبح وحين يمسي كان حقاً على الله أن يرضيه يوم القيامة . أحمد 4/ 337 والنسائي في عمل اليوم والليلة برقم 4 وابن السني برقم 68 وأبو داود 4/418 والترمذي 5/465 وحسنه ابن باز في تحفة الأخيار ص 39",
+      "benefit_en": "Whoever says this three times in the morning and evening has Allah’s promise to please them on the Day of Resurrection."
     },
     {
       "id": "hisn-api-088",
@@ -1874,7 +1905,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 91",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها مائة مرة حين يصبح وحين يمسي لم يأت أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد رواه مسلم4 / 2071",
+      "benefit_en": "Whoever says this one hundred times in the morning and evening: no one will come on the Day of Resurrection with anything better, except someone who said the same or more."
     },
     {
       "id": "hisn-api-092",
@@ -1900,7 +1933,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 93",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها مائة مرة في يوم كانت له عدل عشر رقاب، وكتب له مائة حسنة ،ومحيت عنه مائة سيئة ، وكانت حرزاً من الشيطان يومه ذلك حتى يمسي ،ولم يأت أحد بأفضل مما جاء به إلا أحد عمل أكثر من ذلك . البخاري 4/95،ومسلم 4/2071",
+      "benefit_en": "Whoever says this one hundred times in a day receives the reward of freeing ten slaves; one hundred good deeds are recorded and one hundred sins erased. It protects them from Satan until evening; no one does better except someone who does more."
     },
     {
       "id": "hisn-api-094",
@@ -1952,7 +1987,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 97",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قالها حين يمسي ثلاث مرات لم تضره حمة تلك الليلة أخرجه أحمد 2/290 والنسائي في عمل اليوم والليلة برقم 590 وابن السني برقم 68وانظر : صحيح الترمذي 3/187، وصحيح ابن ماجه 2/266 وتحفة الأخيار ص45",
+      "benefit_en": "Whoever says this three times in the evening will not be harmed by a venomous sting that night."
     },
     {
       "id": "hisn-api-098",
@@ -1965,7 +2002,9 @@
       "source": "حصن المسلم • الباب 27 • الذكر 98",
       "source_url": "https://www.hisnmuslim.com/api/ar/27.json",
       "haq_content_id": "hisn-027",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من صلى علي حين يُصبح عشراً ، وحين يُمسي عشراً أدركتهُ شفاعتي يوم القيامة... ,رواه الطبراني بإسنادين أحدهما جيد ، انظر الزائد 10/ 120 وصحيح الترغيب والترهيب 1/273",
+      "benefit_en": "Whoever sends blessings upon me ten times in the morning and ten times in the evening will receive my intercession on the Day of Resurrection."
     },
     {
       "id": "hisn-api-099",
@@ -2029,7 +2068,9 @@
           ],
           "text": "ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ"
         }
-      ]
+      ],
+      "benefit": "من قرأها إذا أوى إلى فراشه فإنه لن يزال عليه من الله حافظ ولا يقربه شيطان حتى يصبح البخاري مع الفتح 4/487",
+      "benefit_en": "Whoever recites it when going to bed will remain under Allah’s protection, and no devil will approach them until morning."
     },
     {
       "id": "hisn-api-101",
@@ -2050,7 +2091,9 @@
           ],
           "text": "ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ وَٱلْمُؤْمِنُونَ ۚ كُلٌّ ءَامَنَ بِٱللَّهِ وَمَلَـٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِۦ ۚ وَقَالُوا۟ سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ ٱلْمَصِيرُ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَـٰفِرِينَ"
         }
-      ]
+      ],
+      "benefit": "من قرأها في ليلة كفتاه، البخاري مع الفتح 9/ 94 ومسلم 1/ 554 ، والآيتان من سورة البقرة ، 285 – 286",
+      "benefit_en": "Whoever recites these two verses at night, they will suffice them. These are verses 285–286 of Surat Al-Baqarah."
     },
     {
       "id": "hisn-api-102",
@@ -2115,7 +2158,9 @@
       "source": "حصن المسلم • الباب 28 • الذكر 106",
       "source_url": "https://www.hisnmuslim.com/api/ar/28.json",
       "haq_content_id": "hisn-028",
-      "scripture": []
+      "scripture": [],
+      "benefit": "من قال ذلك عندما يأوي إلى فراشه كان خيراً له من خادم البخاري مع الفتح 7/71 ومسلم 4/ 2091",
+      "benefit_en": "Saying this when going to bed is better for a person than having a servant."
     },
     {
       "id": "hisn-api-107",
@@ -2187,7 +2232,9 @@
       "source": "حصن المسلم • الباب 28 • الذكر 111",
       "source_url": "https://www.hisnmuslim.com/api/ar/28.json",
       "haq_content_id": "hisn-028",
-      "scripture": []
+      "scripture": [],
+      "benefit": "قال صلى الله عليه وسلم لمن قال ذلك : فإن متَّ،متَّ على الفطرة  البخاري مع الفتح 11/113 ومسلم 4/ 2081",
+      "benefit_en": "The Prophet, peace and blessings be upon him, said to the one who says this: if you die, you will die upon the natural disposition of faith."
     },
     {
       "id": "hisn-api-001",
@@ -3108,7 +3155,9 @@
       "source": "حصن المسلم • الباب 25 • الذكر 69",
       "source_url": "https://www.hisnmuslim.com/api/ar/25.json",
       "haq_content_id": "hisn-025",
-      "scripture": []
+      "scripture": [],
+      "benefit": "مسلم 1/ 418من قال ذلك دبر كل صلاة غفرت خطاياه وإن كانت مثل زبد البحر مسلم 1/ 418",
+      "benefit_en": "Whoever says this after every prayer will have their sins forgiven, even if they are like the foam of the sea."
     },
     {
       "id": "hisn-api-070",
@@ -3172,7 +3221,9 @@
           ],
           "text": "ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ"
         }
-      ]
+      ],
+      "benefit": "من قرأها دبر كل صلاة لم يمنعه من دخول الجنة إلا أن يموت . والنسائي في عمل اليوم والليلة برقم 100 ، وابن السني برقم 121 وصححه الجامع 5/339 وسلسلة الأحاديث الصحيحة 2/697 برقم 972",
+      "benefit_en": "Whoever recites it after every prayer: nothing prevents them from entering Paradise except death."
     },
     {
       "id": "hisn-api-072",
@@ -5284,6 +5335,1026 @@
       "source_url": "https://www.hisnmuslim.com/api/ar/132.json",
       "haq_content_id": "hisn-132",
       "scripture": []
+    },
+    {
+      "id": "azkari-000",
+      "source_id": 0,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "﴿ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ﴾",
+      "preface": "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/75.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "2:255"
+          ],
+          "text": "ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ"
+        }
+      ],
+      "benefit": "من قالها حين يصبح أجير من الجن حتى يمسى ومن قالها حين يمسى أجير من الجن حتى يصبح",
+      "legacy_id": "hisn-api-075"
+    },
+    {
+      "id": "azkari-001",
+      "source_id": 1,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "﴿قُلْ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ﴾",
+      "preface": "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "112:1",
+            "112:2",
+            "112:3",
+            "112:4"
+          ],
+          "text": "قُلْ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ"
+        }
+      ],
+      "benefit": "من قالها حين يصبح وحين يمسى كفته من كل شىء (الإخلاص والمعوذتين) ",
+      "legacy_id": "hisn-api-076"
+    },
+    {
+      "id": "azkari-002",
+      "source_id": 2,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "﴿قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾",
+      "preface": "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "113:1",
+            "113:2",
+            "113:3",
+            "113:4",
+            "113:5"
+          ],
+          "text": "قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"
+        }
+      ],
+      "benefit": "",
+      "legacy_id": "hisn-api-076"
+    },
+    {
+      "id": "azkari-003",
+      "source_id": 3,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "﴿قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَـٰهِ ٱلنَّاسِ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ﴾",
+      "preface": "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "114:1",
+            "114:2",
+            "114:3",
+            "114:4",
+            "114:5",
+            "114:6"
+          ],
+          "text": "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَـٰهِ ٱلنَّاسِ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ"
+        }
+      ],
+      "benefit": "",
+      "legacy_id": "hisn-api-076"
+    },
+    {
+      "id": "azkari-004",
+      "source_id": 4,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "أَصْـبَحْنا وَأَصْـبَحَ المُـلْكُ لله وَالحَمدُ لله ، لا إلهَ إلاّ اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ على كلّ شَيءٍ قدير ، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذا اليوم وَخَـيرَ ما بَعْـدَه ، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذا اليوم وَشَرِّ ما بَعْـدَه، رَبِّ أَعـوذُبِكَ مِنَ الْكَسَـلِ وَسـوءِ الْكِـبَر ، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ في القَـبْر. ",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/77.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-077"
+    },
+    {
+      "id": "azkari-005",
+      "source_id": 5,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت ، أَعـوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبـوءُ لَـكَ بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ .",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/79.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها موقنا بها حين يمسى ومات من ليلته دخل الجنة وكذلك حين يصبح",
+      "legacy_id": "hisn-api-079"
+    },
+    {
+      "id": "azkari-006",
+      "source_id": 6,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "رَضيـتُ بِاللهِ رَبَّـاً وَبِالإسْلامِ ديـناً وَبِمُحَـمَّدٍ صلى الله عليه وسلم نَبِيّـاً. ",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/87.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها حين يصبح وحين يمسى كان حقا على الله أن يرضيه يوم القيامة",
+      "legacy_id": "hisn-api-087"
+    },
+    {
+      "id": "azkari-007",
+      "source_id": 7,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ إِنِّـي أَصْبَـحْتُ أُشْـهِدُك ، وَأُشْـهِدُ حَمَلَـةَ عَـرْشِـك ، وَمَلائِكَتِك ، وَجَمـيعَ خَلْـقِك ، أَنَّـكَ أَنْـتَ اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك ، وَأَنَّ ُ مُحَمّـداً عَبْـدُكَ وَرَسـولُـك. ",
+      "preface": "",
+      "target": 4,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/80.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها أعتقه الله من النار",
+      "legacy_id": "hisn-api-080"
+    },
+    {
+      "id": "azkari-008",
+      "source_id": 8,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ ما أَصْبَـَحَ بي مِـنْ نِعْـمَةٍ أَو بِأَحَـدٍ مِـنْ خَلْـقِك ، فَمِـنْكَ وَحْـدَكَ لا شريكَ لَـك ، فَلَـكَ الْحَمْـدُ وَلَـكَ الشُّكْـر.",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/81.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها حين يصبح أدى شكر يومه",
+      "legacy_id": "hisn-api-081"
+    },
+    {
+      "id": "azkari-009",
+      "source_id": 9,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "حَسْبِـيَ اللّهُ لا إلهَ إلاّ هُوَ عَلَـيهِ تَوَكَّـلتُ وَهُوَ رَبُّ العَرْشِ العَظـيم.",
+      "preface": "",
+      "target": 7,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/83.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها كفاه الله ما أهمه من أمر الدنيا والأخرة",
+      "legacy_id": "hisn-api-083"
+    },
+    {
+      "id": "azkari-010",
+      "source_id": 10,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم. ",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/86.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "لم يضره من الله شيء",
+      "legacy_id": "hisn-api-086"
+    },
+    {
+      "id": "azkari-011",
+      "source_id": 11,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ بِكَ أَصْـبَحْنا وَبِكَ أَمْسَـينا ، وَبِكَ نَحْـيا وَبِكَ نَمُـوتُ وَإِلَـيْكَ النُّـشُور.",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/78.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-078"
+    },
+    {
+      "id": "azkari-012",
+      "source_id": 12,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "أَصْبَـحْـنا عَلَى فِطْرَةِ الإسْلاَمِ، وَعَلَى كَلِمَةِ الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إبْرَاهِيمَ حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ المُشْرِكِينَ.",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/90.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-090"
+    },
+    {
+      "id": "azkari-013",
+      "source_id": 13,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "سُبْحـانَ اللهِ وَبِحَمْـدِهِ عَدَدَ خَلْـقِه ، وَرِضـا نَفْسِـه ، وَزِنَـةَ عَـرْشِـه ، وَمِـدادَ كَلِمـاتِـه.",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/94.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-094"
+    },
+    {
+      "id": "azkari-014",
+      "source_id": 14,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ عافِـني في بَدَنـي ، اللّهُـمَّ عافِـني في سَمْـعي ، اللّهُـمَّ عافِـني في بَصَـري ، لا إلهَ إلاّ أَنْـتَ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-082"
+    },
+    {
+      "id": "azkari-015",
+      "source_id": 15,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ إِنّـي أَعـوذُ بِكَ مِنَ الْكُـفر ، وَالفَـقْر ، وَأَعـوذُ بِكَ مِنْ عَذابِ القَـبْر ، لا إلهَ إلاّ أَنْـتَ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-082"
+    },
+    {
+      "id": "azkari-016",
+      "source_id": 16,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في الدُّنْـيا وَالآخِـرَة ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي ، اللّهُـمَّ اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي ، اللّهُـمَّ احْفَظْـني مِن بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي ، وَمِن فَوْقـي ، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي.",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/84.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-084"
+    },
+    {
+      "id": "azkari-017",
+      "source_id": 17,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "يَا حَيُّ يَا قيُّومُ بِرَحْمَتِكَ أسْتَغِيثُ أصْلِحْ لِي شَأنِي كُلَّهُ وَلاَ تَكِلُنِي إلَى نَفْسِي طَـرْفَةَ عَيْنٍ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/88.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-088"
+    },
+    {
+      "id": "azkari-018",
+      "source_id": 18,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "أَصْبَـحْـنا وَأَصْبَـحْ المُـلكُ للهِ رَبِّ العـالَمـين ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ خَـيْرَ هـذا الـيَوْم ، فَـتْحَهُ ، وَنَصْـرَهُ ، وَنـورَهُ وَبَـرَكَتَـهُ ، وَهُـداهُ ، وَأَعـوذُ بِـكَ مِـنْ شَـرِّ ما فـيهِ وَشَـرِّ ما بَعْـدَه. ",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/89.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-089"
+    },
+    {
+      "id": "azkari-019",
+      "source_id": 19,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللّهُـمَّ عالِـمَ الغَـيْبِ وَالشّـهادَةِ فاطِـرَ السّماواتِ وَالأرْضِ رَبَّ كـلِّ شَـيءٍ وَمَليـكَه ، أَشْهَـدُ أَنْ لا إِلـهَ إِلاّ أَنْت ، أَعـوذُ بِكَ مِن شَـرِّ نَفْسـي وَمِن شَـرِّ الشَّيْـطانِ وَشِـرْكِه ، وَأَنْ أَقْتَـرِفَ عَلـى نَفْسـي سوءاً أَوْ أَجُـرَّهُ إِلـى مُسْـلِم.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-085"
+    },
+    {
+      "id": "azkari-020",
+      "source_id": 20,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-021",
+      "source_id": 21,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ على نَبِيِّنَا مُحمَّد.",
+      "preface": "",
+      "target": 10,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من صلى على حين يصبح وحين يمسى ادركته شفاعتى يوم القيامة",
+      "legacy_id": "hisn-api-098"
+    },
+    {
+      "id": "azkari-022",
+      "source_id": 22,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللَّهُمَّ إِنَّا نَعُوذُ بِكَ مِنْ أَنْ نُشْرِكَ بِكَ شَيْئًا نَعْلَمُهُ ، وَنَسْتَغْفِرُكَ لِمَا لَا نَعْلَمُهُ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-023",
+      "source_id": 23,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنْ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنْ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ، وَقَهْرِ الرِّجَالِ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-024",
+      "source_id": 24,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ القَيُّومُ، وَأتُوبُ إلَيهِ. ",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-025",
+      "source_id": 25,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "يَا رَبِّ , لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ , وَلِعَظِيمِ سُلْطَانِكَ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-026",
+      "source_id": 26,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ.",
+      "preface": "",
+      "target": 10,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "كانت له عدل عشر رقاب، وكتبت له مئة حسنة، ومحيت عنه مئة سيئة، وكانت له حرزا من الشيطان",
+      "legacy_id": "hisn-api-092"
+    },
+    {
+      "id": "azkari-027",
+      "source_id": 27,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ ، عَلَيْكَ تَوَكَّلْتُ ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ , مَا شَاءَ اللَّهُ كَانَ ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ ، وَلا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ , أَعْلَمُ أَنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا , اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي ، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا ، إِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيمٍ.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-028",
+      "source_id": 28,
+      "chapter": 27,
+      "title": "أذكار الصباح",
+      "text": "سُبْحـانَ اللهِ وَبِحَمْـدِهِ.",
+      "preface": "",
+      "target": 100,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/91.mp3",
+      "source": "أذكاري • أذكار الصباح",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-091"
+    },
+    {
+      "id": "azkari-029",
+      "source_id": 29,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "﴿ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ﴾",
+      "preface": "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/75.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "2:255"
+          ],
+          "text": "ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ"
+        }
+      ],
+      "benefit": "من قالها حين يصبح أجير من الجن حتى يمسى ومن قالها حين يمسى أجير من الجن حتى يصبح",
+      "legacy_id": "hisn-api-075"
+    },
+    {
+      "id": "azkari-030",
+      "source_id": 30,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "﴿ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ وَٱلْمُؤْمِنُونَ ۚ كُلٌّ ءَامَنَ بِٱللَّهِ وَمَلَـٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِۦ ۚ وَقَالُوا۟ سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ ٱلْمَصِيرُ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَـٰفِرِينَ﴾",
+      "preface": "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "2:285",
+            "2:286"
+          ],
+          "text": "ءَامَنَ ٱلرَّسُولُ بِمَآ أُنزِلَ إِلَيْهِ مِن رَّبِّهِۦ وَٱلْمُؤْمِنُونَ ۚ كُلٌّ ءَامَنَ بِٱللَّهِ وَمَلَـٰٓئِكَتِهِۦ وَكُتُبِهِۦ وَرُسُلِهِۦ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِۦ ۚ وَقَالُوا۟ سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ ٱلْمَصِيرُ لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَـٰفِرِينَ"
+        }
+      ],
+      "benefit": "من قرأ آيتين من آخر سورة البقرة في ليلة كفتاه"
+    },
+    {
+      "id": "azkari-031",
+      "source_id": 31,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "﴿قُلْ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ﴾",
+      "preface": "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "112:1",
+            "112:2",
+            "112:3",
+            "112:4"
+          ],
+          "text": "قُلْ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ"
+        }
+      ],
+      "benefit": "من قالها حين يصبح وحين يمسى كفته من كل شىء (الإخلاص والمعوذتين)",
+      "legacy_id": "hisn-api-076"
+    },
+    {
+      "id": "azkari-032",
+      "source_id": 32,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "﴿قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾",
+      "preface": "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "113:1",
+            "113:2",
+            "113:3",
+            "113:4",
+            "113:5"
+          ],
+          "text": "قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"
+        }
+      ],
+      "benefit": "",
+      "legacy_id": "hisn-api-076"
+    },
+    {
+      "id": "azkari-033",
+      "source_id": 33,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "﴿قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَـٰهِ ٱلنَّاسِ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ﴾",
+      "preface": "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [
+        {
+          "keys": [
+            "114:1",
+            "114:2",
+            "114:3",
+            "114:4",
+            "114:5",
+            "114:6"
+          ],
+          "text": "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَـٰهِ ٱلنَّاسِ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ"
+        }
+      ],
+      "benefit": "",
+      "legacy_id": "hisn-api-076"
+    },
+    {
+      "id": "azkari-034",
+      "source_id": 34,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "أَمْسَيْـنا وَأَمْسـى المـلكُ لله وَالحَمدُ لله ، لا إلهَ إلاّ اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ على كلّ شَيءٍ قدير ، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذهِ اللَّـيْلَةِ وَخَـيرَ ما بَعْـدَهـا ، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذهِ اللَّـيْلةِ وَشَرِّ ما بَعْـدَهـا ، رَبِّ أَعـوذُبِكَ مِنَ الْكَسَـلِ وَسـوءِ الْكِـبَر ، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ في القَـبْر.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-077"
+    },
+    {
+      "id": "azkari-035",
+      "source_id": 35,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت ، أَعـوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبـوءُ لَـكَ بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ .",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/79.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها موقنا بها حين يمسى ومات من ليلته دخل الجنة وكذلك حين يصبح",
+      "legacy_id": "hisn-api-079"
+    },
+    {
+      "id": "azkari-036",
+      "source_id": 36,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "رَضيـتُ بِاللهِ رَبَّـاً وَبِالإسْلامِ ديـناً وَبِمُحَـمَّدٍ صلى الله عليه وسلم نَبِيّـاً. ",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/87.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها حين يصبح وحين يمسى كان حقا على الله أن يرضيه يوم القيامة",
+      "legacy_id": "hisn-api-087"
+    },
+    {
+      "id": "azkari-037",
+      "source_id": 37,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ إِنِّـي أَمسيتُ أُشْـهِدُك ، وَأُشْـهِدُ حَمَلَـةَ عَـرْشِـك ، وَمَلائِكَتِك ، وَجَمـيعَ خَلْـقِك ، أَنَّـكَ أَنْـتَ اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك ، وَأَنَّ ُ مُحَمّـداً عَبْـدُكَ وَرَسـولُـك.",
+      "preface": "",
+      "target": 4,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها أعتقه الله من النار",
+      "legacy_id": "hisn-api-080"
+    },
+    {
+      "id": "azkari-038",
+      "source_id": 38,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ ما أَمسى بي مِـنْ نِعْـمَةٍ أَو بِأَحَـدٍ مِـنْ خَلْـقِك ، فَمِـنْكَ وَحْـدَكَ لا شريكَ لَـك ، فَلَـكَ الْحَمْـدُ وَلَـكَ الشُّكْـر.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها حين يمسى أدى شكر يومه",
+      "legacy_id": "hisn-api-081"
+    },
+    {
+      "id": "azkari-039",
+      "source_id": 39,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "حَسْبِـيَ اللّهُ لا إلهَ إلاّ هُوَ عَلَـيهِ تَوَكَّـلتُ وَهُوَ رَبُّ العَرْشِ العَظـيم.",
+      "preface": "",
+      "target": 7,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/83.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من قالها كفاه الله ما أهمه من أمر الدنيا والأخرة",
+      "legacy_id": "hisn-api-083"
+    },
+    {
+      "id": "azkari-040",
+      "source_id": 40,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم. ",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/86.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "لم يضره من الله شيء",
+      "legacy_id": "hisn-api-086"
+    },
+    {
+      "id": "azkari-041",
+      "source_id": 41,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ بِكَ أَمْسَـينا وَبِكَ أَصْـبَحْنا، وَبِكَ نَحْـيا وَبِكَ نَمُـوتُ وَإِلَـيْكَ الْمَصِيرُ.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-078"
+    },
+    {
+      "id": "azkari-042",
+      "source_id": 42,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "أَمْسَيْنَا عَلَى فِطْرَةِ الإسْلاَمِ، وَعَلَى كَلِمَةِ الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إبْرَاهِيمَ حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ المُشْرِكِينَ.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-090"
+    },
+    {
+      "id": "azkari-043",
+      "source_id": 43,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "سُبْحـانَ اللهِ وَبِحَمْـدِهِ عَدَدَ خَلْـقِه ، وَرِضـا نَفْسِـه ، وَزِنَـةَ عَـرْشِـه ، وَمِـدادَ كَلِمـاتِـه.",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/94.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-094"
+    },
+    {
+      "id": "azkari-044",
+      "source_id": 44,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ عافِـني في بَدَنـي ، اللّهُـمَّ عافِـني في سَمْـعي ، اللّهُـمَّ عافِـني في بَصَـري ، لا إلهَ إلاّ أَنْـتَ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-082"
+    },
+    {
+      "id": "azkari-045",
+      "source_id": 45,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ إِنّـي أَعـوذُ بِكَ مِنَ الْكُـفر ، وَالفَـقْر ، وَأَعـوذُ بِكَ مِنْ عَذابِ القَـبْر ، لا إلهَ إلاّ أَنْـتَ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-082"
+    },
+    {
+      "id": "azkari-046",
+      "source_id": 46,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في الدُّنْـيا وَالآخِـرَة ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي ، اللّهُـمَّ اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي ، اللّهُـمَّ احْفَظْـني مِن بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي ، وَمِن فَوْقـي ، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي.",
+      "preface": "",
+      "target": 1,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/84.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-084"
+    },
+    {
+      "id": "azkari-047",
+      "source_id": 47,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "يَا حَيُّ يَا قيُّومُ بِرَحْمَتِكَ أسْتَغِيثُ أصْلِحْ لِي شَأنِي كُلَّهُ وَلاَ تَكِلُنِي إلَى نَفْسِي طَـرْفَةَ عَيْنٍ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/88.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-088"
+    },
+    {
+      "id": "azkari-048",
+      "source_id": 48,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "أَمْسَيْنا وَأَمْسَى الْمُلْكُ للهِ رَبِّ الْعَالَمَيْنِ، اللَّهُمَّ إِنَّي أسْأَلُكَ خَيْرَ هَذَه اللَّيْلَةِ فَتْحَهَا ونَصْرَهَا، ونُوْرَهَا وبَرَكَتهَا، وَهُدَاهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فيهِا وَشَرَّ مَا بَعْدَهَا. ",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-089"
+    },
+    {
+      "id": "azkari-049",
+      "source_id": 49,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللّهُـمَّ عالِـمَ الغَـيْبِ وَالشّـهادَةِ فاطِـرَ السّماواتِ وَالأرْضِ رَبَّ كـلِّ شَـيءٍ وَمَليـكَه ، أَشْهَـدُ أَنْ لا إِلـهَ إِلاّ أَنْت ، أَعـوذُ بِكَ مِن شَـرِّ نَفْسـي وَمِن شَـرِّ الشَّيْـطانِ وَشِـرْكِه ، وَأَنْ أَقْتَـرِفَ عَلـى نَفْسـي سوءاً أَوْ أَجُـرَّهُ إِلـى مُسْـلِم.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-085"
+    },
+    {
+      "id": "azkari-050",
+      "source_id": 50,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق.",
+      "preface": "",
+      "target": 3,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/97.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-097"
+    },
+    {
+      "id": "azkari-051",
+      "source_id": 51,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ على نَبِيِّنَا مُحمَّد.",
+      "preface": "",
+      "target": 10,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "من صلى على حين يصبح وحين يمسى ادركته شفاعتى يوم القيامة",
+      "legacy_id": "hisn-api-098"
+    },
+    {
+      "id": "azkari-052",
+      "source_id": 52,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللَّهُمَّ إِنَّا نَعُوذُ بِكَ مِنْ أَنْ نُشْرِكَ بِكَ شَيْئًا نَعْلَمُهُ ، وَنَسْتَغْفِرُكَ لِمَا لَا نَعْلَمُهُ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-053",
+      "source_id": 53,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنْ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنْ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ، وَقَهْرِ الرِّجَالِ. ",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-054",
+      "source_id": 54,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ القَيُّومُ، وَأتُوبُ إلَيهِ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-055",
+      "source_id": 55,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "يَا رَبِّ , لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ , وَلِعَظِيمِ سُلْطَانِكَ.",
+      "preface": "",
+      "target": 3,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-056",
+      "source_id": 56,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ.",
+      "preface": "",
+      "target": 10,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "كانت له عدل عشر رقاب، وكتبت له مئة حسنة، ومحيت عنه مئة سيئة، وكانت له حرزا من الشيطان",
+      "legacy_id": "hisn-api-092"
+    },
+    {
+      "id": "azkari-057",
+      "source_id": 57,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ ، عَلَيْكَ تَوَكَّلْتُ ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ , مَا شَاءَ اللَّهُ كَانَ ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ ، وَلا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ , أَعْلَمُ أَنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا , اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي ، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا ، إِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيمٍ.",
+      "preface": "",
+      "target": 1,
+      "audio_url": null,
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": ""
+    },
+    {
+      "id": "azkari-058",
+      "source_id": 58,
+      "chapter": 27,
+      "title": "أذكار المساء",
+      "text": "سُبْحـانَ اللهِ وَبِحَمْـدِهِ.",
+      "preface": "",
+      "target": 100,
+      "audio_url": "https://www.hisnmuslim.com/audio/ar/91.mp3",
+      "source": "أذكاري • أذكار المساء",
+      "source_url": "https://play.google.com/store/apps/details?id=com.mbh.azkari",
+      "haq_content_id": "",
+      "scripture": [],
+      "benefit": "",
+      "legacy_id": "hisn-api-091"
     }
   ],
   "corrections": [
@@ -5305,5 +6376,13 @@
       "target": 7,
       "evidence": "التكرار منصوص عليه صراحة في نص الذكر الأصلي نفسه."
     }
-  ]
+  ],
+  "daily_reference": {
+    "package": "com.mbh.azkari",
+    "version": "3.8.47",
+    "apk_sha256": "93ba0f46f8325203301d3a00d537e489aec8185be91e6ca66fbdc6173b04b7cc",
+    "database_sha256": "34f55af9f66269774605f88536147c15dbd3f903bce5445ef03879dd1758827d",
+    "snapshot_sha256": "8ce61d0a07b9f66fabfae0af05b30ff4e08a99377be7a4599cd6495623b2a0f1",
+    "quran_text": "canonical-haq"
+  }
 }
