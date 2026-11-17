@@ -110,6 +110,30 @@ final class ReligiousCommunityTest extends TestCase
         $this->postJson($path.'/counts', ['operation_id' => $id, 'amount' => 3])->assertOk()->assertJsonPath('data.total', 5);
     }
 
+    public function test_progress_order_applies_across_pages_and_presence_is_returned(): void
+    {
+        (require database_path('migrations/2026_11_16_223000_create_religious_circle_presence.php'))->up();
+        Sanctum::actingAs($this->owner, ['quran:sync']);
+        $otherCircle = DB::table('religious_circles')->insertGetId([
+            'title' => 'حلقة ثانية', 'content_id' => $this->content, 'goal' => 100, 'published' => true,
+        ]);
+        foreach ([$this->circle => 4, $otherCircle => 50] as $id => $amount) {
+            $this->putJson($this->url('circles/'.$id.'/membership'), ['joined' => true])->assertOk();
+            $this->postJson($this->url('circles/'.$id.'/counts'), [
+                'operation_id' => (string) Str::uuid(), 'amount' => $amount,
+            ])->assertOk();
+        }
+        $this->putJson($this->url('circles/'.$this->circle.'/presence'), [
+            'session_id' => (string) Str::uuid(), 'active' => true,
+        ])->assertOk();
+
+        $page = $this->url('circles?sort=progress&limit=1');
+        $this->getJson($page)->assertOk()->assertJsonPath('data.items.0.id', $this->circle)
+            ->assertJsonPath('data.items.0.online', 1)->assertJsonPath('data.next_cursor', 1);
+        $this->getJson($page.'&cursor=1')->assertOk()->assertJsonPath('data.items.0.id', $otherCircle)
+            ->assertJsonPath('data.items.0.online', 0)->assertJsonPath('data.next_cursor', null);
+    }
+
     public function test_circle_cursor_pagination_has_no_duplicates_or_unpublished_items(): void
     {
         $this->sign();

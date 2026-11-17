@@ -60,13 +60,32 @@ final class ReligiousCommunity
         return ['items' => $visible->map($map)->values()->all(), 'next_cursor' => $more ? (int) $visible->last()->id : null];
     }
 
+    public function circlesByProgress(int $owner, int $offset, int $limit): array
+    {
+        $totals = DB::table('religious_circle_counts')->selectRaw('circle_id, SUM(amount) AS total')->groupBy('circle_id');
+        $rows = DB::table('religious_circles')
+            ->leftJoinSub($totals, 'counts', 'counts.circle_id', '=', 'religious_circles.id')
+            ->where('religious_circles.published', true)
+            ->select('religious_circles.*', 'counts.total as contribution_total')
+            ->orderByRaw('1e0 * COALESCE(counts.total, 0) / religious_circles.goal DESC')
+            ->orderByDesc('religious_circles.id')
+            ->offset($offset)->limit($limit + 1)->get();
+
+        return [
+            'items' => $rows->take($limit)->map(fn ($row) => $this->circle($row, $owner))->values()->all(),
+            'next_cursor' => $rows->count() > $limit ? $offset + $limit : null,
+        ];
+    }
+
     public function circle(object $row, int $owner): array
     {
         return ['id' => (int) $row->id, 'title' => $row->title, 'goal' => (int) $row->goal,
             'content' => $this->content($row->content_id),
             'voice_phrase' => $row->voice_phrase ?? null,
             'online' => $this->online((int) $row->id),
-            'total' => (int) DB::table('religious_circle_counts')->where('circle_id', $row->id)->sum('amount'),
+            'total' => property_exists($row, 'contribution_total')
+                ? (int) $row->contribution_total
+                : (int) DB::table('religious_circle_counts')->where('circle_id', $row->id)->sum('amount'),
             'mine' => (int) DB::table('religious_circle_counts')->where('circle_id', $row->id)->where('account_id', $owner)->sum('amount'),
             'participants' => DB::table('religious_circle_members')->where('circle_id', $row->id)->where('active', true)->count(),
             'joined' => DB::table('religious_circle_members')->where('circle_id', $row->id)->where('account_id', $owner)->where('active', true)->exists()];

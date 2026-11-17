@@ -27,6 +27,9 @@ final class ReligiousCommunityController extends Controller
     {
         $owner = $this->community->actor($request->user());
         [$cursor,$limit] = $this->page($request);
+        if ($request->query('sort') === 'progress') {
+            return response()->json(['data' => $this->community->circlesByProgress($owner, $cursor, $limit)]);
+        }
 
         return response()->json(['data' => $this->community->page(DB::table('religious_circles')->where('published', true), $cursor, $limit, fn ($row) => $this->community->circle($row, $owner))]);
     }
