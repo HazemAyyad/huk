@@ -212,10 +212,10 @@ class AmputationController extends Controller
             ]);
 
             $message = AmputationMessage::create([
-                "solidarity_housing_id" => $case['id'],
+                "amputation_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 
@@ -245,10 +245,10 @@ class AmputationController extends Controller
             ]);
 
             $message = AmputationMessage::create([
-                "solidarity_housing_id" => $case['id'],
+                "amputation_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 
@@ -278,10 +278,10 @@ class AmputationController extends Controller
             ]);
 
             $message = AmputationMessage::create([
-                "solidarity_housing_id" => $case['id'],
+                "amputation_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 

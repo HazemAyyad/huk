@@ -31,7 +31,7 @@ final class AppSessionController extends Controller
         ]);
         abort_unless($account->active && in_array($data['provider'], $account->areas(), true), 403, 'area_denied');
 
-        return $this->issue($account, $access, $data['provider']);
+        return $this->issue($account, $access, $data['provider'], device: $request->input('device'));
     }
 
     // Existing verified religious login/Google sessions can enter the aggregate
@@ -44,7 +44,7 @@ final class AppSessionController extends Controller
         $account = AppAccount::firstOrCreate(['religious_account_id' => $owner->id], ['religious_enabled' => true]);
         abort_unless($account->active && $account->religious_enabled, 403);
 
-        return $this->issue($account, $access, 'religious', false);
+        return $this->issue($account, $access, 'religious', false, $request->input('device'));
     }
 
     private function profile(AppAccount $account, AppAdminAccess $access): array
@@ -59,10 +59,21 @@ final class AppSessionController extends Controller
             'roles' => $roles, ...$access->session($account)];
     }
 
-    private function issue(AppAccount $account, AppAdminAccess $access, string $provider, bool $religiousSession = true)
+    private function issue(AppAccount $account, AppAdminAccess $access, string $provider, bool $religiousSession = true, mixed $device = null)
     {
-        $data = ['account' => $this->profile($account, $access),
-            'token' => $account->createToken('app-session', app(AppSessionProof::class)->abilities($account, $provider), now()->addDays(30))->plainTextToken];
+        $issued = DB::transaction(function () use ($account, $provider, $device) {
+            $devices = app(\App\Services\Association\AssociationDevices::class);
+            $ready = \Illuminate\Support\Facades\Schema::hasTable('association_devices');
+            abort_if($ready && DB::table('association_account_policies')->where('account_id', $account->id)->where('app_enabled', false)->exists(), 403, 'application_access_disabled');
+            if ($ready && config('association.enforce_devices') && $devices->limit($account) !== null && ! is_array($device)) {
+                throw ValidationException::withMessages(['device' => 'يلزم تحديث التطبيق وربط هذا الجهاز قبل تسجيل الدخول.']);
+            }
+            $issued = $account->createToken('app-session', app(AppSessionProof::class)->abilities($account, $provider), now()->addDays(30));
+            if ($ready && is_array($device)) { $devices->register($account, $issued->accessToken, $device); }
+
+            return $issued;
+        });
+        $data = ['account' => $this->profile($account, $access), 'token' => $issued->plainTextToken];
         if ($religiousSession && $account->religious_enabled && $account->religious_account_id) {
             $religious = ReligiousAccount::findOrFail($account->religious_account_id);
             $data['religious_session'] = ['account' => ReligiousIdentityController::account($religious),
@@ -120,7 +131,7 @@ final class AppSessionController extends Controller
             return $primary;
         });
 
-        return $this->issue($primary, $access, $source);
+        return $this->issue($primary, $access, $source, device: $request->input('device'));
     }
 
     public function admin(Request $request, AppAdminAccess $access)
@@ -139,6 +150,7 @@ final class AppSessionController extends Controller
     public function logout(Request $request)
     {
         $account = $request->user();
+        app(\App\Services\Association\AssociationDevices::class)->logout($account, $account->currentAccessToken());
         $account->tokens()->where('name', 'app-admin:'.$account->currentAccessToken()->id)->delete();
         $account->currentAccessToken()->delete();
 

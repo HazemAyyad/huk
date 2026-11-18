@@ -7,6 +7,8 @@ use App\Traits\Blameable;
 
 class Event extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     use Blameable;
 
     protected $fillable = [

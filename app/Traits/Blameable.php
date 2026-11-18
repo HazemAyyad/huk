@@ -11,21 +11,21 @@ trait Blameable
         // عند الإنشاء
         static::creating(function ($model) {
             if (Auth::check() && empty($model->created_by)) {
-                $model->created_by = Auth::id();
+                $model->created_by = Auth::user() instanceof \App\Models\AppAccount ? Auth::user()->user_id : Auth::id();
             }
         });
 
         // عند التعديل
         static::updating(function ($model) {
             if (Auth::check()) {
-                $model->updated_by = Auth::id();
+                $model->updated_by = Auth::user() instanceof \App\Models\AppAccount ? Auth::user()->user_id : Auth::id();
             }
         });
 
         // عند الحذف
         static::deleting(function ($model) {
             if (Auth::check()) {
-                $model->deleted_by = Auth::id();
+                $model->deleted_by = Auth::user() instanceof \App\Models\AppAccount ? Auth::user()->user_id : Auth::id();
                 $model->save();
             }
         });

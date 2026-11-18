@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FamilyBreadwinner extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 
     public function scopeFilter($query, array $filters)
@@ -90,16 +92,14 @@ class FamilyBreadwinner extends Model
 
         static::creating(function ($model) {
             if (!$model->case_code) {
-                $last = self::orderBy('id', 'desc')->first();
-                $lastNumber = $last ? intval(substr($last->case_code, 1)) : 0;
-                $model->case_code = 'D' . ($lastNumber + 1);
+                $model->case_code = app(\App\Services\Association\AssociationCaseCodes::class)->next($model, 'D');
             }
         });
     }
 
     public function members()
     {
-        return $this->hasMany(BreadwinnerFamilyMember::class);
+        return $this->hasMany(BreadwinnerFamilyMember::class, 'family_id');
     }
 
     // حساب عدد الأسرة تلقائياً (الزوجة + الأعضاء)

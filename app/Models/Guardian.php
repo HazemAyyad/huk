@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Guardian extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 
     protected $dates = ['birth_date', 'entry_date'];
@@ -91,9 +93,7 @@ class Guardian extends Model
 
         static::creating(function ($model) {
             if (!$model->case_code) {
-                $last = self::orderBy('id', 'desc')->first();
-                $lastNumber = $last ? intval(substr($last->case_code, 1)) : 0;
-                $model->case_code = 'A' . ($lastNumber + 1);
+                $model->case_code = app(\App\Services\Association\AssociationCaseCodes::class)->next($model, 'A');
             }
         });
     }

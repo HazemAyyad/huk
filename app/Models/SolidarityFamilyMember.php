@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SolidarityFamilyMember extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
-        'amputation_case_id',
+        'solidarity_housing_id',
         'name',
         'national_id',
         'passport_number',

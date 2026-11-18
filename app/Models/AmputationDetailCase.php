@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AmputationDetailCase extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'telegram_user_id',
         'full_name',

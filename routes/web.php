@@ -1,5 +1,8 @@
 <?php
 
+\Illuminate\Support\Facades\Route::get('/association-media/{upload}', [\App\Http\Controllers\Api\AssociationMediaController::class, 'show'])
+    ->middleware('auth')->whereUuid('upload')->name('association.media');
+
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HumanitarianCases\AmputationController;

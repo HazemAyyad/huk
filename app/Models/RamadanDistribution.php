@@ -7,6 +7,8 @@ use App\Models\User;
 
 class RamadanDistribution extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'beneficiary_id',
         'distribution_date',

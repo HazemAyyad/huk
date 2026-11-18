@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class EmbassyEventAttendee extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     use SoftDeletes;
 
     protected $fillable = [

@@ -51,20 +51,16 @@ class AttendanceController extends Controller
 
     public function markAttendance($id)
     {
-        $log = MessageLog::findOrFail($id);
-
-        if ($log->attended_at) {
-            return back()->with('error', 'تم تسجيل الحضور مسبقاً');
-        }
-
-        $log->update([
-            'attended_at' => now(),
-            'attended_by' => Auth::id(),
-            'excused_at' => null,
-            'excused_by' => null
-        ]);
-
-        return back()->with('success', '✅ تم تسجيل الحضور');
+        $already = \Illuminate\Support\Facades\DB::transaction(function () use ($id) {
+            $source = MessageLog::whereKey($id)->where('message_type', 'invitation')->firstOrFail();
+            TelegramUser::whereKey($source->telegram_user_id)->lockForUpdate()->firstOrFail();
+            $event = Event::whereKey($source->event_id)->lockForUpdate()->firstOrFail();
+            abort_unless(app(\App\Services\Association\AssociationEntities::class)->eventActive($event), 409, 'الفعالية غير نشطة.');
+            if (\Illuminate\Support\Facades\Schema::hasTable('association_invitation_states')) {
+                abort_if(\Illuminate\Support\Facades\DB::table('association_invitation_states')->where('message_log_id', $id)->whereNotNull('withdrawn_at')->exists(), 409, 'سُحبت الدعوة.');
+            }
+            return app(\App\Services\Association\AssociationAttendanceFacts::class)->apply(Auth::id(), (int) $id, now());
+        }, 3);
+        return back()->with('success', $already ? 'تم تسجيل الحضور مسبقًا.' : 'تم تسجيل الحضور.');
     }
-
 }

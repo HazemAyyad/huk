@@ -23,6 +23,7 @@ final class AppSessionProof
         if (! $account->active || ! $token->can('app:session') || ! $token->expires_at?->isFuture()) {
             return false;
         }
+        if (! app(\App\Services\Association\AssociationDevices::class)->valid($account, $token)) { return false; }
         foreach ($account->areas() as $provider) {
             $owner = $provider === 'association' ? User::find($account->user_id) : ReligiousAccount::find($account->religious_account_id);
             if (! $owner || $owner->getAttribute('deleted_by') || $owner->getAttribute('deleted_at') || $owner->getAttribute('must_change_password')) {

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaskAssignment extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'event_id',        // الفاعلية المرتبطة
         'telegram_user_id',         // الشخص المكلف

@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements LaratrustUser
 {
+    use \App\Traits\AssociationTombstones;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
     use HasRolesAndPermissions;
@@ -68,6 +70,8 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(TaskAssignment::class);
     }
+    public function payments() { return $this->hasMany(Payment::class); }
+    public function paidSalaries() { return $this->hasMany(PaidSalary::class); }
 
     public function creator()
     {

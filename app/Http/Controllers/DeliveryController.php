@@ -50,120 +50,50 @@ class DeliveryController extends Controller
     // تسجيل التسليم
     public function markDelivery(Request $request, $id)
     {
-        try {
-
-            $invitationLog = MessageLog::findOrFail($id);
-
-            $event = Event::findOrFail($invitationLog->event_id);
-
-            $user = TelegramUser::findOrFail($invitationLog->telegram_user_id);
-
-            // تحقق هل تم التسليم مسبقاً
-            $alreadyReceived = MessageLog::where('telegram_user_id', $user->id)
-                ->where('event_id', $event->id)
-                ->where('message_type', 'received')
-                ->exists();
-
-            if ($alreadyReceived) {
-
-                return response()->json([
-                    'success' => false,
-                    'message' => '⚠️ تم تسجيل التسليم مسبقاً'
-                ]);
-            }
-
-            $authUser = Auth::user();
-
-            $message = $event->default_message ?? 'تم التسليم بنجاح';
-
-            $telegramMessage  = "<b>الاسم:</b> {$user->full_name}\n";
-            $telegramMessage .= "<b>رقم الهوية:</b> {$user->national_id}\n";
-            $telegramMessage .= "<b>رقم الكشف:</b> {$event->id}\n";
-            $telegramMessage .= "<b>التاريخ:</b> " . now()->toDateString() . "\n\n";
-            $telegramMessage .= $message . "\n\n";
-
-            if ($authUser && !empty($authUser->title)) {
-                $telegramMessage .= "<b>المرسل:</b> {$authUser->title}";
-            }
-
-            $dbMessage = strip_tags($telegramMessage);
-
-            // إنشاء سجل التسليم
-            $log = MessageLog::create([
-                'telegram_user_id' => $user->id,
-                'event_id'         => $event->id,
-                'sent_by'          => $authUser->id,
-                'sender_type'      => $authUser->name,
-                'message'          => $dbMessage,
-                'message_type'     => 'received',
-                'delivery_status'  => 'pending',
-            ]);
-
-            // تسجيل بدون إشعار
-            if ($request->send_method === 'without_notification') {
-
-                $log->update([
-                    'delivery_status' => 'manual',
-                    'sent_at' => now(),
-                ]);
-
-                $user->increment('benefit_count');
-
-                return response()->json([
-                    'success' => true,
-                    'message' => '✅ تم تسجيل التسليم بدون إشعار'
-                ]);
-            }
-
-            // لا يوجد تيليجرام
-            if (empty($user->chat_id)) {
-
-                $log->update([
-                    'delivery_status' => 'manual',
-                    'sent_at' => now(),
-                ]);
-
-                $user->increment('benefit_count');
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'ℹ️ لا يوجد حساب تيليجرام، تم التسجيل فقط'
-                ]);
-            }
-
-            // إرسال تيليجرام
-            $response = $this->sendBusinessMessage($user, $telegramMessage);
-
-            if ($response->successful()) {
-
-                $log->update([
-                    'delivery_status' => 'sent',
-                    'sent_at' => now(),
-                ]);
-
-                $user->increment('benefit_count');
-
-                return response()->json([
-                    'success' => true,
-                    'message' => '✅ تم التسليم وإرسال الرسالة'
-                ]);
-            }
-
-            // فشل الإرسال
-            $log->delete();
-
-            return response()->json([
-                'success' => false,
-                'message' => '❌ فشل إرسال تيليجرام'
-            ]);
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage()
-            ], 500);
+        $staff = Auth::user();
+        $override = $request->boolean('override');
+        if ($override) {
+            abort_unless($staff->hasRole('superadmin') || $staff->hasPermission(\App\Services\Association\AssociationModules::PERMISSIONS['association.deliveries.override']), 403);
+            $request->validate(['reason' => 'required|string|min:3|max:2000']);
         }
+        $result = \Illuminate\Support\Facades\DB::transaction(function () use ($request, $staff, $id, $override) {
+            $source = MessageLog::whereKey($id)->where('message_type', 'invitation')->firstOrFail();
+            TelegramUser::whereKey($source->telegram_user_id)->lockForUpdate()->firstOrFail();
+            $event = Event::whereKey($source->event_id)->lockForUpdate()->firstOrFail();
+            abort_unless(app(\App\Services\Association\AssociationEntities::class)->eventActive($event), 409, 'الفعالية غير نشطة.');
+            if (\Illuminate\Support\Facades\Schema::hasTable('association_invitation_states')) {
+                abort_if(\Illuminate\Support\Facades\DB::table('association_invitation_states')->where('message_log_id', $id)->whereNotNull('withdrawn_at')->exists(), 409, 'سُحبت الدعوة.');
+            }
+            $result = app(\App\Services\Association\AssociationDeliveryFacts::class)->apply($staff, (int) $id, now(), $override);
+            if (! $result['already_applied'] && \Illuminate\Support\Facades\Schema::hasTable('association_audit')) {
+                \Illuminate\Support\Facades\DB::table('association_audit')->insert(['staff_id' => $staff->id, 'module' => 'deliveries',
+                    'record_id' => $id, 'action' => 'web.confirm', 'after' => json_encode(['receipt_id' => $result['receipt']->id]),
+                    'reason' => $override ? $request->input('reason') : null, 'created_at' => now()]);
+                if ($request->send_method !== 'without_notification') {
+                    app(\App\Services\Association\AssociationNotifications::class)->beneficiary($source->telegram_user_id, $staff->id,
+                        'تأكيد استلام المساعدة', $result['receipt']->message, ['type' => 'receipt', 'id' => $result['receipt']->id, 'event_id' => $event->id]);
+                }
+            }
+            return $result;
+        }, 3);
+        if ($result['already_applied']) {
+            return response()->json(['success' => true, 'already_applied' => true, 'message' => 'تم تسجيل التسليم مسبقًا.']);
+        }
+        $log = $result['receipt'];
+        $person = TelegramUser::findOrFail($log->telegram_user_id);
+        if ($request->send_method === 'without_notification' || empty($person->chat_id)) {
+            return response()->json(['success' => true, 'message' => 'تم تسجيل التسليم دون إشعار خارجي.']);
+        }
+        try {
+            $response = $this->sendBusinessMessage($person, htmlspecialchars($log->message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
+            if ($response->successful()) {
+                $log->update(['delivery_status' => 'sent']);
+                return response()->json(['success' => true, 'message' => 'تم تسجيل التسليم وإرسال الرسالة.']);
+            }
+        } catch (\Throwable) {
+            // Delivery remains committed even when Telegram is unavailable.
+        }
+        return response()->json(['success' => true, 'notification_sent' => false, 'message' => 'تم تسجيل التسليم، وتعذّر إرسال الإشعار الخارجي.']);
     }
 
     // إرسال تيليجرام
@@ -185,7 +115,7 @@ class DeliveryController extends Controller
             $params['business_connection_id'] = $user->business_connection_id;
         }
 
-        return Http::asJson()->post(
+        return Http::asJson()->connectTimeout(5)->timeout(15)->post(
             "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
             $params
         );

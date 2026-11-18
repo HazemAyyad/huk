@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'title',
         'notes',

@@ -509,7 +509,7 @@ class PatientController extends Controller
                 "patient_case_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 
@@ -542,7 +542,7 @@ class PatientController extends Controller
                 "patient_case_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 

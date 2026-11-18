@@ -7,6 +7,8 @@ use App\Traits\Blameable; // استدعاء الـ Trait
 
 class MessageLog extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     use Blameable; 
     use \Illuminate\Database\Eloquent\SoftDeletes;
 

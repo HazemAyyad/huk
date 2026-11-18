@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SolidarityHousing extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
 
     protected $guarded = [];
 
@@ -25,9 +27,7 @@ class SolidarityHousing extends Model
 
         static::creating(function ($model) {
             if (!$model->case_code) {
-                $last = self::orderBy('id', 'desc')->first();
-                $lastNumber = $last ? intval(substr($last->case_code, 1)) : 0;
-                $model->case_code = 'C' . ($lastNumber + 1);
+                $model->case_code = app(\App\Services\Association\AssociationCaseCodes::class)->next($model, 'C');
             }
         });
     }

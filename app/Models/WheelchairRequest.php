@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class WheelchairRequest extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
     'full_name',
     'national_id',

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class RamadanBeneficiary extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     use SoftDeletes;
 
     protected $fillable = [

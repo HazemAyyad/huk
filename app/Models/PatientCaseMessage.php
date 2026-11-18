@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientCaseMessage extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MeatRegistration extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'telegram_user_id',
         'national_id',

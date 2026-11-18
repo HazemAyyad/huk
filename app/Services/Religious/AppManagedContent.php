@@ -179,6 +179,51 @@ final class AppManagedContent
         });
     }
 
+    public function recordHash(array $state, string $section, string $id): string
+    {
+        $rows = $this->records($state['draft'], $section);
+        $position = array_search($id, array_column($rows, 'id'), true);
+        abort_if($position === false, 404);
+        return hash('sha256', json_encode(['record' => $rows[$position], 'position' => $position], JSON_THROW_ON_ERROR));
+    }
+
+    public function reviewRecord(string $section, string $id, int $revision): array
+    {
+        return $this->change($revision, function ($state) use ($section, $id) {
+            $state['record_reviews'][$section][$id] = $this->recordHash($state, $section, $id);
+            return $state;
+        });
+    }
+
+    public function publishRecord(string $section, string $id, int $revision): array
+    {
+        return $this->change($revision, function ($state) use ($section, $id) {
+            $hash = $this->recordHash($state, $section, $id);
+            abort_unless(hash_equals($hash, $state['record_reviews'][$section][$id] ?? ''), 422, 'راجع المادة الحالية قبل نشرها');
+            $draft = $this->records($state['draft'], $section);
+            $index = array_search($id, array_column($draft, 'id'), true);
+            $record = $draft[$index];
+            // Validate dependencies against the public snapshot, so publishing a
+            // group cannot silently publish other draft items it refers to.
+            $this->validate($section, $record, $state['published'], $record);
+            $rows = array_values(array_filter($this->records($state['published'], $section), fn ($row) => $row['id'] !== $id));
+            $position = count($rows);
+            foreach (array_slice($draft, $index + 1) as $next) {
+                $found = array_search($next['id'], array_column($rows, 'id'), true);
+                if ($found !== false) { $position = $found; break; }
+            }
+            array_splice($rows, $position, 0, [$record]);
+            $keys = $this->collection($section);
+            if (count($keys) === 1) { $state['published'][$keys[0]] = $rows; }
+            else { $state['published'][$keys[0]][$keys[1]] = $rows; }
+            $state['revision']++;
+            if (str_starts_with($section, 'adhkar-')) { $state['published']['adhkar']['version'] = 'admin-'.$state['revision']; }
+            $state['published_revision'] = $state['revision'];
+            $state['reviewed_revision'] = null;
+            return $state;
+        });
+    }
+
     public function publish(int $revision): array
     {
         return $this->change($revision, function ($state) {

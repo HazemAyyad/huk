@@ -40,14 +40,15 @@ class EmployeePaymentController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'amount' => 'required|numeric|min:0',
+            'amount' => 'required|numeric|min:0|max:99999999.99|decimal:0,2',
             'payment_date' => 'required|date',
         ]);
 
         try {
             DB::beginTransaction();
-            $payment = Payment::create($request->all());
-            Payment::processMonthlyPayments($payment->user_id, $payment->payment_date);
+            User::whereKey($request->user_id)->lockForUpdate()->firstOrFail();
+            $payment = Payment::create($request->only(['user_id', 'amount', 'payment_date']));
+            self::processMonthlyPayments($payment->user_id, $payment->payment_date);
             DB::commit();
             return response()->json(['message' => "Done"], 200);
         } catch (\Throwable $th) {
@@ -63,19 +64,21 @@ class EmployeePaymentController extends Controller
     public static function processMonthlyPayments($userId, $month)
     {
         $user = User::findOrFail($userId);
-        $basicSalary = $user->basic_salary;
-        if ($basicSalary <= 0) return; // تجنب قسمة على صفر
+        $basicSalary = (int) round((float) $user->basic_salary * 100);
+        if ($basicSalary <= 0) return;
 
         // جيب إجمالي الدفعات في الشهر ده
         $startOfMonth = Carbon::parse($month)->startOfMonth();
         $endOfMonth = Carbon::parse($month)->endOfMonth();
         $totalAmount = Payment::where('user_id', $userId)
-            ->whereBetween('payment_date', [$startOfMonth, $endOfMonth])
+            ->whereDate('payment_date', '>=', $startOfMonth->toDateString())
+            ->whereDate('payment_date', '<=', $endOfMonth->toDateString())
             ->sum('amount');
 
         // حساب عدد الشهور الكاملة
-        $fullMonths = floor($totalAmount / $basicSalary);
-        $remaining = $totalAmount % $basicSalary; // الباقي
+        $totalCents = (int) round((float) $totalAmount * 100);
+        $fullMonths = intdiv($totalCents, $basicSalary);
+        $remaining = ($totalCents % $basicSalary) / 100;
 
         // تسجيل الشهور الكاملة
         $currentMonth = Carbon::parse($month)->startOfMonth();

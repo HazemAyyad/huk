@@ -67,25 +67,8 @@ class RamadanController extends Controller
 
 public function receive($id)
 {
-    $beneficiary = RamadanBeneficiary::findOrFail($id);
-    $today = now()->toDateString();
-
-    $alreadyReceived = RamadanDistribution::where('beneficiary_id', $id)
-        ->whereDate('distribution_date', $today)
-        ->exists();
-
-    if ($alreadyReceived) {
-        return back()->with('error', 'استلم اليوم مسبقاً');
-    }
-
-    RamadanDistribution::create([
-        'beneficiary_id' => $beneficiary->id,
-        'distribution_date' => $today,
-        'meals_taken' => $beneficiary->daily_meals,
-        'created_by' => auth()->id(),
-    ]);
-
-    return back()->with('success', 'تم تسجيل الاستفادة');
+    $receipt = app(\App\Services\Association\AssociationRamadan::class)->receive((int) $id, auth()->id(), now()->toDateString());
+    return back()->with($receipt['already_applied'] ? 'error' : 'success', $receipt['already_applied'] ? 'استلم اليوم مسبقًا.' : 'تم تسجيل الاستفادة.');
 }
 
 public function report(Request $request)

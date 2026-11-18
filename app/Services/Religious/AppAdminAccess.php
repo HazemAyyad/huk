@@ -10,6 +10,7 @@ final class AppAdminAccess
 {
     // Existing Laratrust roles/direct permissions remain the owner of authorization.
     public const PERMISSIONS = [
+        ...\App\Services\Association\AssociationModules::PERMISSIONS,
         'admin.enter' => 'read_app_admin',
         'translations.edit' => 'update_app_translations',
         'content.edit' => 'update_app_content',
@@ -53,8 +54,11 @@ final class AppAdminAccess
                 ->orWhereIn('id', DB::table('permission_role')->whereIn('role_id', $roleIds)->select('permission_id'));
         })->pluck('name')->all();
         $granted = json_decode($grant->permissions, true);
+        $granted = is_array($granted) ? $granted : [];
         $grant->effective_permissions = array_values(array_filter(array_keys(self::PERMISSIONS),
             fn ($key) => in_array($key, $granted, true) && ($super || in_array(self::PERMISSIONS[$key], $effective, true))));
+        $grant->staff_id = $staff->id;
+        $grant->is_superadmin = $super;
         if (! in_array('admin.enter', $grant->effective_permissions, true)) {
             return null;
         }
@@ -67,6 +71,8 @@ final class AppAdminAccess
         $grant = $this->grant($account);
 
         return ['admin_access' => $grant !== null, 'permissions' => $grant?->effective_permissions ?? [],
+            'association_scope' => ['global' => (bool) ($grant?->is_superadmin || ($grant?->association_global ?? false)),
+                'categories' => $grant ? json_decode($grant->association_categories ?? '[]', true) : []],
             'locales' => $grant ? json_decode($grant->locales, true) : []];
     }
 

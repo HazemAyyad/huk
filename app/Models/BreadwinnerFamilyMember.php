@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BreadwinnerFamilyMember extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 
     public function family()

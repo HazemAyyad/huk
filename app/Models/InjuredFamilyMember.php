@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class InjuredFamilyMember extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 
     public function injuredCase()

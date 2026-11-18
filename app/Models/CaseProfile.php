@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CaseProfile extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'key',
         'name',

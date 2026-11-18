@@ -182,6 +182,16 @@ final class AppLocalizationController extends Controller
         abort_if(array_diff($data['permissions'], $actor->effective_permissions), 403, 'cannot_delegate_permission');
         $scope = json_decode($actor->locales, true);
         abort_if($scope && (! $data['locales'] || array_diff($data['locales'], $scope)), 403, 'cannot_delegate_locale');
+        $associationScope = $request->validate(['association_global' => 'sometimes|boolean', 'association_categories' => 'sometimes|array',
+            'association_categories.*' => 'integer|distinct|exists:categories,id']);
+        $association = app(\App\Services\Association\AssociationAccess::class);
+        if (isset($associationScope['association_global']) || isset($associationScope['association_categories']) ||
+            array_filter($data['permissions'], fn ($key) => str_starts_with($key, 'association.'))) {
+            abort_unless($association->can($request->user(), 'staff', 'permissions') || $actor->is_superadmin, 403, 'cannot_delegate_association_scope');
+            abort_if(! $association->global($actor) && (($associationScope['association_global'] ?? $target->association_global ?? false) ||
+                array_diff($associationScope['association_categories'] ?? json_decode($target->association_categories ?? '[]', true), $association->categories($actor))), 403, 'cannot_delegate_scope');
+        }
+        $data = [...$data, ...$associationScope];
         DB::transaction(function () use ($data, $target, $request): void {
             $staffId = AppAccount::findOrFail($target->app_account_id)->user_id;
             abort_unless($staffId, 422, 'staff_identity_required');
@@ -193,7 +203,9 @@ final class AppLocalizationController extends Controller
             // the narrower gate for this unit, including permission removals.
             User::findOrFail($staffId)->permissions()->syncWithoutDetaching($permissionIds);
             DB::table('app_admin_memberships')->where('id', $target->id)->update(['active' => $data['active'],
-                'permissions' => json_encode($data['permissions']), 'locales' => json_encode($data['locales']), 'updated_at' => now()]);
+                'permissions' => json_encode($data['permissions']), 'locales' => json_encode($data['locales']), 'updated_at' => now(),
+                ...array_key_exists('association_global', $data) ? ['association_global' => $data['association_global']] : [],
+                ...array_key_exists('association_categories', $data) ? ['association_categories' => json_encode($data['association_categories'])] : []]);
             $this->access->audit($request->user()->id, 'membership.updated', (string) $target->id, $data);
         });
 

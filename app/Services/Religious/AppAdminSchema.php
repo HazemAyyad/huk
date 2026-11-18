@@ -6,10 +6,15 @@ final class AppAdminSchema
 {
     public static function fields(string $section, array $catalog, array $managed): array
     {
-        $f = fn ($key, $label, $type = 'text', $extra = []) => ['key' => $key, 'label' => $label, 'type' => $type, ...$extra];
+        $english = ['id' => 'Stable identifier', 'title' => 'Title', 'text' => 'Original text', 'source' => 'Source and attribution', 'sourceUrl' => 'Source link',
+            'content_id' => 'Verified library content', 'body' => 'Description', 'published' => 'Visible to users', 'target' => 'Documented repetition count',
+            'voice_phrase' => 'Voice counting phrase from the dhikr', 'goal' => 'Organizational group target', 'verseKeys' => 'Verse references',
+            'verse_key' => 'Verse reference', 'closing_dua' => 'Closing supplication', 'closing_source' => 'Closing supplication source',
+            'item_ids' => 'Ordered items', 'item_id' => 'Verified content', 'source_url' => 'Source link', 'surahs' => 'Available surahs', 'url' => 'Recording or recitation directory URL'];
+        $f = fn ($key, $label, $type = 'text', $extra = []) => ['key' => $key, 'label' => $label, 'label_en' => $english[$key] ?? \Illuminate\Support\Str::headline($key), 'type' => $type, ...$extra];
         $choices = fn ($rows) => array_map(fn ($row) => ['value' => (string) $row['id'], 'label' => $row['title'] ?? $row['name'] ?? $row['id']], $rows);
         $select = fn ($key, $label, $options) => $f($key, $label, 'select', ['options' => $options]);
-        $pairs = fn ($values) => array_map(fn ($value, $label) => ['value' => $value, 'label' => $label], array_values($values), array_keys($values));
+        $pairs = fn ($values) => array_map(fn ($value, $label) => ['value' => $value, 'label' => $label, 'label_en' => \Illuminate\Support\Str::headline($value)], array_values($values), array_keys($values));
         $items = array_map(fn ($item) => ['value' => $item['id'], 'label' => $item['title'], 'text' => $item['text'], 'source' => $item['source']], $catalog['items']);
         $textSource = [$f('title', 'العنوان'), $f('text', 'النص الأصلي', 'multiline'), $f('source', 'المصدر والتخريج'), $f('sourceUrl', 'رابط المصدر')];
         $publish = $f('published', 'إظهار للمستخدمين', 'bool');

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PhotographerApplication extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
     'photographer_ad_id',
     'full_name',

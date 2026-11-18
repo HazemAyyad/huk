@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TelegramUser extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     use SoftDeletes;
     protected $fillable = [
         'category_id',

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Orphan extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 
     protected $dates = ['birth_date'];

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class StrandedFamily extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $guarded = [];
 
     public function scopeFilter($query, array $filters)
@@ -90,9 +92,7 @@ class StrandedFamily extends Model
 
         static::creating(function ($model) {
             if (!$model->case_code) {
-                $last = self::orderBy('id', 'desc')->first();
-                $lastNumber = $last ? intval(substr($last->case_code, 1)) : 0;
-                $model->case_code = 'E' . ($lastNumber + 1);
+                $model->case_code = app(\App\Services\Association\AssociationCaseCodes::class)->next($model, 'E');
             }
         });
     }

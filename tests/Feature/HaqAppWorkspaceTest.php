@@ -319,4 +319,53 @@ final class HaqAppWorkspaceTest extends TestCase
         $this->withToken($token)->getJson($this->url('sakinah'))->assertForbidden();
         $this->withToken($token)->postJson($this->url('sakinah/catalog/action'), ['action' => 'publish', 'revision' => 0])->assertForbidden();
     }
+
+    public function test_publishing_one_reviewed_record_preserves_every_other_public_record_and_draft(): void
+    {
+        [$token] = $this->admin();
+        $managed = app(AppManagedContent::class);
+        $before = $managed->published();
+        $first = $before['sakinah'][0]; $second = $before['sakinah'][1];
+        $first['tagline'] = 'تعديل مستقل للنشر'; $second['tagline'] = 'مسودة أخرى لا تنشر';
+        $this->withToken($token)->postJson($this->url('sakinah'), ['record' => $first, 'revision' => 0])->assertOk();
+        $this->postJson($this->url('sakinah'), ['record' => $second, 'revision' => 1])->assertOk();
+        $this->postJson($this->url('sakinah/'.$first['id'].'/action'), ['action' => 'publish_record', 'revision' => 2])->assertUnprocessable();
+        $this->postJson($this->url('sakinah/'.$first['id'].'/action'), ['action' => 'review_record', 'revision' => 2])->assertOk();
+        $this->getJson($this->url('sakinah'))->assertOk()->assertJsonPath('data.items.0._reviewed', true);
+        $this->postJson($this->url('sakinah/'.$first['id'].'/action'), ['action' => 'publish_record', 'revision' => 2])->assertOk();
+        $state = $managed->state();
+        $this->assertSame($first, $state['published']['sakinah'][0]);
+        $this->assertSame($before['sakinah'][1], $state['published']['sakinah'][1]);
+        $this->assertSame($second, $state['draft']['sakinah'][1]);
+        $this->assertSame($before['adhkar'], $state['published']['adhkar']);
+        $this->assertNull($state['reviewed_revision']);
+    }
+
+    public function test_record_review_expires_when_the_record_changes_and_review_permission_cannot_publish(): void
+    {
+        [$token] = $this->admin();
+        $record = app(AppManagedContent::class)->state()['draft']['tafsirs'][1];
+        $path = 'tafsirs/'.$record['id'].'/action';
+        $this->withToken($token)->postJson($this->url($path), ['action' => 'review_record', 'revision' => 0])->assertOk();
+        $record['title'] = 'اسم معدل بعد المراجعة';
+        $this->postJson($this->url('tafsirs'), ['record' => $record, 'revision' => 0])->assertOk();
+        $this->postJson($this->url($path), ['action' => 'publish_record', 'revision' => 1])->assertUnprocessable();
+        DB::table('app_admin_memberships')->update(['permissions' => json_encode(['admin.enter', 'catalogs.review'])]);
+        $this->withToken($token)->postJson($this->url($path), ['action' => 'review_record', 'revision' => 1])->assertOk();
+        $this->postJson($this->url($path), ['action' => 'publish_record', 'revision' => 1])->assertForbidden();
+    }
+
+    public function test_a_single_group_cannot_publish_its_unpublished_dhikr_dependencies(): void
+    {
+        [$token] = $this->admin();
+        $managed = app(AppManagedContent::class);
+        $item = ['id' => 'draft-only-dhikr', 'title' => 'ذكر موثق', 'text' => 'سبحان الله', 'target' => 1, 'source' => 'مصدر للتجربة', 'source_url' => 'https://example.test/source'];
+        $this->withToken($token)->postJson($this->url('adhkar-items'), ['record' => $item, 'revision' => 0])->assertOk();
+        $group = ['id' => 'new-group', 'title' => 'مجموعة جديدة', 'icon' => 'sun', 'item_ids' => [$item['id']]];
+        $this->postJson($this->url('adhkar-groups'), ['record' => $group, 'revision' => 1])->assertOk();
+        $this->postJson($this->url('adhkar-groups/new-group/action'), ['action' => 'review_record', 'revision' => 2])->assertOk();
+        $this->postJson($this->url('adhkar-groups/new-group/action'), ['action' => 'publish_record', 'revision' => 2])->assertUnprocessable();
+        $this->assertFalse(collect($managed->published()['adhkar']['items'])->contains('id', $item['id']));
+        $this->assertFalse(collect($managed->published()['adhkar']['groups'])->contains('id', $group['id']));
+    }
 }

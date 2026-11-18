@@ -499,7 +499,7 @@ class StrandedFamilyController extends Controller
                 "stranded_family_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 
@@ -532,7 +532,7 @@ class StrandedFamilyController extends Controller
                 "stranded_family_id" => $case['id'],
                 "user_id" => Auth::id(),
                 "latitude" => request('latitude'),
-                "longitude" => request('latitude'),
+                "longitude" => request('longitude'),
                 "message" => request('message'),
             ]);
 

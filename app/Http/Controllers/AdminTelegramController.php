@@ -1059,6 +1059,16 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
 
     public function storeUser(Request $request)
     {
+        $identities = app(\App\Services\Association\AssociationIdentities::class);
+        $members = $request->input('family_members', []);
+        if (is_array($members)) {
+            foreach ($members as &$member) {
+                if (is_array($member) && isset($member['national_id']) && is_string($member['national_id'])) { $member['national_id'] = $identities->normalize($member['national_id']); }
+            }
+            unset($member);
+        }
+        if (is_string($request->input('national_id'))) { $request->merge(['national_id' => $identities->normalize($request->input('national_id'))]); }
+        $request->merge(['family_members' => $members]);
         $validator = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
             'first_name' => 'nullable|string|max:255',
@@ -1075,7 +1085,12 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
             'city' => 'nullable|string|max:255',
             'address' => 'nullable|string',
             'target_case' => 'nullable|string|max:255',
-            'family_members' => 'array',
+            'family_members' => 'array|max:200',
+            'family_members.*' => 'array:full_name,national_id',
+            'family_members.*.full_name' => 'required|string|max:255',
+            'family_members.*.national_id' => 'nullable|string|max:255|distinct',
+            'categories' => 'sometimes|array|max:100',
+            'categories.*' => 'integer|distinct|exists:categories,id',
         ]);
 
         // ✅ فليديشن مخصص بعد التحقق الأساسي
@@ -1109,6 +1124,13 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
         // ✅ إنشاء المستخدم
         // =========================
 
+        try {
+        $user = DB::transaction(function () use ($request, $identities) {
+        $ids = [$request->national_id];
+        foreach ($request->input('family_members', []) as $member) { if (! empty($member['national_id'])) { $ids[] = $member['national_id']; } }
+        if (count(array_unique($ids)) !== count($ids)) { throw \Illuminate\Validation\ValidationException::withMessages(['family_members' => 'هوية المستفيد أو أحد أفراد الأسرة مكررة في الملف نفسه.']); }
+        $identities->lock($ids);
+        foreach ($ids as $identity) { $identities->available($identity); }
         $data = $request->except(['family_members', 'status']); // استبعاد status من المصفوفة الأساسية مؤقتاً
         $data['source'] = 'system';
 
@@ -1192,11 +1214,7 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
                         ->exists();
 
                     if ($exists) {
-                        return redirect()->back()
-                            ->withErrors([
-                                'family_members' => '❌ أحد أرقام هويات المرافقين مسجل مسبقًا.'
-                            ])
-                            ->withInput();
+                        throw \Illuminate\Validation\ValidationException::withMessages(['family_members' => '❌ أحد أرقام هويات المرافقين مسجل مسبقًا.']);
                     }
                 }
 
@@ -1212,6 +1230,11 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
         $user->update([
             'family_members' => $user->familyMembers()->count()
         ]);
+        return $user;
+        }, 3);
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            return redirect()->back()->withErrors($exception->errors())->withInput();
+        }
 
         return redirect()
             ->route('admin.telegram.details', $user->id)
@@ -1228,7 +1251,17 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
 
     public function update(Request $request, $id)
     {
-        $user = TelegramUser::findOrFail($id);
+        $request->validate(['national_id' => 'sometimes|nullable|string|max:255', 'status' => 'sometimes|in:pending,completed,blocked',
+            'categories' => 'sometimes|array|max:100', 'categories.*' => 'integer|distinct|exists:categories,id',
+            'family_members' => 'sometimes|array|max:200', 'family_members.*' => 'array:full_name,national_id',
+            'family_members.*.full_name' => 'required|string|max:255', 'family_members.*.national_id' => 'present|nullable|string|max:255',
+            'new_family_members' => 'sometimes|array|max:200', 'new_family_members.*' => 'array:full_name,national_id',
+            'new_family_members.*.full_name' => 'nullable|string|max:255', 'new_family_members.*.national_id' => 'nullable|string|max:255',
+            'delete_members' => 'sometimes|array|max:200', 'delete_members.*' => 'integer|distinct|min:1']);
+        try {
+        return DB::transaction(function () use ($request, $id) {
+        $user = TelegramUser::whereKey($id)->lockForUpdate()->firstOrFail();
+        $request->merge(app(\App\Services\Association\AssociationLegacyIdentityGraph::class)->update($user, $request->all()));
 
 
         // 1. تجهيز كافة البيانات الأساسية باستثناء المصفوفات الخاصة
@@ -1276,7 +1309,7 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
                 if ($request->has('change_main_category')) {
 
                     if (count($categories) == 0) {
-                        return back()->with('error', '❌ يجب اختيار فئة واحدة على الأقل');
+                        throw \Illuminate\Validation\ValidationException::withMessages(['categories' => '❌ يجب اختيار فئة واحدة على الأقل']);
                     }
 
                     DB::transaction(function () use ($user, $categories) {
@@ -1396,6 +1429,10 @@ private function sendPhotoWithMessage(TelegramUser $user, $caption)
 
         return redirect()->route('admin.telegram.details', $user->id)
                         ->with('success', 'تم تحديث البيانات بنجاح.');
+        }, 3);
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            return redirect()->back()->withErrors($exception->errors())->withInput();
+        }
     }
 
 

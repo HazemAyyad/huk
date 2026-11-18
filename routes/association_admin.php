@@ -1,0 +1,52 @@
+<?php
+
+use App\Http\Controllers\Api\AssociationAdminController;
+use App\Http\Controllers\Api\AssociationMediaController;
+use App\Http\Controllers\Api\AssociationEventsController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('association')->group(function (): void {
+    Route::get('manifest', [AssociationAdminController::class, 'manifest']);
+    Route::post('imports/{module}/preview', [\App\Http\Controllers\Api\AssociationExchangeController::class, 'preview']);
+    Route::post('imports/{module}/apply', [\App\Http\Controllers\Api\AssociationExchangeController::class, 'apply']);
+    Route::get('exports/{module}', [\App\Http\Controllers\Api\AssociationExchangeController::class, 'export']);
+    Route::get('usage', [\App\Http\Controllers\Api\AssociationReportsController::class, 'usage']);
+    Route::get('settings', [\App\Http\Controllers\Api\AssociationReportsController::class, 'settings']);
+    Route::put('settings', [\App\Http\Controllers\Api\AssociationReportsController::class, 'saveSettings']);
+    Route::match(['get', 'put'], 'preferences', [\App\Http\Controllers\Api\AssociationReportsController::class, 'preferences']);
+    Route::post('beneficiaries/{beneficiary}/profile-fields', [\App\Http\Controllers\Api\AssociationProfileController::class, 'openFields'])->whereNumber('beneficiary');
+    Route::post('events/{event}/invitation-preview', [\App\Http\Controllers\Api\AssociationInvitationsController::class, 'preview'])->whereNumber('event');
+    Route::post('events/{event}/invite', [\App\Http\Controllers\Api\AssociationInvitationsController::class, 'send'])->whereNumber('event');
+    Route::post('invitations/{invitation}/withdraw', [\App\Http\Controllers\Api\AssociationInvitationsController::class, 'withdraw'])->whereNumber('invitation');
+    Route::get('conversation-peers', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'peers']);
+    Route::get('conversation-beneficiaries', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'beneficiaryAccounts']);
+    Route::post('chat/grants', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'grant']);
+    Route::post('chat/threads', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'create']);
+    Route::get('threads/{thread}', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'show'])->whereNumber('thread');
+    Route::post('threads/{thread}/messages', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'send'])->whereNumber('thread');
+    Route::post('threads/{thread}/presence', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'presence'])->whereNumber('thread');
+    Route::post('threads/{thread}/action', [\App\Http\Controllers\Api\AssociationConversationsController::class, 'action'])->whereNumber('thread');
+    Route::get('devices', [\App\Http\Controllers\Api\AssociationDevicesController::class, 'index']);
+    Route::get('devices/{id}', [\App\Http\Controllers\Api\AssociationDevicesController::class, 'show'])->whereNumber('id');
+    Route::post('devices/{id}/revoke', [\App\Http\Controllers\Api\AssociationDevicesController::class, 'revoke'])->whereNumber('id');
+    Route::post('notifications/{notification}/preview', [\App\Http\Controllers\Api\AssociationNotificationsController::class, 'preview'])->whereNumber('notification');
+    Route::get('overview', [\App\Http\Controllers\Api\AssociationOverviewController::class, 'overview']);
+    Route::post('transfers', [\App\Http\Controllers\Api\AssociationTransfersController::class, 'start']);
+    Route::get('transfers/{transfer}', [\App\Http\Controllers\Api\AssociationTransfersController::class, 'status'])->whereUuid('transfer');
+    Route::post('transfers/{transfer}/parts/{part}', [\App\Http\Controllers\Api\AssociationTransfersController::class, 'part'])->whereUuid('transfer')->whereNumber('part');
+    Route::post('transfers/{transfer}/finish', [\App\Http\Controllers\Api\AssociationTransfersController::class, 'finish'])->whereUuid('transfer');
+    Route::post('scan/{mode}', [AssociationEventsController::class, 'scan'])->whereIn('mode', ['attendance', 'delivery']);
+    Route::post('scans/offline/{mode}', [AssociationEventsController::class, 'offlineScan'])->whereIn('mode', ['attendance', 'delivery']);
+    Route::get('scan-events/{mode}', [AssociationEventsController::class, 'events'])->whereIn('mode', ['attendance', 'delivery']);
+    Route::post('confirm/{mode}', [AssociationEventsController::class, 'confirm'])->whereIn('mode', ['attendance', 'delivery']);
+    Route::get('events/{event}/participants/{mode}', [AssociationEventsController::class, 'participants'])->whereNumber('event')->whereIn('mode', ['attendance', 'delivery']);
+    Route::post('media', [AssociationAdminController::class, 'upload'])->middleware('throttle:30,1');
+    Route::get('media/{upload}', [AssociationMediaController::class, 'show'])->whereUuid('upload');
+    Route::get('legacy-media/{module}/{id}/{field}', [AssociationMediaController::class, 'legacy'])->whereNumber('id');
+    Route::get('lookup/{module}', [AssociationAdminController::class, 'lookup']);
+    Route::get('records/{module}', [AssociationAdminController::class, 'index']);
+    Route::post('records/{module}', [AssociationAdminController::class, 'save']);
+    Route::get('records/{module}/{id}', [AssociationAdminController::class, 'show'])->whereNumber('id');
+    Route::put('records/{module}/{id}', [AssociationAdminController::class, 'save'])->whereNumber('id');
+    Route::post('records/{module}/{id}/action', [AssociationAdminController::class, 'action'])->whereNumber('id');
+});

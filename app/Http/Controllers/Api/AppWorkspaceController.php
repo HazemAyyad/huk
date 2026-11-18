@@ -124,6 +124,13 @@ final class AppWorkspaceController extends Controller
             }];
         } elseif ($data['managed']) {
             $data['items'] = $this->managed->records($state['draft'], $section);
+            $published = array_column($this->managed->records($state['published'], $section), null, 'id');
+            $data['items'] = array_map(function ($row) use ($state, $section, $published) {
+                $row['_reviewed'] = hash_equals($this->managed->recordHash($state, $section, $row['id']), $state['record_reviews'][$section][$row['id']] ?? '');
+                $record = $row; unset($record['_reviewed']);
+                $row['_has_unpublished_changes'] = ($published[$row['id']] ?? null) !== $record;
+                return $row;
+            }, $data['items']);
         } elseif ($section === 'accounts') {
             $this->table('app_accounts');
             $page = DB::table('app_accounts')->select('id', 'religious_account_id', 'active', 'association_enabled', 'religious_enabled', 'created_at')->orderByDesc('id')->paginate(30);
@@ -245,9 +252,14 @@ final class AppWorkspaceController extends Controller
         $data = $request->validate(['action' => 'required|string', 'revision' => 'nullable|integer|min:0']);
         $action = $data['action'];
         if (in_array($section, ['adhkar-items', 'adhkar-groups', 'sakinah', 'daily', 'audio', 'tafsirs'])) {
-            $this->access->require($request->user(), $action === 'review' ? 'catalogs.review' : 'catalogs.publish');
-            abort_unless(in_array($action, ['review', 'publish']) && isset($data['revision']), 422);
-            $action === 'review' ? $this->managed->review($data['revision']) : $this->managed->publish($data['revision']);
+            $this->access->require($request->user(), in_array($action, ['review', 'review_record'], true) ? 'catalogs.review' : 'catalogs.publish');
+            abort_unless(in_array($action, ['review', 'publish', 'review_record', 'publish_record']) && isset($data['revision']), 422);
+            match ($action) {
+                'review_record' => $this->managed->reviewRecord($section, $id, $data['revision']),
+                'publish_record' => $this->managed->publishRecord($section, $id, $data['revision']),
+                'review' => $this->managed->review($data['revision']),
+                'publish' => $this->managed->publish($data['revision']),
+            };
         } elseif (in_array($section, ['entries', 'reports'])) {
             $this->table(self::TABLES[$section]);
             DB::transaction(function () use ($section, $request, $id, $action): void {

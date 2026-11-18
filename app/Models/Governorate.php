@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Governorate extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
 
     protected $guarded = [];
 

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TelegramUserNote extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     use SoftDeletes;
 
     protected $fillable = [

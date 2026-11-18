@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrphanChild extends Model
 {
+    use \App\Traits\AssociationTombstones;
+
     protected $fillable = [
         'family_member_id',
         'birth_date',
