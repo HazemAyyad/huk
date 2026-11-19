@@ -238,7 +238,7 @@ return new class extends Migration
             $table->timestamp('confirmed_at')->nullable();
             $table->string('failure_code', 100)->nullable();
             $table->timestamps();
-            $table->unique(['notification_id', 'account_id']);
+            $table->unique(['notification_id', 'account_id'], 'assoc_notification_recipient_unique');
         });
         Schema::create('association_audience_previews', function (Blueprint $table): void {
             $table->uuid('id')->primary();
@@ -275,7 +275,7 @@ return new class extends Migration
             $table->unsignedBigInteger('granted_by');
             $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->unique(['beneficiary_account_id', 'staff_account_id']);
+            $table->unique(['beneficiary_account_id', 'staff_account_id'], 'assoc_chat_grant_accounts_unique');
         });
         Schema::create('association_threads', function (Blueprint $table): void {
             $table->id();
